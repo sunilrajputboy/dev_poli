@@ -1,0 +1,433 @@
+Node,test
+Aberdeen City,2
+Aberdeenshire,3
+Adur,4
+Allerdale,31
+Amber Valley,23
+Angus,43
+Argyll and Bute,7
+Arun,753
+Ashfield,23
+Ashford,547
+Aylesbury Vale,5
+Babergh,25
+Barking & Dagenham,2
+Barnet,3
+Barnsley,4
+Barrow-in-Furness,31
+Basildon,23
+Basingstoke & Deane,43
+Bassetlaw,7
+Bath & North East Somerset,753
+Bedford,23
+Bexley,547
+Birmingham,5
+Blaby,25
+Blackburn with Darwen,2
+Blackpool,3
+Blaenau Gwent,4
+Bolsover,31
+Bolton,23
+Boston,43
+Bournemouth,7
+Bracknell Forest,753
+Bradford,23
+Braintree,547
+Breckland,5
+Brent,25
+Brentwood,2
+Bridgend,3
+Brighton & Hove,4
+Bristol,31
+Broadland,23
+Bromley,43
+Bromsgrove,7
+Broxbourne,753
+Broxtowe,23
+Burnley,547
+Bury,5
+Caerphilly,25
+Calderdale,2
+Cambridge,3
+Camden,4
+Cannock Chase,31
+Canterbury,23
+Cardiff,43
+Carlisle,7
+Carmarthenshire,753
+Castle Point,23
+Central Bedfordshire,547
+Ceredigion,5
+Charnwood,25
+Chelmsford,2
+Cheltenham,3
+Cherwell,4
+Cheshire East,31
+Cheshire West & Chester,23
+Chesterfield,43
+Chichester,7
+Chiltern,753
+Chorley,23
+Christchurch,547
+City of Edinburgh,5
+City of London,25
+Clackmannanshire,2
+Colchester,3
+Conwy,4
+Copeland,31
+Corby,23
+Cornwall,43
+Cotswold,7
+County Durham,753
+Coventry,23
+Craven,547
+Crawley,5
+Croydon,25
+Dacorum,2
+Darlington,3
+Dartford,4
+Daventry,31
+Denbighshire,23
+Derby,43
+Derbyshire Dales,7
+Doncaster,753
+Dover,23
+Dudley,547
+Dumfries and Galloway,5
+Dundee City,25
+Ealing,2
+East Ayrshire,3
+East Cambridgeshire,4
+East Devon,31
+East Dorset,23
+East Dunbartonshire,43
+East Hampshire,7
+East Hertfordshire,753
+East Lindsey,23
+East Lothian,547
+East Northamptonshire,5
+East Renfrewshire,25
+East Riding of Yorkshire,2
+East Staffordshire,3
+Eastbourne,4
+Eastleigh,31
+Eden,23
+Comhairle nan Eilean Siar,43
+Elmbridge,7
+Enfield,753
+Epping Forest,23
+Epsom & Ewell,547
+Erewash,5
+Exeter,25
+Falkirk,2
+Fareham,3
+Fenland,4
+Fife,31
+Flintshire,23
+Forest Heath,43
+Forest of Dean,7
+Fylde,753
+Gateshead,23
+Gedling,547
+Glasgow City,5
+Gloucester,25
+Gosport,2
+Gravesham,3
+Great Yarmouth,4
+Greenwich,31
+Guildford,23
+Gwynedd,43
+Hackney,7
+Halton,753
+Hambleton,23
+Hammersmith & Fulham,547
+Harborough,5
+Haringey,25
+Harlow,2
+Harrogate,3
+Harrow,4
+Hart,31
+Hartlepool,23
+Hastings,43
+Havant,7
+Havering,753
+Herefordshire,23
+Hertsmere,547
+High Peak,5
+Highland,25
+Hillingdon,2
+Hinckley & Bosworth,3
+Horsham,4
+Hounslow,31
+Huntingdonshire,23
+Hyndburn,43
+Inverclyde,7
+Ipswich,753
+Isle of Anglesey,23
+Isle of Wight,547
+Isles of Scilly,5
+Islington,25
+Kensington & Chelsea,2
+Kettering,3
+Kings Lynn & West Norfolk,4
+Kingston upon Hull,31
+Kingston Upon Thames,23
+Kirklees,43
+Knowsley,7
+Lambeth,753
+Lancaster,23
+Leeds,547
+Leicester,5
+Lewes,25
+Lewisham,2
+Lichfield,3
+Lincoln,4
+Liverpool,31
+Luton,23
+Maidstone,43
+Maldon,7
+Malvern Hills,753
+Manchester,23
+Mansfield,547
+Medway,5
+Melton,25
+Mendip,2
+Merthyr Tydfil,3
+Merton,4
+Mid Devon,31
+Mid Suffolk,23
+Mid Sussex,43
+Middlesbrough,7
+Midlothian,753
+Milton Keynes,23
+Mole Valley,547
+Monmouthshire,5
+Moray,25
+Neath Port Talbot,2
+New Forest,3
+Newark & Sherwood,4
+Newcastle Upon Tyne,31
+Newcastle-under-Lyme,23
+Newham,43
+Newport,7
+North Ayrshire,753
+North Devon,23
+North Dorset,547
+North East Derbyshire,5
+North East Lincolnshire,25
+North Hertfordshire,2
+North Kesteven,3
+North Lanarkshire,4
+North Lincolnshire,31
+North Norfolk,23
+North Somerset,43
+North Tyneside,7
+North Warwickshire,753
+North West Leicestershire,23
+Northampton,547
+Northumberland,5
+Norwich,25
+Nottingham,2
+Nuneaton & Bedworth,3
+Oadby & Wigston,4
+Oldham,31
+Orkney Islands,23
+Oxford,43
+Pembrokeshire,7
+Pendle,753
+Perth and Kinross,23
+Peterborough,547
+Plymouth,5
+Poole,25
+Portsmouth,2
+Powys,3
+Preston,4
+Purbeck,31
+Reading,23
+Redbridge,43
+Redcar & Cleveland,7
+Redditch,753
+Reigate & Banstead,23
+Renfrewshire,547
+Rhondda Cynon Taf,5
+Ribble Valley,25
+Richmond Upon Thames,2
+Richmondshire,3
+Rochdale,4
+Rochford,31
+Rossendale,23
+Rother,43
+Rotherham,7
+Rugby,753
+Runnymede,23
+Rushcliffe,547
+Rushmoor,5
+Rutland,25
+Ryedale,2
+Salford,3
+Sandwell,4
+Scarborough,31
+Scottish Borders,23
+Sedgemoor,43
+Sefton,7
+Selby,753
+Sevenoaks,23
+Sheffield,547
+Shepway,5
+Shetland Islands,25
+Shropshire,2
+Slough,3
+Solihull,4
+South Ayrshire,31
+South Bucks,23
+South Cambridgeshire,43
+South Derbyshire,7
+South Gloucestershire,753
+South Hams,23
+South Holland,547
+South Kesteven,5
+South Lakeland,25
+South Lanarkshire,2
+South Norfolk,3
+South Northamptonshire,4
+South Oxfordshire,31
+South Ribble,23
+South Somerset,43
+South Staffordshire,7
+South Tyneside,753
+Southampton,23
+Southend-on-Sea,547
+Southwark,5
+Spelthorne,25
+St. Albans,2
+St. Edmundsbury,3
+St. Helens,4
+Stafford,31
+Staffordshire Moorlands,23
+Stevenage,43
+Stirling,7
+Stockport,753
+Stockton-on-Tees,23
+Stoke-on-Trent,547
+Stratford-on-Avon,5
+Stroud,25
+Suffolk Coastal,2
+Sunderland,3
+Surrey Heath,4
+Sutton,31
+Swale,23
+Swansea,43
+Swindon,7
+Tameside,753
+Tamworth,23
+Tandridge,547
+Taunton Deane,5
+Teignbridge,25
+Telford & Wrekin,2
+Tendring,3
+Test Valley,4
+Tewkesbury,31
+Thanet,23
+Three Rivers,43
+Thurrock,7
+Tonbridge & Malling,753
+Torbay,23
+Torfaen,547
+Torridge,5
+Tower Hamlets,25
+Trafford,2
+Tunbridge Wells,3
+Uttlesford,4
+Vale of Glamorgan,31
+Vale of White Horse,23
+Wakefield,43
+Walsall,7
+Waltham Forest,753
+Wandsworth,23
+Warrington,547
+Warwick,5
+Watford,25
+Waveney,2
+Waverley,3
+Wealden,4
+Wellingborough,31
+Welwyn Hatfield,23
+West Berkshire,43
+West Devon,7
+West Dorset,753
+West Dunbartonshire,23
+West Lancashire,547
+West Lindsey,5
+West Lothian,25
+West Oxfordshire,2
+West Somerset,3
+Westminster,4
+Weymouth & Portland,31
+Wigan,23
+Wiltshire,43
+Winchester,7
+Windsor & Maidenhead,753
+Wirral,23
+Woking,547
+Wokingham,5
+Wolverhampton,25
+Worcester,2
+Worthing,3
+Wrexham,4
+Wychavon,31
+Wycombe,23
+Wyre,43
+Wyre Forest,7
+York,753
+,23
+,547
+,5
+,25
+,2
+,3
+,4
+,31
+,23
+,43
+,7
+,753
+,23
+,547
+,5
+,25
+,2
+,3
+,4
+,31
+,23
+,43
+,7
+,753
+,23
+,547
+,5
+,25
+,2
+,3
+,4
+,31
+,23
+,43
+,7
+,753
+,23
+,547
+,5
+,25
+,2
+,3
+,4
+,31
+,23
+,43
+,7
+,753
+,23
+,547
+,5
+,25

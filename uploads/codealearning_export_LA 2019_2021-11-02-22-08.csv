@@ -1,0 +1,217 @@
+Node,df1,df2
+Hartlepool,2,2
+Middlesbrough,12,12
+Redcar and Cleveland,32,32
+Stockton-on-Tees,44,44
+Darlington,32,32
+Halton,12,12
+Warrington,32,32
+Blackburn with Darwen,45,45
+Blackpool,4,4
+"Kingston upon Hull, City of",33,33
+East Riding of Yorkshire,12,12
+North East Lincolnshire,65,65
+North Lincolnshire,75,75
+York,43,43
+Derby,23,23
+Leicester,44,44
+Rutland,32,32
+Nottingham,432,432
+"Herefordshire, County of",432,432
+Telford and Wrekin,3,3
+Stoke-on-Trent,213,213
+Bath and North East Somerset,321,321
+"Bristol, City of",2,2
+North Somerset,12,12
+South Gloucestershire,32,32
+Plymouth,44,44
+Torbay,32,32
+Swindon,12,12
+Peterborough,32,32
+Luton,45,45
+Southend-on-Sea,4,4
+Thurrock,33,33
+Medway,12,12
+Bracknell Forest,65,65
+West Berkshire,75,75
+Reading,43,43
+Slough,23,23
+Windsor and Maidenhead,44,44
+Wokingham,32,32
+Milton Keynes,432,432
+Brighton and Hove,432,432
+Portsmouth,4,4
+Southampton,213,213
+Isle of Wight,321,321
+County Durham,2,2
+Cheshire East,12,12
+Cheshire West and Chester,32,32
+Shropshire,44,44
+Cornwall,32,32
+Isles of Scilly,12,12
+Wiltshire,32,32
+Bedford,45,45
+Central Bedfordshire,4,4
+Northumberland,33,33
+"Bournemouth, Christchurch and Poole",12,12
+Dorset,65,65
+Bolton,75,75
+Bury,43,43
+Manchester,23,23
+Oldham,44,44
+Rochdale,32,32
+Salford,432,432
+Stockport,432,432
+Tameside,3,3
+Trafford,213,213
+Wigan,321,321
+Knowsley,2,2
+Liverpool,12,12
+St. Helens,32,32
+Sefton,44,44
+Wirral,32,32
+Barnsley,12,12
+Doncaster,32,32
+Rotherham,45,45
+Sheffield,4,4
+Newcastle upon Tyne,33,33
+North Tyneside,12,12
+South Tyneside,65,65
+Sunderland,75,75
+Birmingham,43,43
+Coventry,23,23
+Dudley,44,44
+Sandwell,32,32
+Solihull,432,432
+Walsall,432,432
+Wolverhampton,4,4
+Bradford,213,213
+Calderdale,321,321
+Kirklees,2,2
+Leeds,12,12
+Wakefield,32,32
+Gateshead,44,44
+City of London,32,32
+Barking and Dagenham,12,12
+Barnet,32,32
+Bexley,45,45
+Brent,4,4
+Bromley,33,33
+Camden,12,12
+Croydon,65,65
+Ealing,75,75
+Enfield,43,43
+Greenwich,23,23
+Hackney,44,44
+Hammersmith and Fulham,32,32
+Haringey,432,432
+Harrow,432,432
+Havering,3,3
+Hillingdon,213,213
+Hounslow,321,321
+Islington,2,2
+Kensington and Chelsea,12,12
+Kingston upon Thames,32,32
+Lambeth,44,44
+Lewisham,32,32
+Merton,12,12
+Newham,32,32
+Redbridge,45,45
+Richmond upon Thames,4,4
+Southwark,33,33
+Sutton,12,12
+Tower Hamlets,65,65
+Waltham Forest,75,75
+Wandsworth,43,43
+Westminster,23,23
+Buckinghamshire,44,44
+Cambridgeshire,32,32
+Cumbria,432,432
+Derbyshire,432,432
+Devon,4,4
+East Sussex,213,213
+Essex,321,321
+Gloucestershire,2,2
+Hampshire,12,12
+Hertfordshire,32,32
+Kent,44,44
+Lancashire,32,32
+Leicestershire,12,12
+Lincolnshire,32,32
+Norfolk,45,45
+Northamptonshire,4,4
+North Yorkshire,33,33
+Nottinghamshire,12,12
+Oxfordshire,65,65
+Somerset,75,75
+Staffordshire,43,43
+Suffolk,23,23
+Surrey,44,44
+Warwickshire,32,32
+West Sussex,432,432
+Worcestershire,432,432
+Antrim and Newtownabbey,3,3
+"Armagh City, Banbridge and Craigavon",213,213
+Belfast,321,321
+Causeway Coast and Glens,2,2
+Derry City and Strabane,12,12
+Fermanagh and Omagh,32,32
+Lisburn and Castlereagh,44,44
+Mid and East Antrim,32,32
+Mid Ulster,12,12
+"Newry, Mourne and Down",32,32
+Ards and North Down,45,45
+Clackmannanshire,4,4
+Dumfries and Galloway,33,33
+East Ayrshire,12,12
+East Lothian,65,65
+East Renfrewshire,75,75
+Na h-Eileanan Siar,43,43
+Falkirk,23,23
+Highland,44,44
+Inverclyde,32,32
+Midlothian,432,432
+Moray,432,432
+North Ayrshire,4,4
+Orkney Islands,213,213
+Scottish Borders,321,321
+Shetland Islands,2,2
+South Ayrshire,12,12
+South Lanarkshire,32,32
+Stirling,44,44
+Aberdeen City,32,32
+Aberdeenshire,12,12
+Argyll and Bute,32,32
+City of Edinburgh,45,45
+Renfrewshire,4,4
+West Dunbartonshire,33,33
+West Lothian,12,12
+Angus,65,65
+Dundee City,75,75
+East Dunbartonshire,43,43
+Fife,23,23
+Perth and Kinross,44,44
+Glasgow City,32,32
+North Lanarkshire,432,432
+Isle of Anglesey,432,432
+Gwynedd,3,3
+Conwy,213,213
+Denbighshire,321,321
+Flintshire,2,2
+Wrexham,12,12
+Ceredigion,32,32
+Pembrokeshire,44,44
+Carmarthenshire,32,32
+Swansea,12,12
+Neath Port Talbot,32,32
+Bridgend,45,45
+Vale of Glamorgan,4,4
+Cardiff,33,33
+Rhondda Cynon Taf,12,12
+Caerphilly,65,65
+Blaenau Gwent,75,75
+Torfaen,43,43
+Monmouthshire,23,23
+Newport,44,44
+Powys,32,32
+Merthyr Tydfil,432,432

@@ -1,0 +1,218 @@
+Node,ff,dd,hh
+Hartlepool,1,1,1
+Middlesbrough,2,2,2
+Redcar and Cleveland,4,4,4
+Stockton-on-Tees,4,4,4
+Darlington,53,53,53
+Halton,34,34,34
+Warrington,432,432,432
+Blackburn with Darwen,54,54,54
+Blackpool,635,635,635
+"Kingston upon Hull, City of",65,65,65
+East Riding of Yorkshire,43,43,43
+North East Lincolnshire,342,342,342
+North Lincolnshire,54,54,54
+York,324,324,324
+Derby,543,543,543
+Leicester,23,23,23
+Rutland,546,546,546
+Nottingham,324,324,324
+"Herefordshire, County of",143,143,143
+Telford and Wrekin,543,543,543
+Stoke-on-Trent,135,135,135
+Bath and North East Somerset,5453,5453,5453
+"Bristol, City of",1,1,1
+North Somerset,2,2,2
+South Gloucestershire,4,4,4
+Plymouth,4,4,4
+Torbay,53,53,53
+Swindon,34,34,34
+Peterborough,432,432,432
+Luton,54,54,54
+Southend-on-Sea,635,635,635
+Thurrock,65,65,65
+Medway,43,43,43
+Bracknell Forest,342,342,342
+West Berkshire,54,54,54
+Reading,324,324,324
+Slough,543,543,543
+Windsor and Maidenhead,23,23,23
+Wokingham,546,546,546
+Milton Keynes,324,324,324
+Brighton and Hove,143,143,143
+Portsmouth,543,543,543
+Southampton,135,135,135
+Isle of Wight,1,1,1
+County Durham,2,2,2
+Cheshire East,4,4,4
+Cheshire West and Chester,4,4,4
+Shropshire,53,53,53
+Cornwall,34,34,34
+Isles of Scilly,432,432,432
+Wiltshire,54,54,54
+Bedford,635,635,635
+Central Bedfordshire,65,65,65
+Northumberland,43,43,43
+"Bournemouth, Christchurch and Poole",342,342,342
+Dorset,54,54,54
+Buckinghamshire,324,324,324
+North Northamptonshire,543,543,543
+West Northamptonshire,23,23,23
+Bolton,546,546,546
+Bury,324,324,324
+Manchester,143,143,143
+Oldham,543,543,543
+Rochdale,135,135,135
+Salford,1,1,1
+Stockport,2,2,2
+Tameside,4,4,4
+Trafford,4,4,4
+Wigan,53,53,53
+Knowsley,34,34,34
+Liverpool,432,432,432
+St. Helens,54,54,54
+Sefton,635,635,635
+Wirral,65,65,65
+Barnsley,43,43,43
+Doncaster,342,342,342
+Rotherham,54,54,54
+Sheffield,324,324,324
+Newcastle upon Tyne,543,543,543
+North Tyneside,23,23,23
+South Tyneside,546,546,546
+Sunderland,324,324,324
+Birmingham,143,143,143
+Coventry,543,543,543
+Dudley,135,135,135
+Sandwell,5453,5453,5453
+Solihull,1,1,1
+Walsall,2,2,2
+Wolverhampton,4,4,4
+Bradford,4,4,4
+Calderdale,53,53,53
+Kirklees,34,34,34
+Leeds,432,432,432
+Wakefield,54,54,54
+Gateshead,635,635,635
+City of London,65,65,65
+Barking and Dagenham,43,43,43
+Barnet,342,342,342
+Bexley,54,54,54
+Brent,324,324,324
+Bromley,543,543,543
+Camden,23,23,23
+Croydon,546,546,546
+Ealing,324,324,324
+Enfield,143,143,143
+Greenwich,543,543,543
+Hackney,135,135,135
+Hammersmith and Fulham,1,1,1
+Haringey,2,2,2
+Harrow,4,4,4
+Havering,4,4,4
+Hillingdon,53,53,53
+Hounslow,34,34,34
+Islington,432,432,432
+Kensington and Chelsea,54,54,54
+Kingston upon Thames,635,635,635
+Lambeth,65,65,65
+Lewisham,43,43,43
+Merton,342,342,342
+Newham,54,54,54
+Redbridge,324,324,324
+Richmond upon Thames,543,543,543
+Southwark,23,23,23
+Sutton,546,546,546
+Tower Hamlets,324,324,324
+Waltham Forest,143,143,143
+Wandsworth,543,543,543
+Westminster,135,135,135
+Cambridgeshire,1,1,1
+Cumbria,2,2,2
+Derbyshire,4,4,4
+Devon,4,4,4
+East Sussex,53,53,53
+Essex,34,34,34
+Gloucestershire,432,432,432
+Hampshire,54,54,54
+Hertfordshire,635,635,635
+Kent,65,65,65
+Lancashire,43,43,43
+Leicestershire,342,342,342
+Lincolnshire,54,54,54
+Norfolk,324,324,324
+North Yorkshire,543,543,543
+Nottinghamshire,23,23,23
+Oxfordshire,546,546,546
+Somerset,324,324,324
+Staffordshire,143,143,143
+Suffolk,543,543,543
+Surrey,135,135,135
+Warwickshire,5453,5453,5453
+West Sussex,1,1,1
+Worcestershire,2,2,2
+Antrim and Newtownabbey,4,4,4
+"Armagh City, Banbridge and Craigavon",4,4,4
+Belfast,53,53,53
+Causeway Coast and Glens,34,34,34
+Derry City and Strabane,432,432,432
+Fermanagh and Omagh,54,54,54
+Lisburn and Castlereagh,635,635,635
+Mid and East Antrim,65,65,65
+Mid Ulster,43,43,43
+"Newry, Mourne and Down",342,342,342
+Ards and North Down,54,54,54
+Clackmannanshire,324,324,324
+Dumfries and Galloway,543,543,543
+East Ayrshire,23,23,23
+East Lothian,546,546,546
+East Renfrewshire,324,324,324
+Na h-Eileanan Siar,143,143,143
+Falkirk,543,543,543
+Highland,135,135,135
+Inverclyde,1,1,1
+Midlothian,2,2,2
+Moray,4,4,4
+North Ayrshire,4,4,4
+Orkney Islands,53,53,53
+Scottish Borders,34,34,34
+Shetland Islands,432,432,432
+South Ayrshire,54,54,54
+South Lanarkshire,635,635,635
+Stirling,65,65,65
+Aberdeen City,43,43,43
+Aberdeenshire,342,342,342
+Argyll and Bute,54,54,54
+City of Edinburgh,324,324,324
+Renfrewshire,543,543,543
+West Dunbartonshire,23,23,23
+West Lothian,546,546,546
+Angus,324,324,324
+Dundee City,143,143,143
+East Dunbartonshire,543,543,543
+Fife,135,135,135
+Perth and Kinross,1,1,1
+Glasgow City,2,2,2
+North Lanarkshire,4,4,4
+Isle of Anglesey,4,4,4
+Gwynedd,53,53,53
+Conwy,34,34,34
+Denbighshire,432,432,432
+Flintshire,54,54,54
+Wrexham,635,635,635
+Ceredigion,65,65,65
+Pembrokeshire,43,43,43
+Carmarthenshire,342,342,342
+Swansea,54,54,54
+Neath Port Talbot,324,324,324
+Bridgend,543,543,543
+Vale of Glamorgan,23,23,23
+Cardiff,546,546,546
+Rhondda Cynon Taf,324,324,324
+Caerphilly,143,143,143
+Blaenau Gwent,543,543,543
+Torfaen,135,135,135
+Monmouthshire,5453,5453,5453
+Newport,1,1,1
+Powys,2,2,2
+Merthyr Tydfil,4,4,4

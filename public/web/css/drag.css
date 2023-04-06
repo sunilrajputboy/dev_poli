@@ -1,0 +1,88 @@
+
+		.mjs-nestedSortable-error {
+			background: #fbe3e4;
+			border-color: transparent;
+		}
+		
+	
+
+		ol.sortable,ol.sortable ol {
+			list-style-type: none;
+		}
+		
+	
+		
+		li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
+			border-color: #999;
+		}
+		
+		.disclose, .expandEditor {
+			cursor: pointer;
+			width: 20px;
+			display: none;
+		}
+		
+		.sortable li.mjs-nestedSortable-collapsed > ol {
+			display: none;
+		}
+		
+		.sortable li.mjs-nestedSortable-branch > div > .disclose {
+			display: inline-block;
+		}
+		
+		.sortable span.ui-icon {
+			display: inline-block;
+			margin: 0;
+			padding: 0;
+		}
+		
+		.menuDiv {
+			background: #e8edf2;
+		}
+		
+		.menuEdit {
+			background: #FFF;
+		}
+		
+		.itemTitle {
+    vertical-align: middle;
+    cursor: pointer;
+    margin-left: 10px;
+}
+		
+		.deleteMenu {
+			float: right;
+			cursor: pointer;
+		}
+	
+		
+		.notice {
+			color: #c33;
+		}
+		.hiddenDiv{ 
+		display:none;
+	}
+	.menuDiv {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #eaeaea;
+    margin-bottom: 10px;
+}
+.ui-sortable > li>div+ol {
+    margin-bottom: 10px;
+    padding-right: 0;
+    margin-left: 30px;
+    padding-left: 0;
+}
+	.menuEdit > div {
+    margin: 9px -10px;
+    padding: 15px;
+    background: #fff;
+    margin-bottom: -10px;
+}
+.ui-sortable {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}

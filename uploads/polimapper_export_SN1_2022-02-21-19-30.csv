@@ -1,0 +1,105 @@
+Node,A,B,C
+"NHS Barnsley CCG",1,2,3
+"NHS Basildon and Brentwood CCG",2,3,4
+"NHS Bassetlaw CCG",3,4,5
+"NHS Blackburn with Darwen CCG",4,5,6
+"NHS Blackpool CCG",5,6,7
+"NHS Bolton CCG",6,7,8
+"NHS Brighton and Hove CCG",7,8,9
+"NHS Bury CCG",8,9,10
+"NHS Calderdale CCG",9,10,11
+"NHS Cambridgeshire and Peterborough CCG",10,11,12
+"NHS Cannock Chase CCG",11,12,13
+"NHS Castle Point and Rochford CCG",12,13,14
+"NHS Chorley and South Ribble CCG",13,14,15
+"NHS Doncaster CCG",14,15,16
+"NHS Dorset CCG",15,16,17
+"NHS East and North Hertfordshire CCG",16,17,18
+"NHS East Lancashire CCG",17,18,19
+"NHS East Leicestershire and Rutland CCG",18,19,20
+"NHS East Riding of Yorkshire CCG",19,20,21
+"NHS East Staffordshire CCG",20,21,22
+"NHS Gloucestershire CCG",21,22,23
+"NHS Halton CCG",22,23,24
+"NHS Herts Valleys CCG",23,24,25
+"NHS Heywood Middleton and Rochdale CCG",24,25,26
+"NHS Hull CCG",25,26,27
+"NHS Ipswich and East Suffolk CCG",26,27,28
+"NHS Kernow CCG",27,28,29
+"NHS Knowsley CCG",28,29,30
+"NHS Leicester City CCG",29,30,31
+"NHS Liverpool CCG",30,31,32
+"NHS Mid Essex CCG",31,32,33
+"NHS North East Essex CCG",32,33,34
+"NHS North East Lincolnshire CCG",33,34,35
+"NHS North Lincolnshire CCG",34,35,36
+"NHS North Staffordshire CCG",35,36,37
+"NHS North Tyneside CCG",36,37,38
+"NHS Northumberland CCG",37,38,39
+"NHS Oldham CCG",38,39,40
+"NHS Oxfordshire CCG",39,40,41
+"NHS Portsmouth CCG",40,41,42
+"NHS Rotherham CCG",41,42,43
+"NHS Salford CCG",42,43,44
+"NHS Sheffield CCG",43,44,45
+"NHS Somerset CCG",44,45,46
+"NHS South East Staffordshire and Seisdon Peninsula CCG",45,46,47
+"NHS South Sefton CCG",46,47,48
+"NHS South Tyneside CCG",47,48,49
+"NHS Southend CCG",48,49,50
+"NHS Southport and Formby CCG",49,50,51
+"NHS St Helens CCG",50,51,52
+"NHS Stafford and Surrounds CCG",51,52,53
+"NHS Stockport CCG",52,53,54
+"NHS Stoke on Trent CCG",53,54,55
+"NHS Sunderland CCG",54,55,56
+"NHS Tameside and Glossop CCG",55,56,57
+"NHS Thurrock CCG",56,57,58
+"NHS Trafford CCG",57,58,59
+"NHS Vale of York CCG",58,59,60
+"NHS Wakefield CCG",59,60,61
+"NHS Warrington CCG",60,61,62
+"NHS West Essex CCG",61,62,63
+"NHS West Lancashire CCG",62,63,64
+"NHS West Leicestershire CCG",63,64,65
+"NHS West Suffolk CCG",64,65,66
+"NHS Wigan Borough CCG",65,66,67
+"NHS Wirral CCG",66,67,68
+"NHS Newcastle Gateshead CCG",67,68,69
+"NHS North Cumbria CCG",68,69,70
+"NHS Manchester CCG",69,70,71
+"NHS Birmingham and Solihull CCG",70,71,72
+"NHS Berkshire West CCG",71,72,73
+"NHS Bristol North Somerset and South Gloucestershire CCG",72,73,74
+"NHS Buckinghamshire CCG",73,74,75
+"NHS Leeds CCG",74,75,76
+"NHS Fylde and Wyre CCG",75,76,77
+"NHS Greater Preston CCG",76,77,78
+"NHS Morecambe Bay CCG",77,78,79
+"NHS Derby and Derbyshire CCG",78,79,80
+"NHS Devon CCG",79,80,81
+"NHS Bath and North East Somerset Swindon and Wiltshire CCG",80,81,82
+"NHS Bradford District and Craven CCG",81,82,83
+"NHS Cheshire CCG",82,83,84
+"NHS County Durham CCG",83,84,85
+"NHS East Sussex CCG",84,85,86
+"NHS Herefordshire and Worcestershire CCG",85,86,87
+"NHS Kent and Medway CCG",86,87,88
+"NHS Lincolnshire CCG",87,88,89
+"NHS Norfolk and Waveney CCG",88,89,90
+"NHS North Central London CCG",89,90,91
+"NHS North Yorkshire CCG",90,91,92
+"NHS Northamptonshire CCG",91,92,93
+"NHS Nottingham and Nottinghamshire CCG",92,93,94
+"NHS South East London CCG",93,94,95
+"NHS South West London CCG",94,95,96
+"NHS Surrey Heartlands CCG",95,96,97
+"NHS Tees Valley CCG",96,97,98
+"NHS West Sussex CCG",97,98,99
+"NHS Bedfordshire Luton and Milton Keynes CCG",98,99,100
+"NHS Black Country and West Birmingham CCG",99,100,101
+"NHS Coventry and Warwickshire CCG",100,101,102
+"NHS Hampshire Southampton and Isle of Wight CCG",102,103,104
+"NHS Kirklees CCG",103,104,105
+"NHS North East London CCG",104,105,106
+"NHS North West London CCG",105,106,107

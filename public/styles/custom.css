@@ -1,0 +1,548 @@
+/* line 2, ../../src/sass/custom.scss */
+.polimapper .custom-topbar {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  padding: 15px 30px;
+}
+/* line 8, ../../src/sass/custom.scss */
+.polimapper .custom-topbar .topbar-right {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+}
+/* line 15, ../../src/sass/custom.scss */
+.polimapper .custom-topbar .topbar-right .social a:hover {
+  text-decoration: none;
+}
+/* line 18, ../../src/sass/custom.scss */
+.polimapper .custom-topbar .topbar-right .social a svg {
+  width: 25px;
+  height: 25px;
+  margin: 3px;
+}
+/* line 22, ../../src/sass/custom.scss */
+.polimapper .custom-topbar .topbar-right .social a svg path {
+  fill: #0c5192;
+}
+/* line 29, ../../src/sass/custom.scss */
+.polimapper .custom-topbar .postcodea {
+  position: relative;
+}
+/* line 34, ../../src/sass/custom.scss */
+.polimapper .custom-topbar .postcodea .icon-wrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+}
+/* line 43, ../../src/sass/custom.scss */
+.polimapper .custom-topbar .postcodea .icon-wrapper svg {
+  width: 25px;
+}
+/* line 45, ../../src/sass/custom.scss */
+.polimapper .custom-topbar .postcodea .icon-wrapper svg path {
+  fill: #fff;
+}
+/* line 53, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .container-fluid {
+  width: 100%;
+}
+/* line 56, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section {
+  padding: 20px 30px;
+  margin: 0 auto;
+  position: relative;
+}
+/* line 62, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section .results .read-link {
+  text-align: left;
+  width: 100%;
+  display: block;
+  font-weight: 700;
+  text-decoration: underline;
+  color: #0c5192;
+  font-size: 18px;
+  float: left;
+}
+/* line 73, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section .results .result.result_text span.icon {
+  display: none;
+}
+/* line 78, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section .map-option {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  padding: 15px 0px;
+}
+/* line 82, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section .map-option .buttons {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  position: relative;
+  z-index: 1;
+}
+/* line 87, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section .map-option .buttons span {
+  background: #0c5192;
+  width: 45px;
+  height: 45px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  border-radius: 3px;
+  padding: 10px;
+}
+/* line 96, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section .map-option .buttons span svg {
+  width: 20px;
+  height: 20px;
+}
+/* line 99, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section .map-option .buttons span svg path {
+  fill: #fff;
+}
+/* line 104, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section .map-option .buttons .zoom-in,
+.polimapper .app_wrapper .map-section .map-option .buttons .zoom-out {
+  margin-right: 15px;
+}
+/* line 108, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section .map-option .buttons .zoom-in,
+.polimapper .app_wrapper .map-section .map-option .buttons .zoom-out {
+  cursor: pointer;
+}
+/* line 112, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section .map-option .buttons .icon-zoom-in2 {
+  font-size: 30px;
+  color: #0c5192;
+  font-weight: 600;
+  margin-right: 20px;
+}
+/* line 118, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section .map-option .buttons .icon-zoom-out2 {
+  font-size: 30px;
+  color: #0c5192;
+  font-weight: 600;
+}
+/* line 124, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section .map-option .select-wrapper {
+  position: relative;
+}
+/* line 126, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .map-section .map-option .select-wrapper #data_selector {
+  border: 0;
+  color: #0c5192;
+  font-weight: bold;
+  padding: 19px 20px;
+  padding-right: 35px;
+  -webkit-appearance: none;
+  -moz-appearance: window;
+}
+/* line 149, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section {
+  background: #0c5192;
+  width: 100%;
+  padding: 20px 30px;
+}
+/* line 153, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper {
+  padding: 15px 0px;
+}
+/* line 155, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data {
+  text-align: right;
+  box-sizing: border-box;
+}
+/* line 159, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card .result {
+  margin-bottom: 40px;
+  min-height: 130px;
+  background: #fff;
+  border-radius: 15px;
+  margin: 15px 0;
+}
+/* line 168, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card .result.result_text {
+  margin-bottom: 40px;
+}
+/* line 170, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card .result.result_text h3.v {
+  font-size: 1em;
+  font-weight: bold;
+}
+/* line 175, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card .result span.icon {
+  float: right;
+  font-size: 3.5em;
+  margin-left: 20px;
+  margin-top: 10px;
+  color: rgba(0, 0, 0, 0.8) !important;
+}
+/* line 182, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card .result h3 + canvas {
+  margin-top: 6px;
+  min-height: 263px;
+}
+/* line 186, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card .result.col-md-12 {
+  clear: both;
+}
+/* line 193, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card .icon + h3,
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card .icon + h3 + h3 {
+  padding-right: 60px;
+  margin-top: 10px;
+}
+/* line 199, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card h3 {
+  font-weight: 400;
+  margin-top: 0;
+}
+/* line 202, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card h3.n {
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight: bold;
+  min-height: 30px;
+}
+/* line 207, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card h3.n:first-child {
+  padding-right: 0;
+}
+/* line 210, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card h3.n.no_padding {
+  padding-right: 0px;
+}
+/* line 214, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card h3.tu {
+  text-transform: uppercase;
+}
+/* line 217, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card h3.percen {
+  font-weight: 700;
+  float: right;
+}
+/* line 221, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card h3 span.n {
+  font-size: 0.6em;
+}
+/* line 225, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card div.graph-legend {
+  text-align: left;
+  margin-bottom: 10px;
+}
+/* line 229, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card div.graph-legend .legend-item {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-align: center;
+      align-items: center;
+  font-weight: 600;
+  color: #0c5192;
+}
+/* line 234, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card div.graph-legend .legend-item span {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 5px;
+  margin-right: 6px;
+}
+/* line 241, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card div.graph-legend .legend-item.legend-item {
+  margin-left: 10px;
+}
+/* line 249, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .social-link {
+  padding: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  margin: 0 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #dadada;
+}
+/* line 256, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .social-link li {
+  list-style: none;
+  margin-left: 20px;
+  margin-bottom: 0;
+}
+/* line 260, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .social-link li a {
+  color: #dadada;
+}
+/* line 265, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .footer-logo {
+  padding: 15px 30px;
+  text-align: right;
+}
+
+/* line 272, ../../src/sass/custom.scss */
+.result_graph canvas {
+  width: 100% !important;
+  height: 350px !important;
+}
+
+/* line 276, ../../src/sass/custom.scss */
+.polimapper .text.searchbox select {
+  padding: 0px 40px 5px 0;
+}
+
+/* line 279, ../../src/sass/custom.scss */
+span.select-datafield {
+  display: block;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* line 284, ../../src/sass/custom.scss */
+.map-key .map-val:first-child .pretty-number {
+  margin-top: 0;
+}
+
+/* line 287, ../../src/sass/custom.scss */
+.graph-text .icon {
+  display: none;
+}
+
+/* line 290, ../../src/sass/custom.scss */
+.lightbox #ranking_title,
+.lightbox #rankings {
+  display: none !important;
+}
+
+/* line 294, ../../src/sass/custom.scss */
+.modal-map {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  height: 100%;
+}
+
+/* line 299, ../../src/sass/custom.scss */
+.modal-map-legend {
+  position: absolute;
+  right: 0;
+  bottom: 10%;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 991;
+}
+
+/* line 306, ../../src/sass/custom.scss */
+.back-map {
+  display: none;
+}
+
+/* line 309, ../../src/sass/custom.scss */
+.polimapper .closes.cus-close {
+  position: relative;
+  background: #0c5192;
+  opacity: 1;
+  text-shadow: none;
+  border-radius: 30px;
+  transition: 300ms all;
+  z-index: 99999;
+  width: 200px !important;
+}
+/* line 318, ../../src/sass/custom.scss */
+.polimapper .closes.cus-close a {
+  padding: 15px 40px;
+  display: block;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+}
+/* line 325, ../../src/sass/custom.scss */
+.polimapper .closes.cus-close:hover {
+  opacity: 0.9;
+}
+/* line 327, ../../src/sass/custom.scss */
+.polimapper .closes.cus-close:hover a {
+  text-decoration: none;
+}
+
+/* line 332, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .result_graph {
+  text-align: left;
+}
+
+/* line 335, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card h3.n {
+  min-height: auto !important;
+}
+
+/* line 338, ../../src/sass/custom.scss */
+.polimapper .app_wrapper .graph-section .graph-wrapper .graph-data .card .result {
+  padding: 15px;
+}
+
+/* line 341, ../../src/sass/custom.scss */
+.menuDiv {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #eaeaea;
+  margin-bottom: 10px;
+}
+
+/* line 348, ../../src/sass/custom.scss */
+.polimapper .close {
+  opacity: 0.5 !important;
+  font-size: 27px !important;
+}
+/* line 351, ../../src/sass/custom.scss */
+.polimapper .close path {
+  fill: #0c5192;
+}
+
+/* line 355, ../../src/sass/custom.scss */
+.close.sbm-close {
+  position: absolute;
+  right: 42px;
+  top: 15px;
+}
+
+/* line 361, ../../src/sass/custom.scss */
+.polimapper .fade.in {
+  z-index: 9999 !important;
+}
+
+/* line 365, ../../src/sass/custom.scss */
+.modal-map-legend .legend-desc {
+  text-align: left;
+}
+/* line 368, ../../src/sass/custom.scss */
+.modal-map-legend .left-box {
+  width: 100px;
+  background: #0c5192;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+/* line 374, ../../src/sass/custom.scss */
+.modal-map-legend .mp-name,
+.modal-map-legend .link-bio {
+  color: #0c5192;
+  font-weight: bold;
+  font-size: 16px;
+  max-width: 130px;
+}
+/* line 381, ../../src/sass/custom.scss */
+.modal-map-legend .email-mp,
+.modal-map-legend .tweet-mp {
+  color: #19bcef;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* line 388, ../../src/sass/custom.scss */
+.app_wrapper.m-t-0.constituency-view {
+  padding-top: 0;
+}
+
+/* line 392, ../../src/sass/custom.scss */
+.polimapper .closes.cus-close {
+  opacity: 1 !important;
+}
+
+/* line 395, ../../src/sass/custom.scss */
+#main-body {
+  overflow: auto !important;
+}
+
+/* line 398, ../../src/sass/custom.scss */
+.mytooltip {
+  position: relative;
+  width: 17px;
+  margin-left: 15px !important;
+  -ms-flex: 0 0 17px;
+      flex: 0 0 17px;
+  height: 17px;
+}
+
+/* line 407, ../../src/sass/custom.scss */
+.mytooltip span {
+  position: absolute;
+  font-size: 12px;
+  background: #000;
+  border-radius: 5px;
+  padding: 8px 15px;
+  color: #fff !important;
+  min-width: 160px;
+  text-transform: initial;
+  bottom: 25px;
+  visibility: hidden;
+  opacity: 0;
+  transition: 300ms all;
+  left: 0;
+  transform: translateX(-40%);
+  z-index: 9999999;
+  text-align: center;
+}
+
+/* line 425, ../../src/sass/custom.scss */
+.mytooltip svg {
+  position: relative;
+  top: -1px;
+  cursor: pointer;
+}
+
+/* line 430, ../../src/sass/custom.scss */
+.mytooltip svg:hover + span {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* line 443, ../../src/sass/custom.scss */
+.results .result.result_graph.col-xs-12.col-sm-6.graph-text:last-child {
+  margin-bottom: 0;
+}
+
+/* line 446, ../../src/sass/custom.scss */
+ul.postal-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  position: absolute;
+  top: 58px;
+  z-index: 1;
+  right: 0;
+}
+
+/* line 461, ../../src/sass/custom.scss */
+.constituency-view div#cons_name_overlay {
+  z-index: 0 !important;
+}
+
+/* line 464, ../../src/sass/custom.scss */
+.constituency-view div#data_selector {
+  display: none;
+}

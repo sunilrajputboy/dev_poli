@@ -1,0 +1,33 @@
+Local Authority Name ,Ecode,N.O of ESF Fires 20/22,Legended Fires 
+Orkney Islands,S12000023,2,1-15
+Na h-Eileanan Siar,S12000013,6,1-15
+Shetland Islands,S12000027,15,1-15
+Clackmannanshire,S12000005,23,16-30
+East Renfrewshire ,S12000011,27,16-30
+Stirling,S12000030,27,16-30
+East Lothian,S12000010,29,16-30
+Moray,S12000020,34,31-45
+Angus,S12000041,36,31-45
+Midlothian,S12000019,36,31-45
+Scottish Borders,S12000026,39,31-45
+South Ayrshire,S12000028,39,31-45
+East Dunbartonshire,S12000045,40,31-45
+East Ayrshire,S12000008,41,31-45
+Argyll and Bute,S12000035,49,46-60
+Dumfries & Galloway,S12000006,49,46-60
+Inverclyde,S12000018,53,46-60
+West Lothian,S12000040,55,46-60
+Perth and Kinross,S12000024,63,61-75
+West Dunbartonshire,S12000039,65,61-75
+Highland,S12000017,68,61-75
+Falkirk ,S12000014,74,61-75
+North Ayrshire,S12000021,84,76-90
+Renfrewshire,S12000038,95,91-105
+Aberdeenshire,S12000034,97,91-105
+Dundee City,S12000042,113,106-120
+South Lanarkshire,S12000029,126,120+
+Fife,S12000015,132,120+
+Aberdeen City ,S12000033,148,120+
+North Lanarkshire,S12000044,152,120+
+City of Edinburgh,S12000036,218,120+
+Glasgow City,S12000046,403,120+

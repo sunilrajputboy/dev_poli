@@ -1,0 +1,160 @@
+@media print {
+  /* line 2, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper div.map .svg_wrapper {
+    height: 300px;
+  }
+
+  /* line 5, ../../src/sass/print.scss */
+  .polimapper {
+    min-height: 100%;
+  }
+  /* line 7, ../../src/sass/print.scss */
+  .polimapper a:link:after,
+  .polimapper a:visited:after {
+    content: " (" attr(href) ")";
+    font-size: 0%;
+  }
+  /* line 12, ../../src/sass/print.scss */
+  .polimapper .topbar {
+    position: static !important;
+  }
+  /* line 14, ../../src/sass/print.scss */
+  .polimapper .topbar .custom-topbar {
+    padding: 0 !important;
+  }
+  /* line 17, ../../src/sass/print.scss */
+  .polimapper .topbar .custom-topbar .social .print {
+    display: none;
+  }
+  /* line 21, ../../src/sass/print.scss */
+  .polimapper .topbar .custom-topbar .searchbox.postcodea {
+    display: none;
+  }
+  /* line 24, ../../src/sass/print.scss */
+  .polimapper .topbar .custom-topbar .searchbox {
+    display: none;
+  }
+  /* line 29, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper {
+    padding-top: 5px !important;
+  }
+  /* line 31, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper .map-section {
+    padding: 0 !important;
+  }
+  /* line 34, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper .graph-section {
+    padding: 0 !important;
+  }
+  /* line 37, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper .svg_wrapper {
+    min-height: 300px;
+  }
+  /* line 41, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper .data .results {
+    padding: 0 !important;
+  }
+  /* line 44, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper .data .results .totals h2 {
+    margin-bottom: 0;
+  }
+  /* line 47, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper .data .results .totals #description {
+    padding-bottom: 0 !important;
+  }
+  /* line 54, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper .map .map-option {
+    display: none;
+  }
+  /* line 56, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper .map .map-option .buttons {
+    visibility: hidden;
+  }
+  /* line 60, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper .map .legend {
+    display: none;
+  }
+  /* line 64, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper .legend {
+    z-index: 99991;
+  }
+  /* line 73, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper.constituency-view {
+    height: auto;
+    position: relative;
+  }
+  /* line 76, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper.constituency-view .lightbox {
+    display: block;
+    background: none;
+  }
+  /* line 79, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper.constituency-view .lightbox svg {
+    top: 0;
+    max-height: 100%;
+  }
+  /* line 83, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper.constituency-view .lightbox .close {
+    display: none;
+  }
+  /* line 88, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper.constituency-view .map .legend {
+    display: none !important;
+  }
+  /* line 91, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper.constituency-view .map .svg_wrapper {
+    opacity: 0 !important;
+  }
+  /* line 97, ../../src/sass/print.scss */
+  .polimapper div.app_wrapper.constituency-view .results .result_text,
+  .polimapper div.app_wrapper.constituency-view .results .con_name {
+    display: block;
+  }
+
+  /* line 104, ../../src/sass/print.scss */
+  .polimapper .closes.cus-close {
+    display: none;
+  }
+
+  /* line 107, ../../src/sass/print.scss */
+  .constituency-view .closes.cus-close {
+    display: none !important;
+  }
+}
+@media screen and (min-width: 375px) and (max-width: 767px) {
+  /* line 119, ../../src/sass/print.scss */
+  .app_wrapper.constituency-view .con_name {
+    left: calc(50% - 130px);
+    width: 260px;
+  }
+
+  /* line 126, ../../src/sass/print.scss */
+  #data_selector .data-field-mobile {
+    width: 250px !important;
+    padding: 0 calc(50vw - 125px) !important;
+  }
+
+  /* line 133, ../../src/sass/print.scss */
+  .map-nav-container .showmap {
+    left: 15% !important;
+  }
+  /* line 136, ../../src/sass/print.scss */
+  .map-nav-container .svg_wrapper {
+    left: 10% !important;
+  }
+
+  /* line 142, ../../src/sass/print.scss */
+  .svg-modal .svg_wrapper svg {
+    transform: matrix(0.4, 0, 0, 0.4, 0, 0);
+    transform-origin: 0% 65% 0 !important;
+  }
+  /* line 146, ../../src/sass/print.scss */
+  .svg-modal .svg_wrapper svg.ccg {
+    transform-origin: 32% 61% 0 !important;
+  }
+  /* line 152, ../../src/sass/print.scss */
+  .svg-modal .legend .key {
+    font-size: 16px;
+    word-spacing: 4px;
+  }
+}

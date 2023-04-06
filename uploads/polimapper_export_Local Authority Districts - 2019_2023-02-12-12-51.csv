@@ -1,0 +1,217 @@
+Node,rere,rew
+Hartlepool,3,3
+Middlesbrough,4,4
+Redcar and Cleveland,3,3
+Stockton-on-Tees,2,2
+Darlington,3,3
+Halton,4,4
+Warrington,3,3
+Blackburn with Darwen,2,2
+Blackpool,3,3
+Kingston upon Hull City of,4,4
+East Riding of Yorkshire,3,3
+North East Lincolnshire,2,2
+North Lincolnshire,3,3
+York,4,4
+Derby,3,3
+Leicester,2,2
+Rutland,3,3
+Nottingham,4,4
+Herefordshire County of,3,3
+Telford and Wrekin,2,2
+Stoke-on-Trent,3,3
+Bath and North East Somerset,4,4
+Bristol City of,3,3
+North Somerset,2,2
+South Gloucestershire,3,3
+Plymouth,4,4
+Torbay,3,3
+Swindon,2,2
+Peterborough,3,3
+Luton,4,4
+Southend-on-Sea,3,3
+Thurrock,2,2
+Medway,3,3
+Bracknell Forest,4,4
+West Berkshire,3,3
+Reading,2,2
+Slough,3,3
+Windsor and Maidenhead,4,4
+Wokingham,3,3
+Milton Keynes,2,2
+Brighton and Hove,3,3
+Portsmouth,4,4
+Southampton,3,3
+Isle of Wight,2,2
+County Durham,3,3
+Cheshire East,4,4
+Cheshire West and Chester,3,3
+Shropshire,2,2
+Cornwall,3,3
+Isles of Scilly,4,4
+Wiltshire,3,3
+Bedford,2,2
+Central Bedfordshire,3,3
+Northumberland,4,4
+Bournemouth Christchurch and Poole,3,3
+Dorset,2,2
+Bolton,3,3
+Bury,4,4
+Manchester,3,3
+Oldham,2,2
+Rochdale,3,3
+Salford,4,4
+Stockport,3,3
+Tameside,2,2
+Trafford,3,3
+Wigan,4,4
+Knowsley,3,3
+Liverpool,2,2
+St. Helens,3,3
+Sefton,4,4
+Wirral,3,3
+Barnsley,2,2
+Doncaster,3,3
+Rotherham,4,4
+Sheffield,3,3
+Newcastle upon Tyne,2,2
+North Tyneside,3,3
+South Tyneside,4,4
+Sunderland,3,3
+Birmingham,2,2
+Coventry,3,3
+Dudley,4,4
+Sandwell,3,3
+Solihull,2,2
+Walsall,3,3
+Wolverhampton,4,4
+Bradford,3,3
+Calderdale,2,2
+Kirklees,3,3
+Leeds,4,4
+Wakefield,3,3
+Gateshead,2,2
+City of London,3,3
+Barking and Dagenham,4,4
+Barnet,3,3
+Bexley,2,2
+Brent,3,3
+Bromley,4,4
+Camden,3,3
+Croydon,2,2
+Ealing,3,3
+Enfield,4,4
+Greenwich,3,3
+Hackney,2,2
+Hammersmith and Fulham,3,3
+Haringey,4,4
+Harrow,3,3
+Havering,2,2
+Hillingdon,3,3
+Hounslow,4,4
+Islington,3,3
+Kensington and Chelsea,2,2
+Kingston upon Thames,3,3
+Lambeth,4,4
+Lewisham,3,3
+Merton,2,2
+Newham,3,3
+Redbridge,4,4
+Richmond upon Thames,3,3
+Southwark,2,2
+Sutton,3,3
+Tower Hamlets,4,4
+Waltham Forest,3,3
+Wandsworth,2,2
+Westminster,3,3
+Buckinghamshire,4,4
+Cambridgeshire,3,3
+Cumbria,2,2
+Derbyshire,3,3
+Devon,4,4
+East Sussex,3,3
+Essex,2,2
+Gloucestershire,3,3
+Hampshire,4,4
+Hertfordshire,3,3
+Kent,2,2
+Lancashire,3,3
+Leicestershire,4,4
+Lincolnshire,3,3
+Norfolk,2,2
+Northamptonshire,3,3
+North Yorkshire,4,4
+Nottinghamshire,3,3
+Oxfordshire,2,2
+Somerset,3,3
+Staffordshire,4,4
+Suffolk,3,3
+Surrey,2,2
+Warwickshire,3,3
+West Sussex,4,4
+Worcestershire,3,3
+Antrim and Newtownabbey,2,2
+Armagh City Banbridge and Craigavon,3,3
+Belfast,4,4
+Causeway Coast and Glens,3,3
+Derry City and Strabane,2,2
+Fermanagh and Omagh,3,3
+Lisburn and Castlereagh,4,4
+Mid and East Antrim,3,3
+Mid Ulster,2,2
+Newry Mourne and Down,3,3
+Ards and North Down,4,4
+Clackmannanshire,3,3
+Dumfries and Galloway,2,2
+East Ayrshire,3,3
+East Lothian,4,4
+East Renfrewshire,3,3
+Na h-Eileanan Siar,2,2
+Falkirk,3,3
+Highland,4,4
+Inverclyde,3,3
+Midlothian,2,2
+Moray,3,3
+North Ayrshire,4,4
+Orkney Islands,3,3
+Scottish Borders,2,2
+Shetland Islands,3,3
+South Ayrshire,4,4
+South Lanarkshire,3,3
+Stirling,2,2
+Aberdeen City,3,3
+Aberdeenshire,4,4
+Argyll and Bute,3,3
+City of Edinburgh,2,2
+Renfrewshire,3,3
+West Dunbartonshire,4,4
+West Lothian,3,3
+Angus,2,2
+Dundee City,3,3
+East Dunbartonshire,4,4
+Fife,3,3
+Perth and Kinross,2,2
+Glasgow City,3,3
+North Lanarkshire,4,4
+Isle of Anglesey,3,3
+Gwynedd,2,2
+Conwy,3,3
+Denbighshire,4,4
+Flintshire,3,3
+Wrexham,2,2
+Ceredigion,3,3
+Pembrokeshire,4,4
+Carmarthenshire,3,3
+Swansea,2,2
+Neath Port Talbot,3,3
+Bridgend,4,4
+Vale of Glamorgan,3,3
+Cardiff,2,2
+Rhondda Cynon Taf,3,3
+Caerphilly,4,4
+Blaenau Gwent,3,3
+Torfaen,2,2
+Monmouthshire,3,3
+Newport,4,4
+Powys,3,3
+Merthyr Tydfil,2,2

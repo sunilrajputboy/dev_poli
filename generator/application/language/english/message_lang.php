@@ -1,0 +1,25 @@
+<?php
+$lang['web_title'] = 'GetFitz | Best Health & Wellness App';
+$lang['become_a_member'] = 'Become A Member';
+$lang['help_center'] = 'Help Center';
+$lang['thai'] = 'Thai';
+$lang['english'] = 'English';
+$lang['get_the_best_out_of_your_trainer'] = 'Get the best out of your Trainer';
+$lang['get_the_app_now'] = 'Get the app now';
+$lang['download_our_app_today'] = 'Download our app today!';
+$lang['home'] = 'Home';
+$lang['contact_us'] = 'Contact Us';
+$lang['about_us'] = 'About Us';
+$lang['become_a_user'] = 'Become a User';
+$lang['become_a_tutor'] = 'Become a Tutor';
+$lang['need_help'] = 'Need Help?';
+$lang['subscribe_to_get_newsletter'] = 'Subscribe to get Newsletter';
+$lang['get_link'] = 'Get link';
+$lang['about_the_company'] = 'About the Company';
+$lang['just_follow_mentioned_steps'] = 'Just follow mentioned steps';
+$lang['to_get_the_best_out_of_us'] = 'To get the best out of us';
+$lang['steps'] = 'STEPS';
+$lang['login_to_our_mobile_app'] = 'Login to our Mobile app';
+$lang['search_for_trainer_user'] = 'Search for Trainer/User';
+$lang['book_an_appointment'] = 'Book an Appointment';
+$lang['pay_online_start'] = 'Pay Online & Start';

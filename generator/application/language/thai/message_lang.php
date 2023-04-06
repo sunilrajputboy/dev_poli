@@ -1,0 +1,25 @@
+<?php
+$lang['web_title'] = 'GetFitz | แอปสุขภาพและความงามที่ดีที่สุด';
+$lang['become_a_member'] = 'กลายเป็นสมาชิก';
+$lang['help_center'] = 'ศูนย์ช่วยเหลือ';
+$lang['thai'] = 'ไทย';
+$lang['english'] = 'อังกฤษ';
+$lang['get_the_best_out_of_your_trainer'] = 'รับสิ่งที่ดีที่สุดจากเทรนเนอร์ของคุณ';
+$lang['get_the_app_now'] = 'รับแอพทันที';
+$lang['download_our_app_today'] = 'ดาวน์โหลดแอพของเราวันนี้!';
+$lang['home'] = 'บ้าน';
+$lang['contact_us'] = 'ติดต่อเรา';
+$lang['about_us'] = 'เกี่ยวกับเรา';
+$lang['become_a_user'] = 'กลายเป็นผู้ใช้';
+$lang['become_a_tutor'] = 'กลายเป็นติวเตอร์';
+$lang['need_help'] = 'ต้องการความช่วยเหลือ?';
+$lang['subscribe_to_get_newsletter'] = 'สมัครสมาชิกเพื่อรับจดหมายข่าว';
+$lang['get_link'] = 'รับลิงค์';
+$lang['about_the_company'] = 'เกี่ยวกับ บริษัท';
+$lang['just_follow_mentioned_steps'] = 'เพียงทำตามขั้นตอนดังกล่าว';
+$lang['to_get_the_best_out_of_us'] = 'เพื่อให้ได้สิ่งที่ดีที่สุดจากเรา';
+$lang['steps'] = 'ขั้นตอน';
+$lang['login_to_our_mobile_app'] = 'ลงชื่อเข้าใช้แอพมือถือของเรา';
+$lang['search_for_trainer_user'] = 'ค้นหาผู้ฝึกสอน / ผู้ใช้';
+$lang['book_an_appointment'] = 'นัดหมายแพทย์';
+$lang['pay_online_start'] = 'ชำระเงินออนไลน์ & เริ่ม';

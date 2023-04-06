@@ -1,0 +1,13 @@
+Node,"Total Incidents","Highway Incidents","Footpath / Bridleway Incidents","Back Alleyway Incidents","Railway Incidents","Council Land Incidents","Agricultural Incidents","Private / Residential Incidents","Commercial / Industrial Incidents","Watercourse / Bank Incidents","Other (unidentified) Incidents"
+"South West",121283,54575,17907,5810,45,34465,1133,3262,622,443,3021
+"South East",79726,28490,5899,3685,31,37902,582,1031,516,484,1106
+"Greater London",384834,178494,100814,3925,34,26841,803,5747,771,75,67330
+"East Anglia",56484,20857,3737,8732,21,19750,198,900,1099,365,825
+"East Midlands",90479,52781,11179,2331,45,14834,499,1085,921,888,5916
+"West Midlands",55162,31259,4961,7916,19,6511,563,340,178,278,3137
+"North West",140220,54011,11562,48537,366,14266,671,1918,913,587,7389
+"Yorkshire and Humber",81867,5548,10971,33009,42,25550,558,944,402,144,4699
+"North East",56748,5297,6653,25961,53,15435,397,793,312,129,1718
+Wales,,,,,,,,,,,
+"Northern Ireland",,,,,,,,,,,
+Scotland,,,,,,,,,,,

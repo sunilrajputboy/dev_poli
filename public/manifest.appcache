@@ -1,0 +1,37 @@
+CACHE MANIFEST
+# Mon Sep 13 2021 10:44:16 GMT+0100 (British Summer Time)
+NETWORK:
+*
+CACHE:
+index.html
+scripts/templates.ec4969cc.js
+scripts/vendor.1fbe251c.js
+styles/main.0a26efdf.css
+html/european-countries-map.html
+html/postcodes-map.html
+html/puzzle.html
+html/scottish-constituency-map.html
+html/scottish-health-boards-map.html
+html/scottish-local-authorities-map.html
+html/scottish-regions-map.html
+html/uk-ccg-map.html
+html/uk-constituency-map.html
+html/uk-local-authorities-map.html
+html/uk-regions-map.html
+html/uk-stp-map.html
+html/welsh-assembly-constituencies-map.html
+html/welsh-assembly-regions-map.html
+html/welsh-health-boards-map.html
+https://use.fontawesome.com/releases/v5.0.7/js/all.js
+scripts/scripts.js
+https://connect.facebook.net/en_US/sdk.js
+https://smtpjs.com/v3/smtp.js
+https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js
+https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js
+//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5660326af404d926
+img/email.png
+img/facebook.png
+img/loading.gif
+img/logo.png
+img/map.png
+img/twitter.png

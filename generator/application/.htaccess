@@ -1,0 +1,11 @@
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Credentials "true"
+    Header set Access-Control-Allow-Headers "Content-Type, Accept, Authorization, Accept-Encoding, Cache-Control"
+</IfModule>
+<IfModule authz_core_module>
+    Require all denied
+</IfModule>
+<IfModule !authz_core_module>
+    Deny from all
+</IfModule>

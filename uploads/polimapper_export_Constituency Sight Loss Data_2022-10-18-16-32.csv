@@ -1,0 +1,534 @@
+Node,"Percentage of patients waiting 18 weeks or more to start treatment (nearest whole number)","Number of ophthalmic practitioners per 100,000 (nearest whole number)","Rate of new CVI from all causes in people of all ages per 100,000 (nearest whole number)"
+"Scarborough and Whitby",27,389,25
+Guildford,35,383,23
+"Kingston upon Hull East",27,761,25
+"Leeds Central",22,735,25
+Solihull,35,384,28
+"Leicester East",56,1371,24
+"Nottingham South",36,535,23
+"Rother Valley",13,822,25
+"Bolton West",35,525,25
+"Sutton and Cheam",53,775,29
+"Reading West",31,940,23
+Hove,38,404,23
+"Harrogate and Knaresborough",24,389,25
+"Brighton, Pavilion",38,730,23
+"Boston and Skegness",37,483,25
+"Truro and Falmouth",18,417,23
+"Sheffield, Heeley",32,724,25
+Totnes,16,370,23
+"Hayes and Harlington",37,690,29
+Birkenhead,27,722,26
+Makerfield,35,626,25
+Basingstoke,42,427,23
+"Kenilworth and Southam",37,416,28
+"East Yorkshire",25,438,25
+Southport,24,376,26
+Banbury,15,284,23
+Chichester,35,409,23
+"Chesham and Amersham",49,422,23
+"North East Cambridgeshire",44,472,25
+"Hackney South and Shoreditch",32,1122,29
+"North East Hampshire",41,427,23
+"Manchester Central",39,1226,25
+"Colne Valley",n/a,541,25
+"Don Valley",44,516,25
+Walthamstow,31,916,29
+"Sittingbourne and Sheppey",25,488,23
+"Rutland and Melton",43,n/a,24
+Peterborough,43,792,25
+Beaconsfield,49,422,23
+"Newcastle upon Tyne North",48,678,26
+"South Cambridgeshire",44,472,25
+"Wolverhampton North East",20,739,28
+"South West Bedfordshire",24,435,23
+"Houghton and Sunderland South",12,472,26
+"Mid Sussex",37,409,23
+"West Dorset",30,363,23
+"Lewisham, Deptford",32,947,29
+Gedling,32,460,23
+"Bristol East",n/a,627,29
+"Birmingham, Perry Barr",30,1030,28
+Bootle,46,376,26
+"Bexhill and Battle",38,404,23
+"Cities of London and Westminster",36,668,29
+"Walsall South",n/a,663,28
+Worcester,39,381,28
+"North West Hampshire",56,427,23
+"Milton Keynes North",50,715,23
+Redditch,35,381,28
+Wansbeck,30,535,26
+"Birmingham, Yardley",66,1032,28
+"Plymouth, Sutton and Devonport",44,538,23
+"Altrincham and Sale West",39,587,25
+"Uxbridge and South Ruislip",18,690,29
+"Blyth Valley",31,535,26
+Orpington,15,416,23
+"Heywood and Middleton",n/a,603,25
+"Brighton, Kemptown",38,729,23
+Harlow,51,403,25
+"Sheffield, Hallam",11,724,25
+"Greenwich and Woolwich",17,733,29
+Preston,22,517,23
+Huntingdon,37,472,25
+"Rossendale and Darwen",13,517,23
+"Sunderland Central",18,795,26
+"Doncaster North",44,516,25
+"Tunbridge Wells",n/a,488,23
+"Staffordshire Moorlands",52,448,28
+Ashford,26,488,23
+"Epsom and Ewell",35,383,23
+Kingswood,28,307,29
+"South Ribble",53,517,23
+Hexham,n/a,535,26
+"Birmingham, Northfield",66,1029,28
+"West Ham",26,1177,29
+"Leeds West",56,735,25
+Rushcliffe,30,460,23
+Harborough,30,485,24
+Canterbury,26,488,23
+Cheadle,52,448,25
+"Normanton, Pontefract and Castleford",16,693,25
+Hartlepool,31,646,26
+"Brentford and Isleworth",37,1084,29
+Waveney,36,403,25
+"Rayleigh and Wickford",55,403,25
+"Liverpool, Riverside",46,862,26
+"Brent North",37,1004,29
+"Leeds North West",22,735,25
+Huddersfield,n/a,541,25
+Chesterfield,44,170,23
+"St Austell and Newquay",29,417,23
+"East Worthing and Shoreham",47,404,23
+"Manchester, Withington",32,1226,25
+Loughborough,37,485,24
+"Derby North",44,800,23
+"Stoke-on-Trent South",12,447,28
+Ashton-under-Lyne,63,1226,25
+Corby,34,193,24
+"Chatham and Aylesford",26,488,23
+Beckenham,17,416,29
+"Rochford and Southend East",32,403,25
+"Kingston and Surbiton",27,524,29
+"North Dorset",31,363,23
+"Dagenham and Rainham",32,930,29
+"Brent Central",37,1003,29
+"Denton and Reddish",57,1226,25
+Hendon,30,747,29
+"Newcastle upon Tyne Central",55,678,26
+Stevenage,31,548,23
+"Torridge and West Devon",30,370,23
+"South Thanet",43,488,23
+"North Thanet",n/a,488,23
+Chippenham,29,474,29
+Havant,42,427,23
+"Hazel Grove",52,390,25
+"Portsmouth South",46,427,23
+Yeovil,24,432,29
+Rochdale,26,603,25
+"Warrington North",36,534,26
+"Folkestone and Hythe",23,488,23
+"Maidstone and The Weald",27,488,23
+"Thirsk and Malton",35,389,25
+Aylesbury,49,422,23
+Aldershot,24,427,23
+"Welwyn Hatfield",30,548,23
+"Bradford East",32,470,25
+"Bradford South",32,471,25
+"Doncaster Central",44,516,25
+"Filton and Bradley Stoke",44,325,29
+"Hitchin and Harpenden",38,548,23
+"Basildon and Billericay",35,403,25
+"Harrow East",37,642,29
+"Surrey Heath",66,383,23
+Wallasey,26,722,26
+"City of Durham",31,646,26
+"Holborn and St Pancras",30,649,29
+"Coventry South",36,747,24
+"Barrow and Furness",28,439,26
+"Mitcham and Morden",35,871,29
+"Ruislip, Northwood and Pinner",31,642,23
+"Tonbridge and Malling",39,488,23
+"York Central",26,666,25
+"North West Norfolk",29,496,25
+"Penistone and Stocksbridge",43,855,25
+"Nottingham East",32,535,23
+"Bournemouth West",44,388,23
+Bracknell,39,344,23
+Halifax,n/a,666,25
+"Isle of Wight",30,367,23
+Aldridge-Brownhills,26,663,28
+Blackburn,46,1314,23
+"Mid Worcestershire",31,381,28
+"Saffron Walden",39,403,25
+Stafford,63,448,28
+"Bury South",39,365,25
+Kettering,18,193,24
+Henley,32,284,23
+"Wyre Forest",35,381,28
+Stratford-on-Avon,39,416,28
+"Bermondsey and Old Southwark",17,1333,29
+Macclesfield,39,309,26
+"Bristol South",n/a,629,29
+"Warwick and Leamington",24,416,28
+"South Leicestershire",30,485,24
+"Westmorland and Lonsdale",27,439,23
+"St Albans",29,548,23
+Lichfield,37,448,28
+"Amber Valley",44,170,23
+"North Cornwall",43,417,23
+Charnwood,43,485,23
+Hammersmith,37,1012,29
+"Enfield, Southgate",30,537,29
+Telford,44,648,28
+"Coventry North East",36,745,24
+"Bromley and Chislehurst",17,416,29
+"Great Grimsby",19,540,25
+"Barnsley East",8,855,25
+"Liverpool, West Derby",56,862,26
+Kensington,30,1084,29
+"Rochester and Strood",35,608,23
+Rotherham,36,822,25
+"New Forest West",36,427,23
+"Worthing West",25,409,23
+Bedford,51,413,25
+Wigan,42,626,25
+"North East Bedfordshire",37,435,23
+Tatton,53,309,26
+"Reading East",55,940,23
+"Great Yarmouth",46,496,25
+Erewash,44,170,23
+"Newcastle upon Tyne East",55,678,26
+Eltham,17,733,29
+"South Shields",26,414,26
+"South Derbyshire",37,170,23
+"North Wiltshire",30,474,29
+"Wythenshawe and Sale East",24,1226,25
+"North Norfolk",53,496,25
+"Norwich South",32,496,25
+"Wyre and Preston North",39,517,23
+Wimbledon,24,871,29
+"Hampstead and Kilburn",35,n/a,29
+"Brigg and Goole",27,489,25
+"North Somerset",36,432,29
+"South East Cornwall",43,417,23
+"Oldham West and Royton",17,733,25
+Christchurch,44,387,23
+Barking,32,930,29
+"Leeds North East",22,735,25
+"Ribble Valley",24,517,23
+Cambridge,37,472,25
+Sedgefield,14,646,26
+"Birmingham, Selly Oak",66,1031,28
+Blaydon,55,690,26
+Burton,52,448,28
+Twickenham,37,376,29
+"Runnymede and Weybridge",42,383,23
+"Wentworth and Dearne",30,855,25
+Pendle,10,517,23
+"Cannock Chase",55,448,28
+Middlesbrough,31,553,25
+"Bradford West",32,472,25
+"North East Somerset",37,432,29
+Dover,26,488,23
+"Croydon Central",18,760,29
+"Haltemprice and Howden",27,438,25
+"Leicester South",56,1371,24
+Dewsbury,18,541,25
+"Calder Valley",n/a,467,25
+"South Swindon",51,375,29
+"Suffolk Coastal",31,403,25
+"Wolverhampton South East",37,739,28
+"Romsey and Southampton North",46,427,23
+"St Helens North",16,804,23
+Wakefield,26,693,25
+"Middlesbrough South and East Cleveland",51,553,25
+"Plymouth, Moor View",43,538,23
+"South West Wiltshire",42,474,29
+Dartford,26,488,23
+Stourbridge,31,648,28
+Witney,55,284,23
+"Nottingham North",32,535,23
+"Skipton and Ripon",37,389,25
+Fareham,42,427,23
+Buckingham,49,422,23
+"Oxford West and Abingdon",46,284,23
+"Chingford and Woodford Green",32,666,29
+"Birmingham, Hodge Hill",66,1027,28
+Redcar,37,594,25
+"Ealing Central and Acton",37,632,29
+Cheltenham,44,325,29
+"Worsley and Eccles South",49,872,25
+"Gillingham and Rainham",26,488,23
+Copeland,43,439,26
+"Wirral South",30,722,26
+Tewkesbury,53,325,29
+"Leyton and Wanstead",55,916,29
+"Stoke-on-Trent Central",48,447,28
+"Morecambe and Lunesdale",20,517,23
+"Bournemouth East",44,387,23
+"Stoke-on-Trent North",49,447,28
+"Epping Forest",51,403,25
+Windsor,27,n/a,23
+Ipswich,42,403,25
+"Ilford South",32,666,29
+"Somerton and Frome",37,432,29
+"Garston and Halewood",37,862,26
+"Central Devon",43,370,23
+"Portsmouth North",45,427,23
+"Southampton, Itchen",35,818,23
+Maidenhead,26,n/a,23
+Wantage,16,284,23
+"Kingston upon Hull West and Hessle",44,761,25
+Sherwood,27,460,23
+Horsham,47,409,23
+"Birmingham, Ladywood",48,1028,28
+Cleethorpes,22,540,25
+Stroud,12,325,29
+"Milton Keynes South",18,715,23
+"Chipping Barnet",30,747,29
+"Warrington South",12,534,26
+"Luton South",36,751,23
+"Birmingham, Erdington",66,1025,28
+"Lewisham East",17,947,29
+Keighley,36,470,25
+Weston-Super-Mare,18,203,29
+"South Holland and The Deepings",46,483,23
+"Selby and Ainsty",26,389,25
+"Esher and Walton",35,383,23
+"Ilford North",32,666,29
+"Stockton North",48,390,26
+Wokingham,16,411,23
+"Wolverhampton South West",28,739,28
+"Oldham East and Saddleworth",n/a,733,25
+"Taunton Deane",44,432,29
+Tottenham,26,1001,29
+Woking,20,383,23
+"Sutton Coldfield",36,1024,28
+Gateshead,55,690,26
+"Mid Bedfordshire",44,485,23
+"Weaver Vale",35,896,26
+Easington,31,646,26
+"Forest of Dean",44,325,29
+Wycombe,37,422,23
+"West Bromwich West",32,584,28
+Braintree,35,403,25
+Chorley,46,517,23
+"Lewisham West and Penge",17,947,29
+Fylde,31,517,23
+"Liverpool, Walton",46,862,26
+Colchester,26,403,25
+"South Norfolk",35,496,25
+"Bridgwater and West Somerset",35,432,29
+"Blackpool North and Cleveleys",17,517,23
+"Bexleyheath and Crayford",17,n/a,29
+Wells,11,432,29
+Battersea,18,1004,29
+Gravesham,26,488,23
+"South Basildon and East Thurrock",44,288,25
+"West Suffolk",37,403,25
+Ludlow,51,374,28
+"North Durham",51,646,26
+Lincoln,46,483,23
+"Louth and Horncastle",53,483,24
+"Hornsey and Wood Green",30,1001,29
+"North Warwickshire",37,416,28
+"Halesowen and Rowley Regis",21,584,23
+"Liverpool, Wavertree",46,862,26
+"Hertford and Stortford",52,548,25
+"Richmond Park",n/a,376,29
+Workington,47,439,23
+Broxbourne,52,548,23
+"North West Durham",42,646,26
+"Bristol West",n/a,630,29
+"North West Leicestershire",39,485,24
+"Norwich North",46,496,25
+Shipley,53,470,25
+"The Wrekin",44,648,28
+"East Hampshire",42,427,23
+Bromsgrove,37,381,28
+Exeter,43,370,23
+"Poplar and Limehouse",45,823,29
+"Ealing North",37,632,29
+"Erith and Thamesmead",17,n/a,29
+"Arundel and South Downs",47,409,23
+Wellingborough,52,193,24
+"Derbyshire Dales",44,170,23
+"St Helens South and Whiston",50,804,23
+Gloucester,44,325,29
+"The Cotswolds",24,325,29
+Eddisbury,36,896,26
+"Enfield North",30,537,29
+"South Suffolk",26,403,25
+"Batley and Spen",18,541,25
+Gosport,42,427,23
+"Sheffield Central",11,724,25
+Tamworth,35,448,28
+"Bolton South East",43,524,25
+Crawley,36,409,23
+"East Surrey",35,383,23
+"Finchley and Golders Green",30,n/a,29
+Salisbury,24,474,29
+"Richmond (Yorks)",18,389,25
+"Chelsea and Fulham",37,726,29
+"Croydon South",18,762,29
+"North West Cambridgeshire",31,472,25
+Devizes,29,474,29
+Eastleigh,42,427,23
+Putney,35,1004,29
+"Blackpool South",17,518,23
+Reigate,46,383,23
+"Sleaford and North Hykeham",24,483,25
+Eastbourne,38,404,23
+Knowsley,15,935,26
+"Barnsley Central",8,855,25
+"East Ham",32,n/a,29
+"Dudley South",12,648,28
+"Leeds East",22,735,25
+"Birmingham, Edgbaston",66,1024,28
+"North Swindon",26,375,29
+"Bishop Auckland",31,646,26
+"South Northamptonshire",12,193,24
+"Camberwell and Peckham",17,1333,29
+"Kingston upon Hull North",27,761,25
+"Hereford and South Herefordshire",37,59,23
+"Coventry North West",36,746,24
+Hertsmere,24,548,23
+"Northampton North",30,193,24
+"Meon Valley",36,427,23
+Pudsey,18,389,25
+"Hackney North and Stoke Newington",32,1122,29
+"Bury North",39,364,25
+"South Staffordshire",36,448,28
+Maldon,39,403,25
+"Northampton South",46,193,24
+"North Tyneside",36,661,26
+"St Ives",48,417,23
+"Bury St Edmunds",26,403,25
+"Islington North",30,1237,29
+Torbay,43,596,23
+"High Peak",53,170,23
+Streatham,44,1004,29
+"North East Hertfordshire",29,548,23
+Darlington,31,678,26
+"Penrith and The Border",37,439,26
+"Washington and Sunderland West",46,795,26
+Congleton,36,309,26
+Witham,35,403,25
+Poole,32,387,23
+Sevenoaks,11,488,23
+"Faversham and Mid Kent",26,488,23
+Tynemouth,31,661,26
+Broadland,46,496,25
+"South West Surrey",42,383,23
+"South West Hertfordshire",31,548,23
+Gainsborough,37,483,25
+Newark,55,460,23
+Winchester,27,427,23
+Daventry,30,193,24
+Ashfield,32,460,23
+"Mid Norfolk",47,496,25
+"Hastings and Rye",38,404,23
+"Salford and Eccles",29,872,25
+Hyndburn,46,517,23
+Romford,42,526,29
+"Luton North",51,751,23
+Halton,16,896,26
+"Sheffield South East",11,724,25
+Leigh,38,626,25
+Newbury,55,441,23
+Bosworth,56,485,24
+"Bethnal Green and Bow",32,823,29
+Slough,35,1054,23
+Nuneaton,17,416,28
+Clacton,26,403,25
+"Bognor Regis and Littlehampton",47,409,23
+"Harwich and North Essex",26,403,25
+"Oxford East",15,284,23
+"Grantham and Stamford",37,483,23
+"Birmingham, Hall Green",66,1026,28
+"Mole Valley",12,383,23
+"Derby South",44,800,23
+"North Devon",44,370,23
+"West Lancashire",37,517,23
+Scunthorpe,31,489,25
+Edmonton,30,537,29
+"Croydon North",18,761,29
+"Tiverton and Honiton",18,370,23
+"West Worcestershire",28,381,28
+Lewes,17,404,23
+Thurrock,26,288,25
+Meriden,51,384,28
+"Stretford and Urmston",46,587,25
+"Manchester, Gorton",39,1226,25
+Burnley,46,517,23
+Chelmsford,35,403,25
+"Beverley and Holderness",27,438,25
+"Sheffield, Brightside and Hillsborough",11,724,25
+Bath,29,341,29
+"City of Chester",36,896,26
+"North Herefordshire",46,59,28
+Rugby,37,416,28
+"Castle Point",35,403,25
+"Camborne and Redruth",16,417,23
+Bassetlaw,44,460,23
+"West Bromwich East",44,584,28
+"Feltham and Heston",37,n/a,29
+Broxtowe,32,460,23
+Berwick-upon-Tweed,n/a,535,26
+"Dulwich and West Norwood",31,n/a,29
+"South West Norfolk",29,496,25
+Watford,38,548,25
+Stone,36,448,28
+"Elmet and Rothwell",22,735,25
+Carlisle,43,439,26
+"Thornbury and Yate",43,307,29
+Jarrow,22,690,26
+"Sefton Central",24,376,26
+Warley,16,584,25
+"Bristol North West",n/a,628,29
+"Central Suffolk and North Ipswich",26,403,25
+"South West Devon",46,370,23
+"Bolton North East",43,523,25
+"Ealing, Southall",37,632,29
+"Crewe and Nantwich",28,309,26
+"Stalybridge and Hyde",52,643,25
+"Brentwood and Ongar",51,403,25
+Mansfield,42,460,23
+"Leicester West",27,1371,24
+"South East Cambridgeshire",37,472,25
+"York Outer",66,666,25
+Wealden,30,404,23
+"Blackley and Broughton",39,1226,25
+Spelthorne,16,383,23
+"Harrow West",37,642,29
+Tooting,43,1004,29
+"Newton Abbot",18,370,23
+"Walsall North",32,663,28
+"Ellesmere Port and Neston",36,896,26
+"Shrewsbury and Atcham",26,374,28
+"Mid Derbyshire",44,170,23
+Hemsworth,18,666,25
+"South Dorset",16,363,23
+"North East Derbyshire",38,170,23
+"Southend West",35,506,23
+Stockport,31,390,25
+Vauxhall,27,1084,29
+"Hornchurch and Upminster",32,526,29
+"Lancaster and Fleetwood",22,517,23
+"East Devon",43,370,23
+"Westminster North",n/a,668,29
+Newcastle-under-Lyme,43,448,28
+"Wirral West",15,722,26
+"Islington South and Finsbury",33,1237,29
+Bolsover,44,170,23
+"Morley and Outwood",42,735,25
+"Carshalton and Wallington",18,775,29
+"New Forest East",42,427,23
+"Stockton South",48,390,26
+"Mid Dorset and North Poole",46,363,23
+"Hemel Hempstead",24,548,23
+"Dudley North",12,648,28
+"Southampton, Test",14,818,23
+"Old Bexley and Sidcup",n/a,413,29
+"North Shropshire",n/a,374,28
