@@ -143,12 +143,6 @@ public function checkUser($data = array()){
 /* @param projectId, sequence
 ***/	
 	public function selectProjecFieldsBySequence($projectId,$sequence){
-        $myquery = "SELECT * FROM `project_fields` WHERE `id_project` =$projectId ORDER BY FIELD(`id_project_field`,$sequence)";
-		$query = $this->db->query($myquery);
-		$result=$query->result();
-        return $result;
-    }
-	public function selectProjecFields($projectId){
         $myquery = "SELECT * FROM `project_fields` WHERE `id_project` =$projectId ORDER BY `sequence_no`";
 		$query = $this->db->query($myquery);
 		$result=$query->result();

@@ -90,7 +90,7 @@ define('FROM_EMAIL', 'support@polimapper.co.uk');
 define('SITE_NAME', 'polimapper.co.uk');
 define('FROM_NAME', "polimapper");
 //define('BASEURL', 'http://dev.polimapper.co.uk/');
-define('BASEURL', 'https://dev.visualisation.polimapper.co.uk/generator/');
+define('BASEURL', 'http://visualisation.polimapper.co.uk');
 define('GENEREL_ERROR', 'Failed please try again');
 define('IPINFODBKEY', 'b2e0bb044541b5d37eda7d925f78e2aa33e8d9969d7b8af8e5c094364d9fe41a');
 define('LAST_DAYS', '14');

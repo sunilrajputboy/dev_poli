@@ -11,11 +11,11 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
 	{
 		private function dbConnect()
 		{
-			$conn = new mysqli('localhost', 'visualisationpol_stage', 'visualisationpol_stage', 'visualisationpol_dev');
+			//$conn = new mysqli('localhost', 'visualisationpol_root', 'P0lliM@pper', 'visualisationpol_polimapper');
+			$conn = new mysqli('localhost', 'visualisationpol_stage', 'visualisationpol_stage', 'visualisationpol_stage');
 			if (!$conn) {
 				die("Connection failed: " . mysqli_connect_error());
 			}
-			mysqli_set_charset($conn, "utf8");
 			return $conn;
 		}
 
@@ -97,7 +97,7 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
 			return $result;
 		}
 
-		public   function getdatafieldwithoutgroup($proid)
+		public function getdatafieldwithoutgroup($proid)
 		{
 			$connection = $this->dbConnect();
 			$query = "SELECT * FROM `project_fields` WHERE `id_project` = $proid AND `isGroup` = '0'";
@@ -317,6 +317,7 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
 			$datafieldData=$srObject->selectsingleTableDatabyid($row['id_project']);	
 			}
 			
+			//pr($datafieldData->fetch_all(MYSQLI_ASSOC));
 		$countryData = $srObject->findcountrydata($row['id_map_template']);
 		$clientData = $srObject->selectsingleClientbyid($row['id_client']);
 		$nodeDetails = $srObject->getNodeDetails($row['id_project']);
@@ -441,8 +442,9 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
 		} else {
 			$maindata['isGroup'] = false;
 		}
-
+	$templateDATA = $srObject->selectTemplateDATA();
 		$maindata['emailMP'] = ($row['is_mp'] == 'yes') ? (($clientData['is_mp'] == 'yes') ? true : false)  : false;
+		$maindata['emailmp_MH'] = !empty($row['emailmp_MH']) ? $row['emailmp_MH']  : (!empty($clientData['emailmp_MH']) ? $clientData['emailmp_MH'] : $templateDATA['emailmp_MH']);
 		$maindata['emailMPTitle'] = !empty($row['email_sub']) ? $row['email_sub']  : (!empty($clientData['email_sub']) ? $clientData['email_sub'] : '');
 		$maindata['emailMPMessage'] = !empty($row['message']) ? $row['message']  : (!empty($clientData['message']) ? $clientData['message'] : '');
 		$maindata['socialShare'] = ($row['is_social_share'] == 'yes') ? (($clientData['is_social_share'] == 'yes') ? true : false)  : false;
@@ -480,9 +482,7 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
 		$maindata['tweetMPText'] = !empty($row['tweet_mp_text']) ? $row['tweet_mp_text']  : "";
 		$maindata['pdfDownload'] = !empty($row['is_pdf_download']) ? $row['is_pdf_download']  : "";
 		$maindata['imageExport'] = !empty($row['is_image_export']) ? $row['is_image_export']  : "";
-
-
-		$templateDATA = $srObject->selectTemplateDATA();
+	    $maindata['cta_text']=$row['cta_text'];
 		$maindata['subscribe_mail_text'] = !empty($row['subscribe_mail_text']) ? $row['subscribe_mail_text'] : (!empty($clientData['subscribe_mail_text']) ? $clientData['subscribe_mail_text'] : $templateDATA['subscribe_mail_text']);
 		
 		$maindata['subscribe_mail_address'] = !empty($row['subscribe_mail_address']) ? $row['subscribe_mail_address'] : (!empty($clientData['subscribe_mail_address']) ? $clientData['subscribe_mail_address'] : $templateDATA['subscribe_mail_address']);
@@ -502,23 +502,19 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
 		}
 
 		foreach ($chartData as $d) {
-
 			$pxarray = array();
 			$fields = unserialize($d['datafields']);
-
 			$field_color = $d['field_color'];
 			if($field_color != null){
 				$field_color = unserialize($field_color);
 			}else{
 				$field_color = [];
 			}
-
 			$i = 1;
 			foreach ($fields as $key => $f) {
 
 				$getfieldNamebyid = $srObject->getfieldNamebyid($f);
-				foreach ($getfieldNamebyid as $p) {
-
+				foreach($getfieldNamebyid as $p) {
 					$fmin = $p['first_interval'];
 					$fmax = $p['last_interval'];
 					// 
@@ -658,8 +654,10 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
 				array_push($chartDataArray, $chartarray);
 			}
 		}
+		
 		$maindata['chartWizard'] = $chartDataArray;
 		// chart 
+        
 		$datafieldarray = array();
 		$arrayOfDF = array();
 		$count = 0;
@@ -696,8 +694,7 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
 			$dataMin = $srObject->getMinFieldValue($id_field, $row['id_project']);
 			$datasum = $srObject->getSumFieldValue($id_field, $row['id_project']);
 			$px_get_values = $srObject->getFieldValue($id_field, $row['id_project']);
-			
-           // echo "<pre>"; echo  print_r($px_get_values); echo " -".  $row['id_project']. "</pre>";
+            
 			$pxtotal = 0;
 			$total_number_of_nodes = 0;
 			$fieldData_s = json_decode($d['field_data']);
@@ -771,7 +768,7 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
 	if (!empty($colorArray)) {
 				$i = 0;
 				$p = 0;
-				  	$min_key_values = $d['min_key_values'] ? unserialize($d['min_key_values']) : null;
+				$min_key_values = $d['min_key_values'] ? unserialize($d['min_key_values']) : null;
 				$max_key_values = $d['max_key_values'] ? unserialize($d['max_key_values']) : null;
 				$max_display_values = $d['max_display_values'] ? unserialize($d['max_display_values']) : null;
 				$min_display_values = $d['min_display_values'] ? unserialize($d['min_display_values']) : null;
@@ -788,11 +785,11 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
                          }
                          $UniqueArray = array_unique($UniqueArray);
 						  
+
                          if($max_key_values && count($max_key_values)>0){
                              $UniqueArray = $max_key_values;
                          }
                          $counting = 1;
-						 //pr($UniqueArray);
                          foreach($UniqueArray as $key => $value){
                              if($counting <=10){
                             $keyClr['keyColor'] = isset($colorArray[$key])? $colorArray[$key] : '#000000';
@@ -805,12 +802,11 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
                         }
                          }
                 }else{
-
 					if($d['key_value_option'] == 'Equal Count'){
 						$count = 0;
 						$from = 0;
-						$to = round($datacount['count']/count($colorArray));
-						$devide = round($datacount['count']/count($colorArray));
+						$to = round($total_number_of_nodes/count($colorArray));
+						$devide = round($total_number_of_nodes/count($colorArray));
 						$px = $srObject->getEqualCountvalueswithIgnore($id_field);
 						$newCOUNT =  count($px);
 						$color_count = count($colorArray);
@@ -821,6 +817,7 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
 						foreach ($colorArray as $key => $color) {
 							$E_Arr = $srObject->getEqualCountvaluesV2($id_field,$fff_1, $NEW_devide_1);
 							$E_Arr = array_column($E_Arr, '0');
+							
 								if ($key == ($color_count - 2)) {
 									$fff_1 = $fff_1 + $NEW_devide_1;
 									$NEW_devide_1 = $NEW_devide_1 + ($newCOUNT - ($NEW_devide_1 * $color_count));
@@ -846,6 +843,7 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
 							$min_key_values = null;
 							$max_key_values = null;
 						}
+						
 				foreach ($colorArray as $keyNo => $clr) {
 					$p++;
 					$keyClr['keyColor'] = $clr;
@@ -1014,9 +1012,11 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
 			$count++;
 		}
 		
+		//pr($datafieldarray);
 		$row['id_map_template'];
 		$maindata['dataFieldsArray'] = $arrayOfDF;
 		$maindata['dataFields'] = $datafieldarray;
+		
 		$datafieldValueData = $srObject->datafieldvaluedata($row['id_project']);
 		$dfieldcount = $srObject->getdatafieldwithoutgroup($row['id_project'])->num_rows;
 		$fieldDataarr = array();
@@ -1061,7 +1061,6 @@ if ((isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])) && (isset($_GET[
 				}
 			}
 		}
-		//pr($maindata['dataFields']);
 		$maindata['nodes'] = $nodesarray;
 		$json_string = json_encode($maindata, JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 		echo $json_string;

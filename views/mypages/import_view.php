@@ -105,7 +105,40 @@
 		</div>
 		</div>
 
-		
+		<!--<div class="form-group">-->
+		<!--<div class="toggleWrapper">-->
+		<!--<label for="">Show chart in the data set summary</label>  -->
+		<!--<input type="checkbox" name="chart_data_set_summary" id="chart_data_set_summary" class="dn" value="true">-->
+		<!--<label for="chart_data_set_summary" class="toggle"><span class="toggle__handler"></span></label>-->
+		<!--</div>-->
+		<!--<div class="dataset_summary">-->
+		<!--<div class="toggleWrapper">-->
+		<!--<label for="">Exclude minimum from data set summary chart</label>  -->
+		<!--<input type="checkbox" name="exclude_minimum_data_set_summary" id="exclude_minimum_data_set_summary" class="dn" value="true">-->
+		<!--<label for="exclude_minimum_data_set_summary" class="toggle"><span class="toggle__handler"></span></label>-->
+		<!--</div>-->
+
+		<!--<div class="toggleWrapper">-->
+		<!--<label for="">Exclude maximum from data set summary chart</label>  -->
+		<!--<input type="checkbox" name="exclude_maximum_data_set_summary" id="exclude_maximum_data_set_summary" class="dn" value="true">-->
+		<!--<label for="exclude_maximum_data_set_summary" class="toggle"><span class="toggle__handler"></span></label>-->
+		<!--</div>-->
+
+		<!--<div class="toggleWrapper">-->
+		<!--<label for="">Exclude average from data set summary chart</label>  -->
+		<!--<input type="checkbox" name="exclude_average_data_set_summary" id="exclude_average_data_set_summary" class="dn" value="true">-->
+		<!--<label for="exclude_average_data_set_summary" class="toggle"><span class="toggle__handler"></span></label>-->
+		<!--</div>-->
+		<!--</div>-->
+
+		<!--</div>-->
+		<!--<div class="form-group">-->
+		<!--<div class="toggleWrapper">-->
+		<!--<label for="">Show total in the data set summary</label>-->
+		<!--<input type="checkbox" name="total_data_set_summary" id="total_data_set_summary" class="dn" value="true">-->
+		<!--<label for="total_data_set_summary" class="toggle"><span class="toggle__handler"></span></label>-->
+		<!--</div>-->
+		<!--</div>-->
 		</div>
 		<div class="form-group multivalued-data hide" >
 		<div class="toggleWrapper">
@@ -144,6 +177,9 @@
 	
 	</form>
       </div>
+      <!--<div class="modal-footer">-->
+      <!--  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+      <!--</div>-->
     </div>
   </div>
  <!--************************-->
@@ -181,7 +217,116 @@
 			<div class="text-danger"></div>
 			<span class="error">Display name is required</span>
 		</div>
-	
+	<?php /*****	
+		<div class="form-group">
+			<label for="">Description</label>
+	<textarea type="text" class="form-control" name="description" id="description" placeholder="Description"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="">Type</label>
+			<select class="form-control" id="dataType" onchange="getType(this)" name="type">
+			<option value="Text" >Text</option>
+			<option value="Number" selected>Number</option>
+			<option value="Percentage" >Percentage</option>
+			<option value="Decimal" >Decimal</option>
+			<option value="Hyperlink" >Hyperlink</option>
+			<option value="Pound" >Pound</option> 
+			<option value="Euro" >Euro</option>
+			<option value="Dollar" >Dollar</option>
+			</select>
+		</div>
+		<div class="form-group comparable-data">
+			<div class="toggleWrapper">
+				<label for="">Comparable</label> 
+				<input type="checkbox" name="comparable" id="comparable" class="dn" value="true">
+				<label for="comparable" class="toggle"><span class="toggle__handler"></span></label>
+			</div>
+		</div>
+			<input type="hidden" value="Percentiles" id="Percentiles" name="grouping" />
+		<div class="inner-data">
+		<div class="form-group">
+		<div class="toggleWrapper">
+		<label for="">Include overall average in node graphs</label>  
+		<input type="checkbox" name="overall_range" id="overall_range" class="dn" value="true">
+		<label for="overall_range" class="toggle"><span class="toggle__handler"></span></label>
+		</div>
+		</div>
+		<div class="form-group">
+		<div class="toggleWrapper">
+		<label for="">Override the calculated average</label>  
+		<input type="checkbox" name="override_average" id="override_average" class="dn" value="true">
+		<label for="override_average" class="toggle"><span class="toggle__handler"></span></label>
+		</div>
+		<div class="average-override">
+		<label for="">Average Override</label>
+		<input type="number" class="form-control" name="average_override_number" id="average_override_number" placeholder="" value="">
+		</div>
+		</div>
+
+		<div class="form-group">
+		<div class="toggleWrapper">
+		<label for="">Show chart in the data set summary</label>  
+		<input type="checkbox" name="chart_data_set_summary" id="chart_data_set_summary" class="dn" value="true">
+		<label for="chart_data_set_summary" class="toggle"><span class="toggle__handler"></span></label>
+		</div>
+		<div class="dataset_summary">
+		<div class="toggleWrapper">
+		<label for="">Exclude minimum from data set summary chart</label>  
+		<input type="checkbox" name="exclude_minimum_data_set_summary" id="exclude_minimum_data_set_summary" class="dn" value="true">
+		<label for="exclude_minimum_data_set_summary" class="toggle"><span class="toggle__handler"></span></label>
+		</div>
+
+		<div class="toggleWrapper">
+		<label for="">Exclude maximum from data set summary chart</label>  
+		<input type="checkbox" name="exclude_maximum_data_set_summary" id="exclude_maximum_data_set_summary" class="dn" value="true">
+		<label for="exclude_maximum_data_set_summary" class="toggle"><span class="toggle__handler"></span></label>
+		</div>
+
+		<div class="toggleWrapper">
+		<label for="">Exclude average from data set summary chart</label>  
+		<input type="checkbox" name="exclude_average_data_set_summary" id="exclude_average_data_set_summary" class="dn" value="true">
+		<label for="exclude_average_data_set_summary" class="toggle"><span class="toggle__handler"></span></label>
+		</div>
+		</div>
+
+		</div>
+		<div class="form-group">
+		<div class="toggleWrapper">
+		<label for="">Show total in the data set summary</label>
+		<input type="checkbox" name="total_data_set_summary" id="total_data_set_summary" class="dn" value="true">
+		<label for="total_data_set_summary" class="toggle"><span class="toggle__handler"></span></label>
+		</div>
+		</div>
+		</div>
+		<div class="form-group multivalued-data hide" >
+		<div class="toggleWrapper">
+		<label for="">Multivalued</label>  
+		<input type="checkbox" name="multivalued" id="multivalued" class="dn" value="true">
+		<label for="multivalued" class="toggle"><span class="toggle__handler"></span></label>
+		</div>
+		<div class="graph-type">
+		<label for="">Graph Type</label>
+		<select class="form-control" name="graphtype">
+		<option disabled selected>Select graph</option> 
+		<option value="BarGraph" >Bar graph</option> 
+		<option value="LineGraph" >Line graph</option> 
+		</select>
+		</div>
+		</div>
+			<div class="form-group node-ranking-data">
+		<div class="toggleWrapper">
+		<label for="">Display the node rankings</label> 
+		<input type="checkbox" name="node_ranking" id="node_ranking" class="dn" value="true">
+		<label for="node_ranking" class="toggle"><span class="toggle__handler"></span></label>
+		</div>
+		</div>
+		<div class="form-group invert-node">
+		<div class="toggleWrapper">
+		<label for="">Invert the node rankings</label>  
+		<input type="checkbox" name="invert_node_ranking" id="invert_node_ranking" class="dn" value="true">
+		<label for="invert_node_ranking" class="toggle"><span class="toggle__handler"></span></label>
+		</div>
+		</div> *****/ ?>
 		<input type="hidden" value="<?php echo $data["project_id"]; ?>" name="id" />
 		<input type="hidden" value="" id="dataKeyVal2" name="datakeyVal" />
 		<div class="text-center"><button type="button" id="RenamedataFieldSubmitBtn" class="btn cus-btn">Confirm</button></div>
@@ -189,7 +334,9 @@
 	
 	</form>
       </div>
-      
+      <!--<div class="modal-footer">-->
+      <!--  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+      <!--</div>-->
     </div>
   </div>
  <!--************************-->
@@ -198,7 +345,7 @@
 </div>
 	 <div class="loader">
 		<div>
-		     
+		     <!-- <img src="<?php //echo BASE_URL;?>/public/img/loader.gif" class="img-responsive"> -->
 			 <div class="loader-custom"></div>
 		</div>
 	</div>

@@ -1,12 +1,20 @@
 <?php
 error_reporting(1);
+$origin = $_SERVER['HTTP_ORIGIN'];
+header('Content-Type: application/json;charset=utf-8');
+header('Content-Type: text/html; charset=UTF-8');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: ' . $origin);
+header('Access-Control-Allow-Methods: GET, POST');
+header("Access-Control-Allow-Headers: X-Requested-With");
+
 header('Content-Type: application/json;charset=utf-8');
 if(isset($_GET['dataSetKey']) && !empty($_GET['dataSetKey'])){
 class Srclasss {
 
  function dbConnect(){
 
-	   $conn = new mysqli('localhost', 'visualisationpol_stage', 'visualisationpol_dev', 'visualisationpol_stage');
+	   $conn = new mysqli('localhost', 'visualisationpol_root', 'P0lliM@pper', 'visualisationpol_polimapper');
 			if (!$conn) {
 				die("Connection failed: " . mysqli_connect_error());
 			}

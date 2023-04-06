@@ -35,6 +35,12 @@
 									</div>
 									<div id="emailMpsetting">
 										<div class="row">
+										    	<div class="col-md-12">
+												    <div class="form-group">
+													<label for="">Model Header</label>
+                        						        <textarea class="form-control emailMPmodelEditer" name="emailmp_MH" id="emailmp_MH" placeholder="[Salutation] Write the text you want people to show in Email MP Model Header"><?php echo isset($dataClientall['emailmp_MH'])?$dataClientall['emailmp_MH']:'';?></textarea>
+                        						 </div>
+											</div>
 											<div class="col-md-12">
 												<div class="form-group">
 													<label for="">Title</label>

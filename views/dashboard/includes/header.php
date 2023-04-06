@@ -85,11 +85,8 @@
 									} ?>"> <a href="<?php echo BASE_URL; ?>analytics/" title=""><i class="fa fa-pie-chart"></i><span>Analytics</span></a>
 						</li>
 
-						<!--
-						<li class="<?php // if($path == 'notifications'){ echo 'active';} ?>">
-						<a href="Javascript:void(0)" title=""><i class="fa fa-bell"></i><span>Notifications</span></a></li>
-						-->
-										
+						<!--<li class="<? php // if($path == 'notifications'){ echo 'active';}
+										?>"><a href="Javascript:void(0)" title=""><i class="fa fa-bell"></i><span>Notifications</span></a></li>-->
 						<li class="<?php if ($path == 'templates') {
 										echo 'active';
 									} ?>"><a href="<?php echo BASE_URL; ?>templates/" title=""><i class="fa fa-file"></i><span>Templates</span></a></li>

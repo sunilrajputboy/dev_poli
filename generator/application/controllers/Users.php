@@ -8,139 +8,61 @@ class Users extends MY_Controller{
         $this->load->model('sr_model');
 		$this->lang->load('message','english');
 		header('Content-Type: application/json;charset=utf-8');
-		Header('Access-Control-Allow-Origin: *'); 
+		header('Access-Control-Allow-Origin: *');
         Header('Access-Control-Allow-Headers: *');
-        Header('Access-Control-Allow-Methods: GET, POST');
+        header('Access-Control-Allow-Methods: GET, POST');
 		header("Access-Control-Allow-Headers: X-Requested-With");
 		header("Access-Control-Allow-Headers: Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
 		header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
-		
     }
 /**
 /*@generate
 /*@for- API call from frontend
 ***/	
-	public function index(){
-		 $parameter_url =$this->uri->segment(1);
+	public function index_old(){
+		 $parameter_url =$_GET['dataSetKey'];
 		 $data  = array('parameter_url' => $parameter_url);
 		 $dataSetKey = $_GET['dataSetKey'];
 		 $client_unique_url = $_GET['client'];
 		//GET CLIENT DETAILS
 		$clientCheck = $this->sr_model->getsingle('clients',array('unique_url'=>$client_unique_url));
-		
 		if(empty($clientCheck)){
 			$return=array("status" =>400,'msg'=>'Unavailable or invalid client url!');
 			echo json_encode($return);
 			exit();
 		}
-		
 		$clientId=$clientCheck->id;
 		//GET PROJECT DETAILS
-		$projectDetails = $this->sr_model->GetJoinRecordThree('projects','id_map_template','map_templates','id_map_templates','data_field_value_new','pro_id','projects','id_project','',"(`projects`.`proKey`='$dataSetKey' OR `projects`.`unique_url`='$dataSetKey') AND `projects`.`id_client`='$clientId'",'','','',1);
-	   
+		$projectDetails = $this->sr_model->GetJoinRecordThree('projects','id_map_template','map_templates','id_map_templates','data_field_value','pro_id','projects','id_project','',"(`projects`.`proKey`='$dataSetKey' OR `projects`.`unique_url`='$dataSetKey') AND `projects`.`id_client`='$clientId'",'','','',1);
 		if(empty($projectDetails['result'])){
 			$return=array("status" =>400,'msg'=>'Unavailable or invalid key !');
 			echo json_encode($return);
 			exit();
 		}
+		
 		$projectDetail=$projectDetails['result'];
 		$row=(array) $projectDetail[0];
 		$clientData=(array) $clientCheck;
 		$projectId=$projectDetail[0]->id_project;
 		$city_id=$projectDetail[0]->city_id;
-		$mquery="SELECT data_field_value_new.*,map_template_regions.name, map_template_regions.fname, map_template_regions.lname, map_template_regions.party, map_template_regions.twitter_handle, map_template_regions.prefix, map_template_regions.email, map_template_regions.profile_url FROM `data_field_value_new` LEFT JOIN map_template_regions ON data_field_value_new.city_id=map_template_regions.id WHERE data_field_value_new.pro_id=$projectId";
-		$nodeValues=$this->sr_model->custom_query($mquery);
-		$maindata = array();
-		$dataValuePerField = array();
-		$fieldDataarr = array();
-		$datafieldId=array();
-		if(!empty($nodeValues)){
-		$firstRow=($nodeValues[0]->field_value_data) ? mb_unserialize($nodeValues[0]->field_value_data): array();
-		if(!empty($firstRow)){
-		$datafieldId = array_reduce($firstRow, function($carry, $item) {
-		return array_merge($carry, array_keys($item));
-		}, array());
-		}
-		}
+		
 		//GET DATAFIELDS
-		if(!empty($datafieldId)){
-		 $sequenced_id=implode(',',$datafieldId);
-		 $datafieldData=$this->sr_model->selectProjecFieldsBySequence($projectId,$sequenced_id);
-		}else{
-		 $datafieldData=$this->sr_model->selectProjecFields($projectId);	
-		}
-		
-		//$datafieldcount = $this->sr_model->getAllwhere('project_fields',array('id_project'=>$projectId));
-		
-		//$dfieldcount=$datafieldcount['total_count'];
-		
-		if(!empty($nodeValues)){
-				foreach($nodeValues as $node_data){
-					$field_value_data=($node_data->field_value_data) ? mb_unserialize($node_data->field_value_data): array();
-					
-					
-					$dfieldcount=count($field_value_data);
-					if(!empty($field_value_data)){
-						$dfc=0;
-						foreach($field_value_data as $val){
-							$value = current($val);
-							$key = key($val);
-							$dataValuePerField[$key][]=$value;
-							
-							$index = array_search($key, array_column($datafieldData, 'id_project_field'));
-							
-							//echo "<pre>";print_r($key); echo "</pre>";
-							//echo "<pre>";print_r($datafieldData[$index]);
-							//pr($val);
-							
-							$fv=$value;
-							$field_value=null;
-							if(strlen(trim($value))>0 && strlen(trim($value)) == 0){
-								$fv=null;
-							}
-							if($fv=="" || $fv==" "){
-								$fv=null;
-							}
-							if($datafieldData[$index]->field_type != 'Text' && $fv != null){
-								 $fv=str_replace(",","",$value);
-							}
-							$field_value=$fv;
-							if (empty($datafieldData[$index]->display_name) || $datafieldData[$index]->display_name == ""){
-								$display_name = $datafieldData[$index]->field_name;
-								}else{
-									$display_name=$datafieldData[$index]->display_name;
-								}
-								
-							$fieldDataarr[$display_name] = array($display_name=> $field_value);
-							if($dfieldcount==$dfc+1){
-							if ($row['id_map_template'] == 8 || $row['id_map_template'] == 19) {
-								$mparray = array("fname" =>$node_data->fname, "lname" =>$node_data->lname, "party" => $node_data->party, "twitter_handle" =>$node_data->twitter_handle, 'prefix' => $node_data->prefix, 'email' =>$node_data->email, 'profile_url' =>$node_data->profile_url);
-							} else {
-								$mparray = null;
-							}
-							$node_arr = array(
-								"name" => $node_data->name,
-								"mpdetails" => !empty($mparray) ? $mparray  : null,
-								"node_text"=>$node_data->node_text,
-								"node_image"=>$node_data->node_image,
-								"data" => $fieldDataarr
-							);
-							if (!in_array($node_arr, $nodesarray)) {
-								$nodesarray[] = $node_arr;
-							}
-							$mparray = array();
-						}
-						$dfc++;
-						}
-					}
-				}
-			}
+	$sequenced_id=$this->sr_model->getFieldIdSequence($projectId,$city_id);
+	$datafieldData=$this->sr_model->selectProjecFieldsBySequence($projectId,$sequenced_id);
+	$cityIds=$this->sr_model->custom_query("SELECT DISTINCT(`city_id`) as city_id FROM data_field_value WHERE pro_id = ".$projectId."");
+	$allCityId = implode(',', array_map(function($obj) { return $obj->city_id; }, $cityIds));
 
+	$all_cityId=($allCityId) ? rtrim($allCityId,',') : $allCityId;
+		
+		$custom_query="SELECT map_template_regions.name, map_template_regions.fname, map_template_regions.lname, map_template_regions.party, map_template_regions.twitter_handle, map_template_regions.prefix, map_template_regions.email, map_template_regions.profile_url, project_fields.field_name, project_fields.display_name,project_fields.field_type, data_field_value.field_value FROM `data_field_value`,project_fields,map_template_regions WHERE  data_field_value.`pro_id`='".$projectId."' AND map_template_regions.id=data_field_value.city_id AND data_field_value.field_id=project_fields.id_project_field AND data_field_value.city_id IN(".$all_cityId.") ORDER BY `map_template_regions`.`name` ASC";
+		
+		$nodeDetails=$this->sr_model->custom_query($custom_query);
 		$clientlogo  = $clientCheck->logo;
 		$clientlogofile = $clientCheck->logofile;
 		$kklr = !empty($projectDetail[0]->key_colors) ? count(unserialize($projectDetail[0]->key_colors)) : 0;
 		
 		// Maindata is main array
+		$maindata = array();
 		$maindata['key'] = $projectDetail[0]->proKey;
 		$key = 'Hl2018@1212';
 		$encrypted_id = openssl_encrypt($projectDetail[0]->id_map_templates, 'AES-128-ECB', $key, OPENSSL_RAW_DATA);
@@ -302,6 +224,12 @@ class Users extends MY_Controller{
 		// chart
 		$chartDataArray = array();
 		$chartData = $this->sr_model->getAllwhere('chart_wizard',array('pro_id'=>$row['id_project']),'sequence_no','ASC');
+		$key_field_color = $row['key_colors'];
+		if($key_field_color != null){
+            $key_field_color = unserialize($key_field_color);
+		}else{
+			$key_field_color = [];
+		}
 		
 		if(!empty($chartData['result'])){
 			foreach ($chartData['result'] as $c_dt){
@@ -309,7 +237,7 @@ class Users extends MY_Controller{
 				$d=(array) $c_dt;
 				$fields = unserialize($d['datafields']);
 				$field_color = !empty($d['field_color']) ? unserialize($d['field_color']) : array();
-				
+				$i = 1;
 				foreach ($fields as $key => $f){
 					//NOTES- CAN BE MODIFIED 
 					$getfieldName = $this->sr_model->getsingle('project_fields',array('id_project_field'=>$f));
@@ -317,33 +245,32 @@ class Users extends MY_Controller{
 					 $fmax = $getfieldName->last_interval;
 					 $key_colors = $getfieldName->key_colors;
 					 $colorArray = !empty($getfieldName->key_colors) ? unserialize($key_colors) : (!empty($clientData['colours']) ? unserialize($clientData['colours']) : array());
+					
+					 $minMaxSumField = $this->sr_model->getsingle('data_field_value',array('field_id'=>$getfieldName->id_project_field,'pro_id'=>$projectId),"MAX(cast(`field_value` as decimal(12,2))) AS max,MIN(cast(`field_value` as decimal(12,2))) AS min,SUM(cast(`field_value` as unsigned)) AS sum");
 					$max=0; $min=0; $sum=0;
+					if(!empty($minMaxSumField)){
+						$max=$minMaxSumField->max;
+						$min=$minMaxSumField->min;
+						$sum=$minMaxSumField->sum;
+					}
+					$px_get_valuess = $this->sr_model->getAllwhere('data_field_value',array('field_id'=>$getfieldName->id_project_field,'pro_id'=>$projectId));
+					$px_get_values=$px_get_valuess['result'];
 					$pxtotal = 0;
 					$total_number_of_nodes = 0;
 					$fieldData_s = json_decode($d['field_data']);
 					if(isset($fieldData_s->average_without_empty_nodes) && $fieldData_s->average_without_empty_nodes==true){
-						
-						$px_get_values=$dataValuePerField[$f];
-						//echo "<pre>"; print_r($px_get_values); echo "</pre>";
-						
-						$sum = array_sum($px_get_values);
-						$count  = count($px_get_values);
-						$max = is_numeric(max($px_get_values)) ? max($px_get_values) :0.00;
-						$min = is_numeric(min($px_get_values)) ? min($px_get_values) :0.00;
-						$min=!empty($min) ? $min : 0;
 						foreach($px_get_values as $value){
-								if($value!=''){
+								if($value->field_value!=''){
 									$total_number_of_nodes++;
-									$pxtotal +=  (float)$value;
+									$pxtotal +=  (float)$value->field_value;
 								}
 						}
 						}else{
 							foreach($px_get_values as $value){
 								$total_number_of_nodes++;
-								$pxtotal +=  (float)$value;
+								$pxtotal +=  (float)$value->field_value;
 							}	
 						}
-	
 					$nationalaverage = $total_number_of_nodes;
 					$totalValueSum=!empty($sum) ? $sum : 0;
 					$min=($fmin == null) ? $min : $fmin;
@@ -387,7 +314,6 @@ class Users extends MY_Controller{
 							}
 						}
 					}
-					
 			$new = array(
 						"name" => $getfieldName->display_name,
 						"label" => $getfieldName->display_name,
@@ -401,10 +327,9 @@ class Users extends MY_Controller{
 						"minColor" => $colorArray[2],
 						"avgColor" => $colorArray[1]
 					);
-					if($new){
-					$pxarray[] = $new;
-					}
+					if($new){ $pxarray[] = $new;}
 				}
+				
 				
 				$chartarray = array(
 				"chart_name" => $d['name'],
@@ -434,7 +359,6 @@ class Users extends MY_Controller{
 		foreach ($datafieldData as $p_data_fields) {
 			$d=(array)$p_data_fields;
 			$id_project_field = $d['id_project_field'];
-			
 			$keyColors = array();
 			/*************KEY-COLOR**********/
             $constant_fmin = $d['first_interval'];
@@ -446,10 +370,9 @@ class Users extends MY_Controller{
             }
 			$id_field = $d['id_project_field'];
 			$key_colors = $d['key_colors'];
-			
 			if (!empty($key_colors)) {
 				$colorArray = unserialize($key_colors);
-			}else {
+			} else {
 				if (!empty($row['key_colors'])) {
 					$colorArray = unserialize($row['key_colors']);
 				} else {
@@ -461,41 +384,33 @@ class Users extends MY_Controller{
 				}
 			}
 			
-			$max=0; $min=0; $sum=0;
-			$fieldValueS=$dataValuePerField[$id_field];
-			//echo "<pre>"; echo  print_r($fieldValueS); echo "</pre>";
-			$sum = array_sum($fieldValueS);
-			$count_fvs  = count($fieldValueS);
-			$max = is_numeric(max($fieldValueS)) ? max($fieldValueS) : 0.00;
-			$min = is_numeric(min($fieldValueS)) ? min($fieldValueS) :0.00;
-			$min=!empty($min) ? $min : 0;
-			$px_get_values=$fieldValueS;
-      //if($id_project_field==2981){ pr($max);}
+			$minMaxSumField = $this->sr_model->getsingle('data_field_value',array('field_id'=>$id_field,'pro_id'=>$projectId),"MAX(cast(`field_value` as decimal(12,2))) AS max,MIN(cast(`field_value` as decimal(12,2))) AS min,SUM(cast(`field_value` as unsigned)) AS sum");
+					$max=0; $min=0; $sum=0;
+					if(!empty($minMaxSumField)){
+						$max=$minMaxSumField->max;
+						$min=$minMaxSumField->min;
+						$sum=$minMaxSumField->sum;
+					}
+					$px_get_valuess = $this->sr_model->getAllwhere('data_field_value',array('field_id'=>$id_field,'pro_id'=>$projectId));
+					$px_get_values=$px_get_valuess['result'];
+            
 			$pxtotal = 0;
 			$total_number_of_nodes = 0;
-			$n_of_val_without_empty=0;
 			$fieldData_s = json_decode($d['field_data']);
-			$non_empty_values=array();
 			if(isset($fieldData_s->average_without_empty_nodes) && $fieldData_s->average_without_empty_nodes==true){
-			foreach($px_get_values as $value){
-						if($value=!''){
-							$n_of_val_without_empty++;
-							$non_empty_values[]=$value;
+				foreach($px_get_values as $value){
+						if($value->field_value!=''){
 							$total_number_of_nodes++;
-							$pxtotal +=  (float)$value;
+							$pxtotal +=  (float)$value->field_value;
 						}
 				}
 			}else{
 				foreach($px_get_values as $value){
 					$total_number_of_nodes++;
-					$pxtotal +=  (float)$value;
-					if($value!=''){
-							$n_of_val_without_empty++;
-							$non_empty_values[]=$value;
-					}
+					$pxtotal +=  (float)$value->field_value;
 				}	
 			}
-
+             
 			$nationalaverage = $total_number_of_nodes;
 			$totalValueSum=!empty($sum) ? $sum : 0;
 			$min=($fmin == null) ? $min : $fmin;
@@ -503,8 +418,8 @@ class Users extends MY_Controller{
 			$maxConstant=$max;
 			$minConstant=$min;
 			$total_colors = count($colorArray);
-
-			if($fmax != null && $fmin != null){ 
+			
+			if($fmax != null && $fmin != null){
 				if ($total_colors != 0) {
 					$newCount = $total_colors - 1;
 					$keyInterval = ($max - $min) / $newCount;
@@ -513,8 +428,7 @@ class Users extends MY_Controller{
 				} else {
 					$keyInterval = NULL;
 				}
-			} 
-		 else if($fmax != null && $fmin == null){
+			}else if($fmax != null && $fmin == null){
 			if ($total_colors != 0) {
 				$newCount = $total_colors - 1;
 				$keyInterval = ($max - $min) / $newCount;
@@ -524,7 +438,7 @@ class Users extends MY_Controller{
 				$keyInterval = NULL;
 			}
 
-		 }else {
+		  }else {
 				if ($total_colors != 0) {
 					$keyInterval = ($max - $min) / $total_colors;
 					$keyInterval = round($keyInterval, 2);
@@ -543,25 +457,20 @@ class Users extends MY_Controller{
 				$min_display_values = $d['min_display_values'] ? unserialize($d['min_display_values']) : null;
 
                 $UniqueArray = array();
-				//pr($d['field_type']);
                 if($d['field_type'] == 'Text'){
-					
                     foreach($px_get_values as $dfv){
-						
-                        if ($dfv && $dfv != null) {
-                            $trimval = trim($dfv);
+                        if ($dfv->field_value && $dfv->field_value != null) {
+                            $trimval = trim($dfv->field_value);
                             if(!in_array($trimval, $UniqueArray)){
                              array_push($UniqueArray, $trimval);
                              }
                             }
                          }
                          $UniqueArray = array_unique($UniqueArray);
-
                          if($max_key_values && count($max_key_values)>0){
                              $UniqueArray = $max_key_values;
                          }
                          $counting = 1;
-						//pr($UniqueArray);
                          foreach($UniqueArray as $key => $value){
                              if($counting <=10){
                             $keyClr['keyColor'] = isset($colorArray[$key])? $colorArray[$key] : '#000000';
@@ -574,28 +483,33 @@ class Users extends MY_Controller{
                         }
                          }
                 }else{
-
-					if($d['key_value_option'] == 'Equal Count'){
+					
+					if($d['key_value_option'] == 'Equal Count'){ 
 						$count = 0;
 						$from = 0;
-						$to = round($nationalaverage/count($colorArray));
-						$devide = round($nationalaverage/count($colorArray));
-						$newCOUNT =  $n_of_val_without_empty;
+						$to = round($total_number_of_nodes/count($colorArray));
+						$devide = round($total_number_of_nodes/count($colorArray));
+						$px = $this->sr_model->getEqualCountvalueswithIgnore($id_field);
+						$newCOUNT =  count($px);
 						$color_count = count($colorArray);
 						$NEW_devide = round($newCOUNT / $color_count);
 						$fff = 0;
 						$fff_1 = 0;
 						$NEW_devide_1 = round($newCOUNT / $color_count);
+						
 						foreach ($colorArray as $key => $color) {
-							$E_Arr=array_slice(rsort($non_empty_values),$fff_1,$NEW_devide_1);
+							$E_Arr = $this->sr_model->getEqualCountvaluesV2($id_field,$fff_1, $NEW_devide_1);
+							$E_Arr = array_map(function($obj) {
+								return $obj->value;
+								}, $E_Arr);
 								if ($key == ($color_count - 2)) {
 									$fff_1 = $fff_1 + $NEW_devide_1;
 									$NEW_devide_1 = $NEW_devide_1 + ($newCOUNT - ($NEW_devide_1 * $color_count));
 								} else {
 									$fff_1 = $fff_1 + $NEW_devide_1;
 								}
-								if(!empty($E_Arr)){
-
+								
+						if(!empty($E_Arr)){
 							$keyClr['keyColor'] = $color;
 							$keyClr['minKeyValue'] = min($E_Arr);
 							$keyClr['MaxKeyValue'] = max($E_Arr);
@@ -606,13 +520,15 @@ class Users extends MY_Controller{
 							$keyColors[] = $keyClr;
 							$from = $from + $devide;
 							$to = $to + $devide;
+							
 						}
-
+                      
 					}else{
 						if($d['key_value_option'] == 'Equal Ranges'){
 							$min_key_values = null;
 							$max_key_values = null;
 						}
+			
 				foreach ($colorArray as $keyNo => $clr) {
 					$p++;
 					$keyClr['keyColor'] = $clr;
@@ -646,10 +562,10 @@ class Users extends MY_Controller{
 							$keyClr['MaxDisplayKey'] = isset($max_display_values[$keyNo]) ? $max_display_values[$keyNo] : number_format(($fm), 2);
                     }else{
             		$keyClr['minKeyValue'] = number_format(($min), 2);
-							$keyClr['MaxKeyValue'] = number_format(($max), 2);
-							$keyClr['MinDisplayKey'] = isset($min_display_values[$keyNo]) ? $min_display_values[$keyNo] :number_format(($min), 2);
-							 $keyClr['min_dis_key2'] = number_format(($min), 2);
-							$keyClr['MaxDisplayKey'] = isset($max_display_values[$keyNo]) ? $max_display_values[$keyNo] :number_format(($max), 2);
+					$keyClr['MaxKeyValue'] = number_format(($max), 2);
+					$keyClr['MinDisplayKey'] = isset($min_display_values[$keyNo]) ? $min_display_values[$keyNo] :number_format(($min), 2);
+					$keyClr['min_dis_key2'] = number_format(($min), 2);
+					$keyClr['MaxDisplayKey'] = isset($max_display_values[$keyNo]) ? $max_display_values[$keyNo] :number_format(($max), 2);
                     }
 					} else if ($p == 1) {
 							if($fmax != null){
@@ -692,7 +608,7 @@ class Users extends MY_Controller{
             }
 		}
 			}
-
+			
 			/************************/
 			$fieldData = json_decode($d['field_data']);
 		
@@ -752,42 +668,80 @@ class Users extends MY_Controller{
 			array_push($arrayOfDF, $mydfarr);
 			$count++;
 		}
-		
 		/******************/
 		$row['id_map_template'];
 		$maindata['dataFieldsArray'] = $arrayOfDF;
 		$maindata['dataFields'] = $datafieldarray;
+		$datafieldcount = $this->sr_model->getAllwhere('data_field_value',array('pro_id'=>$projectId),'','',"DISTINCT(data_field_value.field_id)");
+		$fieldDataarr = array();
+		$nodesarray = array();
+		$node_double = array();
+		$itr = 0;
+		$dfieldcount=$datafieldcount['total_count'];
+		
+		
+		if(!empty($nodeDetails)){
+			$i = 0;
+			foreach ($nodeDetails as $nds) { $itr++;
+				$nd=(array) $nds;
+				$i++;
+				if (strlen($nd['field_value']) > 0 && strlen(trim($nd['field_value'])) == 0){
+					$nd['field_value'] = null;
+				}
+				if ($nd['field_value'] == '' || $nd['field_value'] == " ") {
+					$nd['field_value'] = null;
+				}
+				
+				if($nd['field_type'] != 'Text' && $nd['field_value'] != null){
+					$nd['field_value'] = str_replace(",","",$nd['field_value']);
+				}
+				if (empty($nd['display_name']) || $nd['display_name'] == "") {
+					$nd['display_name'] = $nd['field_name'];
+				}
+				$fieldDataarr[$nd['display_name']] = array($nd['display_name'] => $nd['field_value']);
+
+				if ($i == $dfieldcount){
+					if ($row['id_map_template'] == 8) {
+						$mparray = array("fname" => $nd['fname'], "lname" => $nd['lname'], "party" => $nd['party'], "twitter_handle" => $nd['twitter_handle'], 'prefix' => $nd['prefix'], 'email' => $nd['email'], 'profile_url' => $nd['profile_url']);
+					} else {
+						$mparray = null;
+					}
+					$node_arr = array(
+						"name" => $nd['name'],
+						"mpdetails" => !empty($mparray) ? $mparray  : null,
+						"data" => $fieldDataarr
+					);
+					
+					if (!in_array($node_arr, $nodesarray)){
+						$nodesarray[] = $node_arr;
+					}else{
+						$node_double[]=$node_arr;
+					}
+					$i = 0;
+					$mparray = array();
+				}
+			}
+		}
 		$maindata['nodes'] = $nodesarray;
-		//echo count($maindata['dataFields']);
-		//pr($maindata['dataFields']);
-		$json_string = json_encode($maindata,JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+		$json_string = json_encode($maindata, JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 		echo $json_string;
-	    //pr($maindata);
-		//$this->load->view('index',$data);
 	}
 /****************************************/
 /************OLD-ONE***************/
 /***************************************/
-	public function index_old(){
-	     $parameter_url =$_GET['dataSetKey'];
+	public function index(){
+	     $parameter_url =$this->uri->segment(1);
 	 	 $data  = array('parameter_url' => $parameter_url);
 		$this->load->view('index',$data);
 	}
-	
-/**
-/*@logout
-/*
-***/	
-	public function logout(){
-		$this->session->sess_destroy();
-		//$this->session->set_userdata('site_lang') == 'thai';
-		$this->session->unset_userdata('site_lang');
-		redirect(BASEURL);
-	}	
-
 /****************************************/
-	
-
-
-
+/************INDEX-LIVE***************/
+/***************************************/
+	public function index_live(){
+		$dataSetKey=$_GET['dataSetKey'];
+	     $projectDetails = $this->sr_model->getsingle('projects',"proKey='$dataSetKey' OR unique_url='$dataSetKey'");
+	 	 $data  = array('parameter_url' => $projectDetails->proKey);
+		$this->load->view('index_live',$data);
+	}	
+/****************************************/
 }

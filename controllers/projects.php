@@ -404,8 +404,15 @@ class Projects extends Controller
     function updateprivacypolicy(){
         $project_id = $_POST['project_id'];
         $privacypolicy = $_POST['privacypolicy'];
-        $allTemplate = $this->model->updatePrivacypolicyContent($privacypolicy, $project_id);
-        $_SESSION["success_msg"] = 'Privacy policy updated successfully.';
+        
+        $subscribe_mail_text = $_POST['subscribe_mail_text'];
+          $subscribe_mail_address = $_POST['subscribe_mail_address'];
+            $copyright_title = $_POST['copyright_title'];
+              $copyright_link = $_POST['copyright_link'];
+        
+        
+        $allTemplate = $this->model->updatePrivacypolicyContent($privacypolicy,$subscribe_mail_text,$subscribe_mail_address,$copyright_title, $copyright_link,$project_id);
+        $_SESSION["success_msg"] = 'Updated successfully.';
         $key = 'Hl2018@1212';
         $encrypted_id = openssl_encrypt($project_id, 'AES-128-ECB', $key, OPENSSL_RAW_DATA);
         $encrypted_id = strtolower(bin2hex($encrypted_id));
@@ -613,61 +620,78 @@ class Projects extends Controller
                                                     </div>
                             
 
-<div class="col-md-12">
-	<div class="form-group">
-		<label for="">What type of graph do you want to create</label>
-		<div class="graph_type">
-			<select id="graph_type1" name="graph_type1" class="form-control">
-				<option value="Bar" <?php if ($getChartData['graph_type'] == 'Bar') { echo 'selected'; } ?>>Bar</option>
-				<option value="Column" <?php if ($getChartData['graph_type'] == 'Column') { echo 'selected'; } ?>>Column</option>
-				<option value="Pie" <?php if ($getChartData['graph_type'] == 'Pie') { echo 'selected'; } ?>>Pie</option>
-				<option value="Line" <?php if ($getChartData['graph_type'] == 'Line') { echo 'selected'; } ?>>Line</option>
-				<option value="Donut" <?php if ($getChartData['graph_type'] == 'Donut') { echo 'selected'; } ?>>Donut</option>
-				<option value="Donut" <?php if ($getChartData['graph_type'] == 'Simple Table') { echo 'selected'; } ?>>Simple Table</option>
-			</select>
-		</div>
-	</div>
-</div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">What type of graph do you want to create</label>
+                                    <div class="graph_type">
+                                        <select id="graph_type1" name="graph_type1" class="form-control">
+                                            <option value="Bar" <?php if ($getChartData['graph_type'] == 'Bar') {
+                                                                    echo 'selected';
+                                                                } ?>>Bar</option>
+                                            <option value="Column" <?php if ($getChartData['graph_type'] == 'Column') {
+                                                                        echo 'selected';
+                                                                    } ?>>Column</option>
+                                            <option value="Pie" <?php if ($getChartData['graph_type'] == 'Pie') {
+                                                                    echo 'selected';
+                                                                } ?>>Pie</option>
+                                            <option value="Line" <?php if ($getChartData['graph_type'] == 'Line') {
+                                                                        echo 'selected';
+                                                                    } ?>>Line</option>
+                                            <option value="Donut" <?php if ($getChartData['graph_type'] == 'Donut') {
+                                                                        echo 'selected';
+                                                                    } ?>>Donut</option>
+                                                                      <option value="Simpletable" <?php if ($getChartData['graph_type'] == 'Simpletable') {
+                                                                        echo 'selected';
+                                                                    } ?>>Simple Table</option>
+                                                                    
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="">
                                     <div class="datafields_data">
                                         <div class="row">
 											
 											
-<div class="equal-height">
-<div class="col-md-6 equal-height-node">
-	<label for="">Select field to display</label>
-	<div class="droptarget" id="allFacets1">
+											<div class="equal-height">
+                                            <div class="col-md-6 equal-height-node">
+                                                <label for="">Select field to display</label>
+                                                <div class="droptarget" id="allFacets1">
 
-<?php
-	$datafields = $getChartData['datafields'];
-	
-	if($datafields != null) {
-		$datafields = unserialize($datafields);
-	} else {
-		$datafields = [];
-	}
-	$field_color = $getChartData['field_color'];
-	if ($field_color != null) {
-		$field_color = unserialize($field_color);
-	} else {
-		$field_color = [];
-	}
+                                                    <?php
+                                                    $datafields = $getChartData['datafields'];
+                                                    if ($datafields != null) {
+                                                        $datafields = unserialize($datafields);
+                                                    } else {
+                                                        $datafields = [];
+                                                    }
 
-foreach ($datafieldsWithoutChild as $key => $dparent) {
-if(!in_array($dparent['id_project_field'], $datafields)){
-if($dparent['isGroup']){ ?>
+                                                    $field_color = $getChartData['field_color'];
+                                                    if ($field_color != null) {
+                                                        $field_color = unserialize($field_color);
+                                                    } else {
+                                                        $field_color = [];
+                                                    }
 
- <div class="fields-item group-fields-item">
-  <input type="text" disabled class="disabled" value="<?php echo $dparent['field_name']; ?>" readonly>
- </div>
- <?php
-$parentId = $dparent['id_project_field'];
-$datafieldsChild = $this->model->getProjectFieldsByParentId($parentId);
-if(!empty($datafieldsChild)){
-	foreach($datafieldsChild as $dchild){
-		if (!in_array($dchild['id_project_field'], $datafields)){
-?>
+                                                    foreach ($datafieldsWithoutChild as $key => $dparent) {
+                                                        if (!in_array($dparent['id_project_field'], $datafields)) {
+                                                            if($dparent['isGroup']){ ?>
+
+                                                            <div class="fields-item group-fields-item">
+                                                            <input type="text" disabled class="disabled" value="<?php echo $dparent['field_name']; ?>" readonly>
+                                                            </div>
+
+                                                            <?php
+                                                                $parentId = $dparent['id_project_field'];
+                                                                            
+                                                            $datafieldsChild = $this->model->getProjectFieldsByParentId($parentId);
+                                                            if(!empty($datafieldsChild)){ 
+                                                                foreach($datafieldsChild as $dchild){
+                                                        if (!in_array($dchild['id_project_field'], $datafields)) {
+                                                                    
+                                                                    ?>
                                                                 <div class="fields-item children">
                                                                 <p draggable="true" id="up_<?php echo $dchild['id_project_field']; ?>" class="dfield_name1" value="<?php echo $dchild['id_project_field']; ?>"><?php echo $dchild['field_name']; ?></p>
                                                            <div class="colorBoxm" style="<?php if ($getChartData['graph_type'] == 'Line') { echo 'display:none;';}  ?>">
@@ -843,49 +867,13 @@ if(!empty($datafieldsChild)){
             echo json_encode($resultArray);
         }
     }
-
-    function update_settings()
+    
+      function update_social_settings()
     {
-        if (isset($_POST['update_setting'])) {
-            $id = $_POST['id_project'];
-            $fonts = isset($_POST['fonts']) ? $_POST['fonts'] : 1;
-            $email_mp = isset($_POST['is_email_mp']) ? $_POST['is_email_mp'] : null;
-            $email_sub = isset($_POST['email_sub']) ? $_POST['email_sub'] : null;
-            $message = isset($_POST['message']) ? $_POST['message'] : null;
-			$emailmp_MH = isset($_POST['emailmp_MH']) ? $_POST['emailmp_MH'] : null;
-            $charts = isset($_POST['is_charts']) ? $_POST['is_charts'] : null;
-            $is_social_share = isset($_POST['is_social_share']) ? $_POST['is_social_share'] : null;
-            $is_email_share = isset($_POST['is_email_share']) ? $_POST['is_email_share'] : null;
-            $is_tweet_mp = isset($_POST['is_tweet_mp']) ? $_POST['is_tweet_mp'] : null;
-            $tweet_mp_text = isset($_POST['tweet_mp_text']) ? $_POST['tweet_mp_text'] : null;
-            $email_friend_text = isset($_POST['email_friend_text']) ? $_POST['email_friend_text'] : null;
-            $email_friend_title = isset($_POST['email_friend_title']) ? $_POST['email_friend_title'] : null;
-			/********SUNIL-10-02-2023***********/
-            $is_image_export = (isset($_POST['is_image_export']) && $_POST['is_image_export']=='yes') ? 'yes' : 'no';
-            $is_pdf_download = (isset($_POST['is_pdf_download']) && $_POST['is_pdf_download']=='yes') ? 'yes' : 'no';
-			/********************/
-
-            if (!isset($_POST['is_email_mp'])) {
-                $email_mp = 'no';
-                $email_sub = null;
-                $message = null;
-            }
-            if (isset($_POST['is_charts']) && $_POST['is_charts'] == null) {
-                $charts = 'no';
-            }
-            if (isset($_POST['is_social_share']) && $_POST['is_social_share'] == null) {
-                $is_social_share = 'no';
-            } else {
-                $is_social_share = isset($_POST['is_social_share']) ? $_POST['is_social_share'] : 'no';
-            }
-
-            if (isset($_POST['is_email_share']) && $_POST['is_email_share'] == null) {
-                $is_email_share = 'no';
-            } else {
-                $is_email_share =  isset($_POST['is_email_share']) ? $_POST['is_email_share'] : 'no';
-            }
-
-            if (isset($_POST['is_facebook']) && $_POST['is_facebook'] != 'yes') {
+         if (isset($_POST['update_social_setting'])) {
+             
+          $is_social_share = isset($_POST['is_social_share']) ? $_POST['is_social_share'] : null;
+           if (isset($_POST['is_facebook']) && $_POST['is_facebook'] != 'yes') {
                 $is_facebook = 'no';
             } else {
                 $is_facebook = isset($_POST['is_facebook']) ? $_POST['is_facebook_text'] : 'no';
@@ -907,20 +895,101 @@ if(!empty($datafieldsChild)){
             } else {
                 $is_linkedin = isset($_POST['is_linkedin']) ? $_POST['is_linkedin'] : 'no';
             }
+            
+            
+             $is_tweet_mp = isset($_POST['is_tweet_mp']) ? $_POST['is_tweet_mp'] : null;
+               $tweet_mp_text = isset($_POST['tweet_mp_text']) ? $_POST['tweet_mp_text'] : null;
+               if (isset($_POST['is_tweet_mp']) && $_POST['is_tweet_mp'] == null) {
+                $is_tweet_mp = 'no';
+                $tweet_mp_text = null;
+            }
+            $id = $_POST['id_project'];
+            
+            // 
+            $socialallTemplate = $this->model->update_socialSettings($is_social_share,$is_facebook,$is_insta,$is_twitter,$is_linkedin,$is_tweet_mp,$tweet_mp_text,$id);
+         ?>   <script>
+            localStorage.setItem("message_success_setting", 'Social setting updated successfully.');
+        </script>
+        <?php
+        $_SESSION["success_msg"] = 'Social setting updated successfully.';
+        ?>
+        <script>
+            window.history.back();
+        </script>
+        <?php  }
+    }
 
-            if (isset($_POST['is_email_friend']) && $_POST['is_email_friend'] != 'yes') {
-                $is_email_friend = 'no';
+    function update_mail_settings()
+    {
+            if (isset($_POST['update_mail_setting'])) {
+                if (isset($_POST['is_email_friend']) && $_POST['is_email_friend'] != 'yes') {
+                    $is_email_friend = 'no';
+                } else {
+                    $is_email_friend = isset($_POST['is_email_friend']) ? $_POST['is_email_friend'] : 'no';
+                }
+                $email_friend_title = isset($_POST['email_friend_title']) ? $_POST['email_friend_title'] : null;
+                $email_friend_text = isset($_POST['email_friend_text']) ? $_POST['email_friend_text'] : null;
+                $emailmp_MH = isset($_POST['emailmp_MH']) ? $_POST['emailmp_MH'] : null;
+                $email_sub = isset($_POST['email_sub']) ? $_POST['email_sub'] : null;
+                $message = isset($_POST['message']) ? $_POST['message'] : null;
+                $email_mp = isset($_POST['is_email_mp']) ? $_POST['is_email_mp'] : null;
+                if (!isset($_POST['is_email_mp'])) {
+                    $email_mp = 'no';
+                    $email_sub = null;
+                    $message = null;
+                }
+                $id = $_POST['id_project'];
+                $allTemplate = $this->model->updatemailSettings($is_email_friend,$email_friend_title,$email_friend_text,$emailmp_MH,$email_sub,$message,$email_mp,$id); 
+                ?>   <script>
+                localStorage.setItem("message_success_setting", 'Mail setting updated successfully.');
+            </script>
+            <?php
+            $_SESSION["success_msg"] = 'Mail setting updated successfully.';
+            ?>
+            <script>
+                window.history.back();
+            </script>
+            <?php }
+    }
+
+    function update_settings()
+    {
+        if (isset($_POST['update_setting'])) {
+            $id = $_POST['id_project'];
+            $fonts = isset($_POST['fonts']) ? $_POST['fonts'] : 1;
+            $charts = isset($_POST['is_charts']) ? $_POST['is_charts'] : null;
+          
+            $is_email_share = isset($_POST['is_email_share']) ? $_POST['is_email_share'] : null;
+           
+          
+			/********SUNIL-10-02-2023***********/
+            $is_image_export = (isset($_POST['is_image_export']) && $_POST['is_image_export']=='yes') ? 'yes' : 'no';
+            $is_pdf_download = (isset($_POST['is_pdf_download']) && $_POST['is_pdf_download']=='yes') ? 'yes' : 'no';
+			/********************/
+
+           
+            if (isset($_POST['is_charts']) && $_POST['is_charts'] == null) {
+                $charts = 'no';
+            }
+            if (isset($_POST['is_social_share']) && $_POST['is_social_share'] == null) {
+                $is_social_share = 'no';
             } else {
-                $is_email_friend = isset($_POST['is_email_friend']) ? $_POST['is_email_friend'] : 'no';
+                $is_social_share = isset($_POST['is_social_share']) ? $_POST['is_social_share'] : 'no';
             }
 
             if (isset($_POST['is_email_share']) && $_POST['is_email_share'] == null) {
                 $is_email_share = 'no';
+            } else {
+                $is_email_share =  isset($_POST['is_email_share']) ? $_POST['is_email_share'] : 'no';
             }
-            if (isset($_POST['is_tweet_mp']) && $_POST['is_tweet_mp'] == null) {
-                $is_tweet_mp = 'no';
-                $tweet_mp_text = null;
+
+
+         
+
+            if (isset($_POST['is_email_share']) && $_POST['is_email_share'] == null) {
+                $is_email_share = 'no';
             }
+         
             if (isset($_POST['fonts']) && $_POST['fonts'] == null) {
                 $fonts  = 1;
             }
@@ -929,7 +998,6 @@ if(!empty($datafieldsChild)){
             if (isset($_POST['hide_node']) && $_POST['hide_node'] == null) {
                 $hide_node = 'no';
             }
-			
 			$cta_text=$_POST['cta_text'];
 			
             $subscribe_mail_text = isset($_POST['subscribe_mail_text']) ? $_POST['subscribe_mail_text'] : null;
@@ -940,7 +1008,8 @@ if(!empty($datafieldsChild)){
 		        $copyright_title = isset($_POST['copyright_title']) ? $_POST['copyright_title'] : null;
 		        $copyright_link = isset($_POST['copyright_link']) ? $_POST['copyright_link'] : null;
 
-            $allTemplate = $this->model->updateSettings($fonts, $email_mp, $email_sub, $message,$emailmp_MH, $hide_node, $charts, $is_social_share, $is_email_share, $is_tweet_mp, $tweet_mp_text, $is_facebook, $is_insta, $is_twitter, $is_linkedin, $email_friend_text, $email_friend_title, $is_email_friend,$cta_text,$subscribe_mail_text,$subscribe_mail_address,$copyright_title,$copyright_link,$is_pdf_download,$is_image_export,$id); ?>
+            $allTemplate = $this->model->updateSettings($fonts, $hide_node, $charts, $is_email_share,$cta_text,$subscribe_mail_text,$subscribe_mail_address,$copyright_title,$copyright_link,$is_pdf_download,$is_image_export,$id); 
+ ?>
             <script>
                 localStorage.setItem("message_success_setting", 'Settings updated successfully.');
             </script>
@@ -1020,18 +1089,7 @@ if(!empty($datafieldsChild)){
             if (!empty($getTemplates)) {
                 foreach ($getTemplates as $mapData) {
                     $city_id = $mapData['city_id'];
-                    $node_text = $mapData['node_text'];
-                    $node_image = $mapData['node_image'];
-                    $pro_id = $proId;
-					$field_value_data=$mapData['field_value_data'];
-				    $fv_serialized="";
-				if(!empty($field_value_data)){
-					$fv_unserialize=unserialize($field_value_data);
-					$new_array = array(array($last_id =>''));
-					$fvalue_unserialized = array_merge($fv_unserialize, $new_array);
-				 $fv_serialized=serialize($fvalue_unserialized);
-				}
-				$sqlMapInsert=$this->model->updateDataFieldValueNew($proId, $city_id, $fv_serialized,$node_text,$node_image);
+                    $sqlMapInsert = $this->model->insertDataFieldValue($proId, $city_id, $last_id);
                 }
             }
             $key = 'Hl2018@1212';
@@ -1051,10 +1109,19 @@ if(!empty($datafieldsChild)){
             $mid = $_POST['mid'];
             $pid = $_POST['pid'];
             $is_include_empty_nodes = $_POST['is_include_empty_node'];
-
+            /****
+			$projectDetails = $this->model->getProjectById($pid);
+			if(!empty($projectDetails)){
+				$id_map_template=$projectDetails[0]['id_map_template'];
+				$projectMapTemplates = $this->model->mapTemplateRegions($id_map_template);
+				  echo "<pre>"; print_r($projectDetails[0]['id_map_template']); echo "</pre>"; 
+			}
+             *****/
             $dataFieldsDataWithoutGroup = $this->model->getDataFieldsByIdWithoutGroup($pid);
+
             $nodeDetails = $this->model->getNodeDetails($pid);
             $count = count($dataFieldsDataWithoutGroup);
+			//echo "<pre>"; print_r($count); echo "</pre>"; die();
             $nodesarray = array();
             $fieldDataarr = array();
             $fieldValueArray = array();
@@ -1062,72 +1129,59 @@ if(!empty($datafieldsChild)){
             <table class="table table-striped nodes-table" id="constituencyNodestable">
                 <thead>
                     <tr>
-                        <th scope="col">Country</th>
-						<th style="display:none"></th>
-						<th style="display:none"></th>
-<?php foreach($dataFieldsDataWithoutGroup as $dataf){ ?>
+                        <th>Country</th>
                         <th style="display:none"></th>
-<?php } ?>
+                        <th style="display:none"></th>
+             <?php foreach($dataFieldsDataWithoutGroup as $dataf){  ?>
+                         <th style="display:none"></th>
+             <?php } ?>
                     </tr>
                 </thead>
                 <tbody>
-				<?php if(!empty($nodeDetails)){
-					$i = 0;
-					$fv0=!empty($nodeDetails[0]['field_value_data']) ? unserialize($nodeDetails[0]['field_value_data']) : array();
-				
-					
-					$datafield_array=array();
-					if(!empty($fv0)){
-					 foreach ($fv0 as $val) {
-					     //if(is_array($val)){ echo ""; }else{ echo "<pre> pid=$pid and MID= $mid  NON ARRAY ";print_r($val);  echo ""; print_r($fv0); echo "</pre>"; }
-						    $value = current($val);
-							$key = key($val);
-							$dfdata=$this->model->getDataFieldsByFieldId($key);
-							$field_name=!empty($dfdata) ? $dfdata[0]['field_name'] : "";
-							$display_name=!empty($dfdata) ? $dfdata[0]['display_name'] : "";
-							$hide_empty_valu_on_node=!empty($dfdata) ? $dfdata[0]['hide_empty_valu_on_node'] : "";
-							$field_type=!empty($dfdata) ? $dfdata[0]['field_type'] : "";
-							$normal_array=array('dfid'=>$key,'dfval'=>$value,'df_name'=>$field_name);
-							$datafield_array[]=$normal_array;
-	                   }
-					 }
-					 //
-					 $tdData = "";
-					foreach ($nodeDetails as $nd){
-						$pro_id=$nd['pro_id'];
-						$city_id=$nd['city_id'];
-						$field_value_data=!empty($nd['field_value_data']) ? unserialize($nd['field_value_data']) : array();
-						$name=$nd['name'];
-		 $tdData ='';				
-	if(!empty($field_value_data)){
-		$l=0;
-		foreach($field_value_data as $df_values){
-			$value = current($df_values);
-			$key = key($df_values);
-	$index = array_search($key,array_column($datafield_array,'dfid'));
-	$field_value=$value;
-	$field_name=$datafield_array[$index]['df_name'];
-	if($is_include_empty_nodes == 'false'){			
-	if(!empty($field_value)){
-	$tdData.= '<td style="display:none">'.$field_name.': <span class="mainFieldValue-'.$nd['id'].$l.'" id="mainFieldValue-'.$nd['id'].$l.'">'.$field_value.'</span></div></td>';
-	  }else{
-		  $tdData .= '<td style="display:none"></td>';
-	  }
-	}else{
-	$fieldValueArray = array('not_empty');
-	$tdData.= '<td style="display:none">'.$field_name.':<span class="mainFieldValue-'.$nd['id'].$l.'" id="mainFieldValue-'.$nd['id'].$l.'">'.$field_value.'</span></td>';
-	}
-	$l++;
-	}
-	}
-	?>				
-	<tr id="id<?php echo $nd['id']; ?>" >
-	<td class="details-control"><?php echo $nd['name']; ?></td>
-	<td style="display:none"><?php echo $city_id; ?></td>
-    <td style="display:none"><?php echo $pid; ?></td>
-	<?php echo $tdData; ?>
-	</</tr>
-	<?php } } ?>
+                    <?php
+                    if(!empty($nodeDetails)) {
+                        $i = 0;
+                        $tdData = "";
+                        foreach ($nodeDetails as $nd) {
+                            $f_name = $nd['field_name'];
+                            $f_value = $nd['field_value'];
+                            $d_id = $nd['data_id'];
+                            $i++;
+                            if ($is_include_empty_nodes == 'false') {
+                                if (!empty($nd['field_value'])) {
+                                    $fieldValueArray[] = $nd['field_value'];
+                                    $tdData .= '<td style="display:none">' . $f_name . ': <span class="mainFieldValue-' . $d_id . '" id="mainFieldValue-' . $d_id . '">' . $f_value . '</span></td>';
+                                } else {
+                                    $tdData .= '<td style="display:none"></td>';
+                                }
+                            } else {
+                                $fieldValueArray = array('not_empty');
+                                $tdData .= '<td style="display:none">' . $f_name . ': <span class="mainFieldValue-' . $d_id . '" id="mainFieldValue-' . $d_id . '">' . $f_value . '</span></td>';
+                            }
+                            $fieldDataarr[] = array('field_name' => $nd['field_name'], 'field_value' => $nd['field_value'], 'field_id' => $nd['field_id'], 'data_id' => $nd['data_id']);
+                            $f_name = $nd['field_name'];
+                            $f_value = $nd['field_value'];
+                            $d_id = $nd['data_id'];
+  if ($i == $count) {
+     $node_arr = array("name" => $nd['name'], "id" => $nd['id'], "data" => $fieldDataarr);
+      $i = 0;
+      if (!empty($fieldValueArray)){ ?>
+		<tr id="id<?php echo $nd['id']; ?>">
+			<td class="details-control"><?php echo $nd['name']; ?>
+			</td>
+			<td style="display:none"><?php echo $nd['id']; ?></td>
+			<td style="display:none"><?php echo $pid; ?></td>
+			<?php echo $tdData; ?>
+		</tr>
+ <?php
+		$fieldDataarr = array();
+		$tdData = '';
+		$fieldValueArray = array();
+                                }
+                            }
+                        }
+                    }
+                    ?>
                 </tbody>
             </table>
             <script>
@@ -1346,7 +1400,9 @@ if(!empty($datafieldsChild)){
 
                                 <div class="toggleWrapper">
                                     <label for="">Display data on heatmap</label>
-                                    <input type="checkbox" name="comparable" id="comparable" class="dn" value="<?php if($data['field_type'] == 'Hyperlink'){echo 'false';}else{ echo 'true'; }?>" <?php if (!$fieldData->comparable != 'true') { echo 'checked';} ?>>
+                                    <input type="checkbox" name="comparable" id="comparable" class="dn" value="<?php if($data['field_type'] == 'Hyperlink'){echo 'false';}else{ echo 'true'; }?>" <?php if (!$fieldData->comparable != 'true') {
+                                                                                                                            echo 'checked';
+                                                                                                                        } ?>>
                                     <label for="comparable" class="toggle"><span class="toggle__handler"></span></label>
                                 </div>
                                 <div class="grouping-method1" style="display:none;">
@@ -1362,16 +1418,18 @@ if(!empty($datafieldsChild)){
                                 </div>
                                 <!-- <input type="hidden" value="Percentiles" name="grouping" /> -->
                             </div>
-	<!------------------->
+	<!--=========-->
 	<div class="form-group link_and_text" <?php if(!empty($fieldData->link_text) && $data['field_type'] == 'Hyperlink'){ ?>  <?php } else{ echo 'style="display:none;"'; } ?>>
 	<label for="">Link Text</label>
-	<input type="text" class="form-control" name="link_text" id="link_text" placeholder="Link Text" value="<?php if(!empty($fieldData->link_text) && $data['field_type'] == 'Hyperlink'){ echo !empty($fieldData->link_text) ? $fieldData->link_text : 'Click Here'; }; ?>">
+	<input type="text" class="form-control" name="link_text" id="link_text" placeholder="Link Text" value="<?php if(!empty($fieldData->link_text) && $data['field_type'] == 'Hyperlink'){ echo !empty($fieldData->link_text) ? $fieldData->link_text : 'Click Here'; } ?>">
 	</div>
-	<!------------------->
+	<!--=========-->
                             <div class="form-group">
                                 <div class="toggleWrapper">
                                     <label for="">Hide field on node view</label>
-                                    <input type="checkbox" name="hide_node" id="hide_node_option" class="dn" value="yes" <?php if ($data['hide_node'] == 'yes') { echo 'checked';} ?>>
+                                    <input type="checkbox" name="hide_node" id="hide_node_option" class="dn" value="yes" <?php if ($data['hide_node'] == 'yes') {
+                                                                                                                                echo 'checked';
+                                                                                                                            } ?>>
                                     <label for="hide_node_option" class="toggle"><span class="toggle__handler"></span></label>
                                 </div>
                             </div>
@@ -1585,9 +1643,6 @@ if(!empty($datafieldsChild)){
         }
     }
 
-/****
-// COPY PROJECT
-****/
     function copyprojects($incryptId)
     {
 
@@ -1691,23 +1746,26 @@ if(!empty($datafieldsChild)){
                 $sequence_no = $cdata['sequence_no'];
 
                 if ($fieldData != null) {
-                    $fieldData = $fieldData;
+                    $fieldData = serialize($fieldData);
                 }
 
                 $copyChartData = $this->model->copyChartData($cname, $graphfor, $graph_type, $fieldData, $mapWidth, $sequence_no, $latestId);
             }
 
-           
-    $projectfieldvalue = $this->model->datafieldvalueByProid($prodecryptid);
+            for ($i = 0; $i < count($oldfieldids); $i++) {
+                $oldfieldId = $oldfieldids[$i];
+                $projectfieldvalue = $this->model->datafieldvalueByid($prodecryptid, $oldfieldId);
 
-  foreach ($projectfieldvalue as $profieldv) {
-	$pro_id = $latestId;
-	$city_id = $profieldv['city_id'];
-	$fv_data = $profieldv['field_value_data'];
-	$node_text = $profieldv['node_text'];
-	$node_image = $profieldv['node_image'];
-    $insetfieldvalueQuery = $this->model->insertNewFieldvalue($pro_id,$city_id,$fv_data,$node_text,$node_image);
-  }
+                foreach ($projectfieldvalue as $profieldv) {
+                    $city_id = $profieldv['city_id'];
+
+                    $field_id = $newfieldids[$i];
+
+                    $field_value = $profieldv['field_value'];
+
+                    $insetfieldvalueQuery = $this->model->insertFieldvalue($latestId, $city_id, $field_id, $field_value);
+                }
+            }
         }
 
         $key = 'Hl2018@1212';
@@ -1802,17 +1860,20 @@ if(!empty($datafieldsChild)){
     function getmapkey()
     {
         //start
+
         $id = $_POST['projectfield_id'];
         $proid = $_POST['proid'];
+
         $proDatas = $this->model->getProjectById($proid);
         $proData = $proDatas[0];
         $cid = $proData['id_client'];
+
         $profieldDatas = $this->model->getDataFieldsByFieldId($id);
         $profieldData = $profieldDatas[0];
 
         $clientDatas = $this->model->getClientsById($cid);
         $clientData = $clientDatas[0];
-    //echo "<pre>"; print_r($proData); echo "</pre>";
+
         $keyColor = $proData['key_colors'];
         $clientcolor = $clientData['colours'];
 
@@ -1839,29 +1900,32 @@ if(!empty($datafieldsChild)){
             $constant_fmin = '0';
         }
 
- 
-        $getFieldValues = $this->model->getfieldValues($id,$proid);
-		$dataMax = $getFieldValues['max_value'];
-		$dataMin = $getFieldValues['min_value'];
-		$dataSum = $getFieldValues['total_sum'];
-		$dataCount = $getFieldValues['total_count'];
-		$all_df_value =$getFieldValues['all_df_value'];
-		$not_empty_df_val=$getFieldValues['not_empty_df_value'];
-        $counttotal = $dataCount;
+
+        $dataMaximum = $this->model->maxfieldValue($id);
+        $dataMax = $dataMaximum[0];
+
+        $dataMinimum = $this->model->minfieldValue($id);
+        $dataMin = $dataMinimum[0];
+
+
+        $counttotalvalue = $this->model->countfieldValue($id);
+        $counttotal = $counttotalvalue[0];
         $color_count = count($colorArray);
-        $max = $dataMax;
-        $lastkeymaxvalue = $dataMax;
+
+        $max = $dataMax['max'];
+        $lastkeymaxvalue = $dataMax['max'];
+
         if ($fmin == null) {
-            $min = $dataMin;
+            $min = $dataMin['min'];
         } else {
             $min = $fmin;
-            $dataMin = $fmin;
+            $dataMin['min'] = $fmin;
         }
         if ($fmax == null) {
-            $max = $dataMax;
+            $max = $dataMax['max'];
         } else {
             $max = $fmax;
-            $dataMax = $fmax;
+            $dataMax['max'] = $fmax;
         }
 
         if ($fmax != null && $fmin != null) {
@@ -1875,7 +1939,7 @@ if(!empty($datafieldsChild)){
             $avgDiff = $avg;
             $fmaxNew = $max;
         } else {
-//echo 'MAX-'.$max.' MIN-'.$min.' colorArray'.count($colorArray);
+
             $avg = round(($max - $min) / count($colorArray), 2);
             $avgDiff = $avg;
         }
@@ -1927,8 +1991,18 @@ if(!empty($datafieldsChild)){
         }
 
         $ftype = $profieldData['field_type'];
-		
-        $UniqueArray = array_unique($all_df_value);
+        $data_field_value = $this->model->select_data_field_value_by_fid($id);
+        $UniqueArray = array();
+        foreach ($data_field_value as $dfv) {
+            if ($dfv['field_value'] && $dfv['field_value'] != null) {
+                $trimval = trim($dfv['field_value']);
+                if (!in_array($trimval, $UniqueArray)) {
+                    array_push($UniqueArray, $trimval);
+                }
+            }
+        }
+        $UniqueArray = array_unique($UniqueArray);
+
         $display_min_array = array();
         $display_max_array = array();
         ?>
@@ -1974,14 +2048,18 @@ if(!empty($datafieldsChild)){
                                                             } ?>">
                     <div class="toggleWrapper">
                         <label for="">Link values</label>
-                        <input type="checkbox" name="link_values" id="link_values" class="dn" value="Yes" <?php if ($profieldData['link_values'] == 'Yes') { echo 'checked'; } ?> />
+                        <input type="checkbox" name="link_values" id="link_values" class="dn" value="Yes" <?php if ($profieldData['link_values'] == 'Yes') {
+                                                                                                                echo 'checked';
+                                                                                                            } ?> />
                         <label for="link_values" class="toggle"><span class="toggle__handler"></span></label>
                     </div>
                 </div>
                 <div class="form-group lastkeyoption">
                     <div class="toggleWrapper">
                         <label for="">Show last key option</label>
-                        <input type="checkbox" name="show_last_key" id="show_last_key" class="dn" value="Yes" <?php if ($profieldData['show_last_key'] == 'Yes') { echo 'checked'; } ?> />
+                        <input type="checkbox" name="show_last_key" id="show_last_key" class="dn" value="Yes" <?php if ($profieldData['show_last_key'] == 'Yes') {
+                                                                                                                    echo 'checked';
+                                                                                                                } ?> />
                         <label for="show_last_key" class="toggle"><span class="toggle__handler"></span></label>
                     </div>
                 </div>
@@ -1990,6 +2068,7 @@ if(!empty($datafieldsChild)){
                         <div id="colorm_type2">
                             <div class="color-append-boxm">
                                 <label for="">Key colors:</label>
+
                                 <?php
                                 if ($ftype == 'Text') {
                                 ?>
@@ -2004,28 +2083,29 @@ if(!empty($datafieldsChild)){
                                     $count = 0;
                                     $uniqueCount = count($UniqueArray);
                                     foreach ($UniqueArray as $key => $color) {
- if ($count < 10) { $count++;  ?>
-<div class="colorBoxm">
-	<label for="">Key color <?php echo $count; ?></label>
-	<input type="text" class="colorValueInput form-control" onchange="colorValueChange(this)" value="<?php echo isset($colorArray[$key]) ? $colorArray[$key] : '#000000'; ?>" />
-	<input type="color" class="colorInput" name="color[]" onchange="colorChange(this)" id="colors" value="<?php echo isset($colorArray[$key]) ? $colorArray[$key] : '#000000'; ?>" />
-	<div class="color-min-max">
-		<?php
-		array_push($display_min_array, 'false');
-		array_push($display_max_array, isset($max_key_values[$key]) ? $max_key_values[$key] : (isset($UniqueArray[$key]) ? $UniqueArray[$key] : null));
-		?>
-		<input type="hidden" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="" name="minKeyvalue[]">
-		<input type="text" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : (isset($UniqueArray[$key]) ? $UniqueArray[$key] : '0'); ?>" name="maxKeyvalue[]">
-	</div>
-	<?php
-	if ($uniqueCount == $count || $count == 10) {
-	?>
-		<button class="removeBoxm" onclick="removeColorm(this,0,0,false,false)">
-			<img src="/uploads/close.png" alt="">
-		</button>
-	<?php }
-	?>
-</div>
+                                        if ($count < 10) {
+                                            $count++;  ?>
+                                            <div class="colorBoxm">
+                                                <label for="">Key color <?php echo $count; ?></label>
+                                                <input type="text" class="colorValueInput form-control" onchange="colorValueChange(this)" value="<?php echo isset($colorArray[$key]) ? $colorArray[$key] : '#000000'; ?>" />
+                                                <input type="color" class="colorInput" name="color[]" onchange="colorChange(this)" id="colors" value="<?php echo isset($colorArray[$key]) ? $colorArray[$key] : '#000000'; ?>" />
+                                                <div class="color-min-max">
+                                                    <?php
+                                                    array_push($display_min_array, 'false');
+                                                    array_push($display_max_array, isset($max_key_values[$key]) ? $max_key_values[$key] : (isset($UniqueArray[$key]) ? $UniqueArray[$key] : null));
+                                                    ?>
+                                                    <input type="hidden" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="" name="minKeyvalue[]">
+                                                    <input type="text" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : (isset($UniqueArray[$key]) ? $UniqueArray[$key] : '0'); ?>" name="maxKeyvalue[]">
+                                                </div>
+                                                <?php
+                                                if ($uniqueCount == $count || $count == 10) {
+                                                ?>
+                                                    <button class="removeBoxm" onclick="removeColorm(this,0,0,false,false)">
+                                                        <img src="/uploads/close.png" alt="">
+                                                    </button>
+                                                <?php }
+                                                ?>
+                                            </div>
                                             <?php
                                         }
                                     }
@@ -2036,9 +2116,9 @@ if(!empty($datafieldsChild)){
                                             $from = 0;
                                             $to = round($counttotal['total'] / $color_count);
                                             $devide = round($counttotal['total'] / $color_count);
-   //$px = $this->model->getEqualCountvalueswithIgnore($id);
-   //rsort($px);
-                                            $newCOUNT =  count($not_empty_df_val);
+                                            $px = $this->model->getEqualCountvalueswithIgnore($id);
+                                            rsort($px);
+                                            $newCOUNT =  count($px);
                                             $NEW_devide = round($newCOUNT / $color_count);
                                             $main_array = array();
                                             $arr = array();
@@ -2048,11 +2128,7 @@ if(!empty($datafieldsChild)){
                                             $allworked = true;
                                             if ($newCOUNT > $color_count) {
                                                 foreach ($colorArray as $key => $color) {
- //$E_Arr = $this->model->getEqualCountvaluesV2($id, $fff_1, $NEW_devide_1);
-   $all_filled_values=$all_df_value;
-   rsort($all_filled_values);
-   $E_Arr=array_slice($all_filled_values,$fff_1,$NEW_devide_1);
-   
+                                                    $E_Arr = $this->model->getEqualCountvaluesV2($id, $fff_1, $NEW_devide_1);
                                                     if(!empty($E_Arr)){
 
                                                      
@@ -2083,13 +2159,8 @@ if(!empty($datafieldsChild)){
                                             //  if ($newCOUNT > $color_count && $allworked == true) {
                                             if ($newCOUNT > $color_count) {
                                             foreach ($colorArray as $key => $color) {
-//$Equalcount_array=$this->model->getEqualCountvaluesV2($id,$fff,$NEW_devide);
-  $all_filled_values=$all_df_value;
-   rsort($all_filled_values);
-   $E_Arr=array_slice($all_filled_values, $fff, $NEW_devide);
-//getfieldValues
-
-    //print_r($Equalcount_array);
+                                                $Equalcount_array = $this->model->getEqualCountvaluesV2($id, $fff, $NEW_devide);
+                                                //   print_r($Equalcount_array);
                                                 if ($count < 10) {
                                                     $count++;  ?>
                                                     <div class="colorBoxm">
@@ -2101,28 +2172,28 @@ if(!empty($datafieldsChild)){
                                                             if ($count == 1) { ?>
 
                                                                 <?php
-                                                                  $thisMinvalue =min($all_filled_values);
-                                                                  $thisalue = max($all_filled_values); 
+                                                                  $thisMinvalue =min($Equalcount_array);
+                                                                  $thisalue = max($Equalcount_array); 
                                                                   $thisMaxvalue = ((int)$thisalue >= (int)$thisMinvalue) ? $thisalue : $thisMinvalue;
 
-                                                                array_push($display_min_array, min($all_filled_values));
+                                                                array_push($display_min_array, min($Equalcount_array));
                                                                 array_push($display_max_array, $thisMaxvalue);
                                                                 ?>
-                                                                <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo min($all_filled_values); ?>" name="minKeyvalue[]">
+                                                                <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo min($Equalcount_array); ?>" name="minKeyvalue[]">
                                                                 <span class="lasykeyplus" style="display:none;">+</span>
                                                                 <span class="lasykeyminus">-</span>
                                                                 <input type="number" class="form-control lastkey maxKeyvalue" data-this='true1' data-id="max-input<?php echo $key; ?>" value="<?php echo $thisMaxvalue; ?>" name="maxKeyvalue[]">
                                                             <?php } else {
                                                             ?>
                                                                 <?php
-                                                                $thisMinvalue =min($all_filled_values);
-                                                                $thisalue = max($all_filled_values); 
+                                                                $thisMinvalue =min($Equalcount_array);
+                                                                $thisalue = max($Equalcount_array); 
                                                                 $thisMaxvalue = ((int)$thisalue >= (int)$thisMinvalue) ? $thisalue : $thisMinvalue;
 
-                                                                array_push($display_min_array, min($all_filled_values));
+                                                                array_push($display_min_array, min($Equalcount_array));
                                                                 array_push($display_max_array, $thisMaxvalue);
                                                                 ?>
-                                                                <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo min($all_filled_values); ?>" name="minKeyvalue[]">
+                                                                <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo min($Equalcount_array); ?>" name="minKeyvalue[]">
                                                                 <span>-</span>
                                                                 <input type="number" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo $thisMaxvalue; ?>" name="maxKeyvalue[]">
                                                             <?php } ?>
@@ -2139,26 +2210,26 @@ if(!empty($datafieldsChild)){
                                                     <?php
                                                 }
 
-			if ($key == ($color_count - 2)) {
-				$fff = $fff + $NEW_devide;
-				$NEW_devide = $NEW_devide + ($newCOUNT - ($NEW_devide * $color_count));
-			} else {
-				$fff = $fff + $NEW_devide;
-			}
+                                                if ($key == ($color_count - 2)) {
+                                                    $fff = $fff + $NEW_devide;
+                                                    $NEW_devide = $NEW_devide + ($newCOUNT - ($NEW_devide * $color_count));
+                                                } else {
+                                                    $fff = $fff + $NEW_devide;
+                                                }
                                             }
 
                                         } else {
                                             ?>
-<script>
-		Swal.fire({
-			icon: 'error',
-			customClass: 'swal-wide',
-			title: "Invalid Equal count, instead choose custom range option.",showConfirmButton: true,onClose: () => {
-					$("input[name=key_value_option][value='Custom Ranges']").prop("checked",true);
-				mapKeyBtnUpdate();
-						}
-					});
-</script>
+                                            <script>
+                                                    Swal.fire({
+                                                        icon: 'error',
+                                                        customClass: 'swal-wide',
+                                                        title: "Invalid Equal count, instead choose custom range option.",showConfirmButton: true,onClose: () => {
+                                                                $("input[name=key_value_option][value='Custom Ranges']").prop("checked",true);
+                                                            mapKeyBtnUpdate();
+                                                                    }
+                                                                });
+                                            </script>
 
                                             <?php
                                         }
@@ -2279,58 +2350,79 @@ if(!empty($datafieldsChild)){
                                                                                         <div class="colorBoxm">
                                                                                             <label for="">Key color <?php echo $count; ?></label>
                                                                                             <input type="text" class="colorValueInput form-control" onchange="colorValueChange(this)" value="<?php echo $color; ?>" />
-                                                                    <input type="color" class="colorInput" name="color[]" onchange="colorChange(this)" id="colors" value="<?php echo $color; ?>" />
-  <span><?php $fminNew = $fmaxNew - $avg; ?>
-  <div class="color-min-max">
-	  <?php array_push($display_min_array, isset($min_key_values[$key]) ? $min_key_values[$key] : $fminNew);
-	  array_push($display_max_array, isset($max_key_values[$key]) ? $max_key_values[$key] : $fmaxNew);
-	  ?>
-	 <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : $fminNew; ?>" name="minKeyvalue[]">
-	<span>-</span>
-	<input type="number" class="form-control maxKeyvalue" max-id="min-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : $fmaxNew; ?>" name="maxKeyvalue[]">
- </div>
+                                                                                            <input type="color" class="colorInput" name="color[]" onchange="colorChange(this)" id="colors" value="<?php echo $color; ?>" />
+                                                                                            <span><?php
+                                                                                                    $fminNew = $fmaxNew - $avg;
+                                                                                                    // if($count == count($colorArray) - 1){
+                                                                                                    // $fminNew = $fmin;
+                                                                                                    // }
+                                                                                                    // echo $fminNew.' - '.$fmaxNew;
+                                                                                                    ?>
+                                                                                                <div class="color-min-max">
+                                                                                                    <?php
+                                                                                                    array_push($display_min_array, isset($min_key_values[$key]) ? $min_key_values[$key] : $fminNew);
+                                                                                                    array_push($display_max_array, isset($max_key_values[$key]) ? $max_key_values[$key] : $fmaxNew);
+                                                                                                    ?>
+                                                                                                    <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : $fminNew; ?>" name="minKeyvalue[]">
+                                                                                                    <span>-</span>
+
+                                                                                                    <input type="number" class="form-control maxKeyvalue" max-id="min-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : $fmaxNew; ?>" name="maxKeyvalue[]">
+                                                                                                </div>
                                                                                             <?php
                                                                                             $fmaxNew = $fmaxNew - $avg;
                                                                                         } else {
                                                                                             ?>
-<div class="colorBoxm">
-<label for="">Key color <?php echo $count; ?></label>
-<input type="text" class="colorValueInput form-control" onchange="colorValueChange(this)" value="<?php echo $color; ?>" />
-<input type="color" class="colorInput" name="color[]" onchange="colorChange(this)" id="colors" value="<?php echo $color; ?>" />
-<span>
-<div class="color-min-max">
-<?php
-array_push($display_min_array, isset($min_key_values[$key]) ? $min_key_values[$key] : $maxNew);
-array_push($display_max_array, isset($max_key_values[$key]) ? $max_key_values[$key] : $max);
-?>
+                                                                                                <div class="colorBoxm">
+                                                                                                    <label for="">Key color <?php echo $count; ?></label>
+                                                                                                    <input type="text" class="colorValueInput form-control" onchange="colorValueChange(this)" value="<?php echo $color; ?>" />
+                                                                                                    <input type="color" class="colorInput" name="color[]" onchange="colorChange(this)" id="colors" value="<?php echo $color; ?>" />
+                                                                                                    <span><?php
+                                                                                                            // echo $maxNew.' - '.$max;
+                                                                                                            ?>
+                                                                                                        <div class="color-min-max">
+                                                                                                            <?php
+                                                                                                            array_push($display_min_array, isset($min_key_values[$key]) ? $min_key_values[$key] : $maxNew);
+                                                                                                            array_push($display_max_array, isset($max_key_values[$key]) ? $max_key_values[$key] : $max);
+                                                                                                            ?>
+                                                                                                            <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : $maxNew; ?>" name="minKeyvalue[]">
+                                                                                                            <span>-</span>
+                                                                                                            <input type="number" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : $max; ?>" name="maxKeyvalue[]">
+                                                                                                        </div>
+                                                                                                <?php
+                                                                                            }
+                                                                                        }
+                                                                                                ?>
 
-<input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : $maxNew; ?>" name="minKeyvalue[]">
+                                                                                                <?php
 
-<span>-</span>
+                                                                                                $max = $max - $avgDiff;
 
-<input type="number" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : $max; ?>" name="maxKeyvalue[]">
-</div>
- <?php } } ?>
-<?php
-$max = $max - $avgDiff;
-?>
-</span>
-<?php if ($count == count($colorArray)) { ?>
-<button class="removeBoxm" onclick="removeColorm(this,<?php echo $dataMin.','.$dataMax; ?>,<?php if ($fmin != null) {
-echo $fmin;
-} else {
-echo 'false';
-}  ?>,<?php if ($fmax != null) {
-echo $fmax;
-} else {
-echo 'false';
-}  ?>)">
-<img src="/uploads/close.png" alt="">
-</button>
-<?php } ?>
-</div>
-<?php } ?>
-</div><?php } } } ?>
+                                                                                                ?>
+                                                                                                    </span>
+                                                                                                    <?php if ($count == count($colorArray)) { ?>
+
+                                                                                                        <button class="removeBoxm" onclick="removeColorm(this,<?php echo $dataMin['min'] . ',' . $dataMax['max']; ?>,<?php if ($fmin != null) {
+                                                                                                                                                                                                                        echo $fmin;
+                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                        echo 'false';
+                                                                                                                                                                                                                    }  ?>,<?php if ($fmax != null) {
+                                                                                                                                                                                                                                                                                        echo $fmax;
+                                                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                                                        echo 'false';
+                                                                                                                                                                                                                                                                                    }  ?>)">
+                                                                                                            <img src="/uploads/close.png" alt="">
+                                                                                                        </button>
+                                                                                                    <?php } ?>
+                                                                                                </div>
+                                                                                            <?php }
+                                                                                            ?>
+                                                                                        </div><?php
+                                                                                            }
+                                                                                        }
+                                                                                    } //else end
+
+
+                                                                                                ?>
                                                                             <div class="m-5" id="addBtnBoxm" style="<?php if ($count < 10) { ?>display:block<?php } else {
                                                                                                                                                             echo 'display:none';
                                                                                                                                                         } ?>">
@@ -2338,15 +2430,15 @@ echo 'false';
 
                                                                                 ?>
 
-<button type="button" class="btn register-link" id="addColorBtnm" onclick='addColorm(<?php echo $dataMin.','.$dataMax;  ?>,<?php echo $colorArra; ?>,<?php if ($fmin != null) {
-echo 'true';
-} else {
-echo 'false';
-} ?>,<?php if ($fmax != null) {
-	echo 'true';
-} else {
-	echo 'false';
-} ?>)'>Add color</button>
+                                                                                <button type="button" class="btn register-link" id="addColorBtnm" onclick='addColorm(<?php echo $dataMin['min'] . ',' . $dataMax['max'];  ?>,<?php echo $colorArra; ?>,<?php if ($fmin != null) {
+                                                                                                                                                                                                                                                        echo 'true';
+                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                        echo 'false';
+                                                                                                                                                                                                                                                    } ?>,<?php if ($fmax != null) {
+                                                                                                                                                                                                                                                                                                                        echo 'true';
+                                                                                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                                                                                        echo 'false';
+                                                                                                                                                                                                                                                                                                                    } ?>)'>Add color</button>
                                                                             </div>
                                                                                 </div>
                                                                         </div>
@@ -2512,34 +2604,33 @@ echo 'false';
         //start
         $pid = $_POST['proid'];
         $cid = $_POST['cid'];
+
         $datas = $this->model->getFieldvalueByCityId($cid, $pid);
-		$city_id=$datas[0]['city_id'];
-		$node_text=$datas[0]['node_text'];
-		$node_image=$datas[0]['node_image'];
-		$id=$datas[0]['id'];
-		$fvd=$datas[0]['field_value_data'];
-		$fv0=!empty($fvd) ? unserialize($fvd) : array();
-		$datafield_array=array();
-		$mainarray = array();
-		if(!empty($fv0)){
-		 foreach ($fv0 as $val) {
-			$value = current($val);
-			$key = key($val);
-			$dfdata=$this->model->getDataFieldsByFieldId($key);
-			$field_name=!empty($dfdata) ? $dfdata[0]['field_name'] : "";
-			$display_name=!empty($dfdata) ? $dfdata[0]['display_name'] : "";
-			$field_type=!empty($dfdata) ? $dfdata[0]['field_type'] : "Number";
-			//$id=!empty($dfdata) ? $dfdata[0]['id_project_field'] : "";
-			$normal_array=array('dfname'=>$field_name,'dfval'=>$value,'dfid'=>$key,'field_type'=>$field_type,'id'=>$id);
-			$mainarray[]=$normal_array;
-		   }
-		}
+        $sdata = $this->model->getDataFieldsByIdWithoutGroup($pid);
+
     ?>
-        <form action="javascript:void(0)" id="dataFieldsvalue" class="edit-project" method="post" enctype="multipart/form-data">
+        <form action="javascript:void(0)" id="dataFieldsvalue" class="edit-project" method="post">
             <?php
             $uarray = array();
+            $mainarray = array();
+            foreach ($datas as $da) {
+                foreach ($sdata as $d) {
+                    if ($d['id_project_field'] == $da['field_id']) {
+                        $obj = new stdClass();
+                        $obj->fieldid = $d['id_project_field'];
+                        $obj->fieldname = $d['field_name'];
+                        $obj->fieldvalue = $da['field_value'];
+                        $obj->fieldtype = $d['field_type'];
+                        $obj->id = $da['id'];
+                        array_push($mainarray, $obj);
+                    }
+                }
+            }
+
             foreach ($mainarray as $data) {
-                $inputtype = $data['field_type'];
+
+
+                $inputtype = $data->fieldtype;
                 if ($inputtype == 'Text' || $inputtype == 'Hyperlink') {
                     $itype = 'text';
                 } else {
@@ -2547,31 +2638,15 @@ echo 'false';
                 }
             ?>
                 <div class="form-group">
-                    <label for=""><?php echo $data['dfname'];  ?></label>
-                    <input type="<?php echo $itype; ?>" class="form-control myUniqueClass" name="<?php echo $data['dfid']; ?>" id="<?php echo $data['dfname'];  ?>" data-id="<?php echo $data['id']; ?>" value="<?php echo $data['dfval'];  ?>">
+                    <label for=""><?php echo $data->fieldname;  ?></label>
+
+                    <input type="<?php echo $itype; ?>" class="form-control myUniqueClass" name="<?php echo $data->fieldid;  ?>" id="<?php echo $data->fieldname;  ?>" data-id="<?php echo $data->id; ?>" value="<?php echo $data->fieldvalue;  ?>">
                 </div>
 
             <?php
             }
             ?>
-			<hr>
-			<div class="form-group">
-				<label for="">Node Text</label>
-				<input type="text" name="node_text" value="<?php echo $node_text; ?>" class="form-control" />
-			</div>
-			<?php if(!empty($node_image)){ ?>
-			<div class="form-group">
-			 <div>
-			 <img src="<?php echo $node_image; ?>" width="100" alt="Node images" class="img-fluid img-responsive">
-			 </div>
-			</div>
-			<?php } ?>
-			<div class="form-group">
-			<label for="">Node Photo </label>
-			<input type="file" name="node_image" class="form-control"  />
-			</div>
             <input type="hidden" name="project_id" value="<?php echo $pid; ?>" />
-			<input type="hidden" name="node_image_old" value="<?php echo $node_image; ?>" />
             <input type="hidden" name="city_id" value="<?php echo $cid; ?>" />
             <div class="modal-footer text-center">
                 <button type="button" id="updateProjectsFieldvalue" name="submit" value="submit" class="btn cus-btn">Submit </button><img id="loaderedit" style="display:none" src="../images/ajax-loader.gif">
@@ -2584,23 +2659,13 @@ echo 'false';
     {
         $cid = $_POST['city_id'];
         $pid = $_POST['project_id'];
-		$node_text=$_POST['node_text'];
-		$node_image=$_POST['node_image_old'];
-		if(!empty($_FILES["node_image"]["name"])){
-		$ext = pathinfo($_FILES["node_image"]["name"], PATHINFO_EXTENSION);
-         $node_images = rand(). '.' .$ext;
-         move_uploaded_file($_FILES["node_image"]["tmp_name"], "uploads/node_images/".$node_images);
-		 $node_image=BASE_URL.'uploads/node_images/'.$node_images;
-		}		
-		$val_aray=array();
+
         foreach ($_POST as $key => $value) {
-            if ($key != 'city_id' && $key != 'project_id' && $key != 'node_text' && $key !='node_image' && $key !='node_image_old'){
-                $val_aray[]=array($key=>$value);
+            if ($key != 'city_id' && $key != 'project_id') {
+                $sdata = $this->model->updateFieldalue($value, $pid, $cid, $key);
             }
         }
-		$value_encoded=serialize($val_aray);
-		$sdata = $this->model->updateFieldalue($value_encoded, $pid, $cid,$node_text,$node_image);
-		echo json_encode(array('success' => 1, 'msg' => 'Field value updated successfully.'));
+        echo json_encode(array('success' => 1, 'msg' => 'Field value updated successfully.'));
     }
     function getallcolor()
     {
@@ -2626,18 +2691,12 @@ echo 'false';
             $fmax = 'false';
         }
         $id = $_POST['projectfield_id'];
-        $proid = $_POST['proid'];
-        $getFieldValues = $this->model->getfieldValues($id,$proid);
-		$dataMax=$getFieldValues['max_value'];
-		$dataMin=$getFieldValues['min_value'];
-		$dataCount=$getFieldValues['total_count'];
-		$dataSum=$getFieldValues['total_sum'];
-		$all_df_value =$getFieldValues['all_df_value'];
-		$not_empty_df_val=$getFieldValues['not_empty_df_value'];
-
-        $lastkeymaxvalue = $dataMax;
+        $dataMaximum = $this->model->maxfieldValue($id);
+        $dataMax = $dataMaximum[0];
+        $lastkeymaxvalue = $dataMax['max'];
         $profieldDatas = $this->model->getDataFieldsByFieldId($id);
         $profieldData = $profieldDatas[0];
+
         if ($fmin != 'false' && $fmax != 'false') {
             $fmaxNew  = $max;
             $nCount = $countAllColor - 1;
@@ -2656,8 +2715,8 @@ echo 'false';
         $min_key_values = isset($profieldData['min_key_values']) ? unserialize($profieldData['min_key_values']) : null;
 
         $key_value_option = $profieldData['key_value_option'];
-        //$counttotalvalue = $this->model->countfieldValue($id);
-        $counttotal = $dataCount;
+        $counttotalvalue = $this->model->countfieldValue($id);
+        $counttotal = $counttotalvalue[0];
         $color_count = count($colorArray);
 
         $show_last_key = $profieldData['show_last_key'];
@@ -2700,8 +2759,19 @@ echo 'false';
         <?php
         }
 
-   $ftype = $profieldData['field_type'];
-   $UniqueArray = array_unique($all_df_value);
+        $ftype = $profieldData['field_type'];
+        $data_field_value = $this->model->select_data_field_value_by_fid($id);
+        $UniqueArray = array();
+        foreach ($data_field_value as $dfv) {
+            if ($dfv['field_value'] && $dfv['field_value'] != null) {
+                $trimval = trim($dfv['field_value']);
+                if (!in_array($trimval, $UniqueArray)) {
+                    array_push($UniqueArray, $trimval);
+                }
+            }
+        }
+        $UniqueArray = array_unique($UniqueArray);
+
         ?>
         <div class="color-append-boxm">
             <label for="">Key colors:</label>
@@ -2742,9 +2812,9 @@ echo 'false';
                         $to = round($counttotal['total'] / $color_count);
                         $devide = round($counttotal['total'] / $color_count);
 
-//$px = $this->model->getEqualCountvalueswithIgnore($id);
-//rsort($px);
-                        $newCOUNT =  count($not_empty_df_val);
+                        $px = $this->model->getEqualCountvalueswithIgnore($id);
+                        rsort($px);
+                        $newCOUNT =  count($px);
                         $NEW_devide = round($newCOUNT / $color_count);
                         $main_array = array();
                         $arr = array();
@@ -2754,10 +2824,7 @@ echo 'false';
                         $allworked = true;
                         if ($newCOUNT > $color_count) {
                             foreach ($colorArray as $key => $color) {
-  //$E_Arr = $this->model->getEqualCountvaluesV2($id, $fff_1, $NEW_devide_1);
-   $all_filled_values=$all_df_value;
-   rsort($all_filled_values);
-   $E_Arr=array_slice($all_filled_values, $fff_1, $NEW_devide_1);
+                                $E_Arr = $this->model->getEqualCountvaluesV2($id, $fff_1, $NEW_devide_1);
                                 if(!empty($E_Arr)){
                                     $arr = [min($E_Arr), max($E_Arr)];
                                     if(in_array($arr, $main_array)){
@@ -2784,10 +2851,7 @@ echo 'false';
                         // if ($newCOUNT > $color_count && $allworked == true) {
                             if ($newCOUNT > $color_count) {
                         foreach ($colorArray as $key => $color) {
-   //$Equalcount_array = $this->model->getEqualCountvaluesV2($id, $fff, $NEW_devide);
-   $all_filled_values=$all_df_value;
-   rsort($all_filled_values);
-   $E_Arr=array_slice($all_filled_values, $fff, $NEW_devide);
+                            $Equalcount_array = $this->model->getEqualCountvaluesV2($id, $fff, $NEW_devide);
 
                             if ($count < 10) {
                                 $count++;  ?>
@@ -2797,17 +2861,17 @@ echo 'false';
                                     <input type="color" class="colorInput" name="color[]" onchange="colorChange(this)" id="colors" value="<?php echo isset($colorArray[$key]) ? $colorArray[$key] : '#000000'; ?>" />
                                     <div class="color-min-max">
                                         <?php
-                                        $thisMinvalue = min($all_filled_values);
-                                        $thisalue = max($all_filled_values);
+                                        $thisMinvalue = min($Equalcount_array);
+                                        $thisalue = max($Equalcount_array);
                                         $thisMaxvalue = ((int)$thisalue >= (int)$thisMinvalue) ? $thisalue : $thisMinvalue;
                                         if ($count == 1) { ?>
-                                            <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo min($all_filled_values); ?>" name="minKeyvalue[]">
+                                            <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo min($Equalcount_array); ?>" name="minKeyvalue[]">
                                             <span class="lasykeyplus" style="display:none;">+</span>
                                             <span class="lasykeyminus">-</span>
                                             <input type="number" class="form-control lastkey maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo $thisMaxvalue; ?>" name="maxKeyvalue[]">
                                         <?php } else {
                                         ?>
-                                            <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo min($all_filled_values); ?>" name="minKeyvalue[]">
+                                            <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo min($Equalcount_array); ?>" name="minKeyvalue[]">
                                             <span>-</span>
                                             <input type="number" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo $thisMaxvalue; ?>" name="maxKeyvalue[]">
                                         <?php } ?>
@@ -2862,108 +2926,148 @@ echo 'false';
                         foreach ($colorArray as $key => $color) {
                             $count++;
                             ?>
-<div class="colorBoxm">
-	<label for="">Key color <?php echo $count; ?></label>
-	<input type="text" class="colorValueInput form-control" onchange="colorValueChange(this)" value="<?php echo $color; ?>" />
-	<input type="color" class="colorInput" name="color[]" onchange="colorChange(this)" id="colors" value="<?php echo $color; ?>" />
+                            <div class="colorBoxm">
+                                <label for="">Key color <?php echo $count; ?></label>
+                                <input type="text" class="colorValueInput form-control" onchange="colorValueChange(this)" value="<?php echo $color; ?>" />
+                                <input type="color" class="colorInput" name="color[]" onchange="colorChange(this)" id="colors" value="<?php echo $color; ?>" />
 
 
- <span>
-<?php
-$maxNew  = $max - $avgDiff;
-if ($count == count($colorArray)) {
-	if ($fmin != 'false') { 
-		$fm = $min + $avgDiff;
-?>
-<div class="color-min-max">
-	<input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo $constant_min; ?>" name="minKeyvalue[]">
-	<span>-</span>
-	<input type="number" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : $fm; ?>" name="maxKeyvalue[]">
-</div>
-<?php
-} else {
-?>
-<div class="color-min-max">
-	<input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : $min; ?>" name="minKeyvalue[]">
-	<span>-</span>
-	<input type="number" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : $max; ?>" name="maxKeyvalue[]">
-</div>
-<?php } 
-	} else if ($count == 1) {
-		if ($fmax != 'false') {
-			if ($fmax == true) {
-				$fmax = $max;
-			}
+                                <span><?php
+                                        $maxNew  = $max - $avgDiff;
+                                        if ($count == count($colorArray)) {
+                                            if ($fmin != 'false') {
+                                                //  echo '0'.' - '.$min; 
+                                                $fm = $min + $avgDiff;
+                                        ?>
+                                            <div class="color-min-max">
+                                                <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo $constant_min; ?>" name="minKeyvalue[]">
+                                                <span>-</span>
+                                                <input type="number" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : $fm; ?>" name="maxKeyvalue[]">
+                                            </div>
+                                        <?php
+                                            } else {
+                                                //  echo $min.' - '.$max; 
 
-			$thisMinvalue = isset($min_key_values[$key]) ? $min_key_values[$key] : ($fmax ? $fmax : $max - $avg); 
-			$thisalue = isset($max_key_values[$key]) ? $max_key_values[$key] : $lastkeymaxvalue;
-			$thisMaxvalue = ((int)$thisalue >= (int)$thisMinvalue) ? $thisalue : $thisMinvalue;
-	?>
+                                        ?>
+                                            <div class="color-min-max">
 
-<div class="color-min-max">
-	<input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : ($fmax ? $fmax : $max - $avg); ?>" name="minKeyvalue[]">
-	<span class="lasykeyplus">+</span>
-	<span class="lasykeyminus" style="display:none;">-</span>
-	<input type="hidden" class="form-control lastkey maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo $thisMaxvalue; ?>" name="maxKeyvalue[]">
-</div>
-<?php
-	} else {
-		$thisMinvalue = isset($min_key_values[$key]) ? $min_key_values[$key] : ($maxNew ? $maxNew : $max - $avg);
-		$thisalue = isset($max_key_values[$key]) ? $max_key_values[$key] : $lastkeymaxvalue;
-		$thisMaxvalue = ((int)$thisalue >= (int)$thisMinvalue) ? $thisalue : $thisMinvalue;
-?>
+                                                <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : $min; ?>" name="minKeyvalue[]">
+                                                <span>-</span>
+                                                <input type="number" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : $max; ?>" name="maxKeyvalue[]">
+                                            </div>
 
-<div class="color-min-max">
-	<input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : ($maxNew ? $maxNew : $max - $avg); ?>" name="minKeyvalue[]">
-	<span class="lasykeyplus">+</span>
-	<span class="lasykeyminus" style="display:none;">-</span>
-	<input type="hidden" class="form-control lastkey maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo $thisMaxvalue; ?>" name="maxKeyvalue[]">
-</div>
-<?php
-	}
-} else {
-	if ($fmax != 'false' && $fmin != 'false') {
-		$fminNew  = $fmaxNew - $avg;
-?>
-<div class="color-min-max">
-	<input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : $fminNew; ?>" name="minKeyvalue[]">
-	<span>-</span>
-	<input type="number" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : $fmaxNew; ?>" name="maxKeyvalue[]">
-</div>
+                                        <?php
+                                            }
 
-<?php
-		$fmaxNew  = $fmaxNew - $avg;
-	} else {
-?>
-<div class="color-min-max">
-	<input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : $maxNew; ?>" name="minKeyvalue[]">
-	<span>-</span>
-	<input type="number" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : $max; ?>" name="maxKeyvalue[]">
-</div>
+                                        ?>
+                                        <!-- <input type="hidden" value="<?php //echo $min; 
+                                                                            ?>" name="min<?php /// echo $count; 
+                                                                                                            ?>"> -->
+                                        <!-- <input type="hidden" value="<?php // echo $max; 
+                                                                            ?>" name="max<?php //echo $count; 
+                                                                                                            ?>"> -->
+                                        <?php
 
-<?php
-}
-} 
-$max = $max - $avgDiff;
-?>
+                                        } else if ($count == 1) {
+                                            if ($fmax != 'false') {
+                                                //    echo $max.'+';
+                                                if ($fmax == true) {
+                                                    $fmax = $max;
+                                                }
+
+                                                $thisMinvalue = isset($min_key_values[$key]) ? $min_key_values[$key] : ($fmax ? $fmax : $max - $avg); 
+                                                $thisalue = isset($max_key_values[$key]) ? $max_key_values[$key] : $lastkeymaxvalue;
+                                                $thisMaxvalue = ((int)$thisalue >= (int)$thisMinvalue) ? $thisalue : $thisMinvalue;
+                                        ?>
+
+                                            <div class="color-min-max">
+                                                <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : ($fmax ? $fmax : $max - $avg); ?>" name="minKeyvalue[]">
+                                                <span class="lasykeyplus">+</span>
+                                                <span class="lasykeyminus" style="display:none;">-</span>
+                                                <input type="hidden" class="form-control lastkey maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo $thisMaxvalue; ?>" name="maxKeyvalue[]">
+                                            </div>
+                                        <?php
+                                            } else {
+                                                $thisMinvalue = isset($min_key_values[$key]) ? $min_key_values[$key] : ($maxNew ? $maxNew : $max - $avg);
+                                                $thisalue = isset($max_key_values[$key]) ? $max_key_values[$key] : $lastkeymaxvalue;
+                                                $thisMaxvalue = ((int)$thisalue >= (int)$thisMinvalue) ? $thisalue : $thisMinvalue;
+                                                //  echo $maxNew.'+';  
+                                        ?>
+
+                                            <div class="color-min-max">
+                                                <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : ($maxNew ? $maxNew : $max - $avg); ?>" name="minKeyvalue[]">
+                                                <span class="lasykeyplus">+</span>
+                                                <span class="lasykeyminus" style="display:none;">-</span>
+                                                <input type="hidden" class="form-control lastkey maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo $thisMaxvalue; ?>" name="maxKeyvalue[]">
+                                            </div>
+                                        <?php
+                                            }
+                                        } else {
+                                            if ($fmax != 'false' && $fmin != 'false') {
+                                                $fminNew  = $fmaxNew - $avg;
+
+                                                //     if($count == count($colorArray) - 1){
+                                                //       $fminNew = $min;
+                                                //   }
+                                                // echo $fminNew.' - '.$fmaxNew;
+                                        ?>
+                                            <div class="color-min-max">
+
+                                                <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : $fminNew; ?>" name="minKeyvalue[]">
+                                                <span>-</span>
+                                                <input type="number" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : $fmaxNew; ?>" name="maxKeyvalue[]">
+                                            </div>
+
+                                        <?php
+                                                $fmaxNew  = $fmaxNew - $avg;
+                                            } else {
+                                                // echo $maxNew.' - '.$max;
+                                        ?>
+                                            <div class="color-min-max">
+
+                                                <input type="number" class="form-control minKeyvalue" data-id="min-input<?php echo $key; ?>" value="<?php echo isset($min_key_values[$key]) ? $min_key_values[$key] : $maxNew; ?>" name="minKeyvalue[]">
+                                                <span>-</span>
+                                                <input type="number" class="form-control maxKeyvalue" data-id="max-input<?php echo $key; ?>" value="<?php echo isset($max_key_values[$key]) ? $max_key_values[$key] : $max; ?>" name="maxKeyvalue[]">
+                                            </div>
+
+                                        <?php
+                                            }
+
+                                        ?>
+                                        <!-- <input type="hidden" value="<?php // echo $maxNew; 
+                                                                            ?>" name="min<?php //echo $count; 
+                                                                                                                ?>"> -->
+                                        <!-- <input type="hidden" value="<?php //echo $max; 
+                                                                            ?>" name="max<?php //echo $count; 
+                                                                                                            ?>"> -->
+                                    <?php
+                                        }
+                                    ?> <?php
+                            $max = $max - $avgDiff;
+                        ?>
                                 </span>
-<?php if ($count == count($colorArray)) { ?>
-<button class="removeBoxm" onclick="removeColorm(this,<?php echo $_POST['min']; ?>,<?php echo $_POST['max']; ?>,<?php echo $fmin; ?>,<?php echo $fmax; ?>)">
-	<img src="/uploads/close.png" alt="">
-</button>
-<?php } ?>
-</div>
+                                <?php if ($count == count($colorArray)) { ?>
+
+                                    <button class="removeBoxm" onclick="removeColorm(this,<?php echo $_POST['min']; ?>,<?php echo $_POST['max']; ?>,<?php echo $fmin; ?>,<?php echo $fmax; ?>)">
+                                        <img src="/uploads/close.png" alt="">
+                                    </button>
+                                <?php } ?>
+                            </div>
             <?php }
                     }
                 }
             }
             ?>
         </div>
-        <div class="m-5" id="addBtnBoxm" style="<?php if ($count < 10){ ?>display:block<?php } else{ echo 'display:none'; } ?>">
+        <div class="m-5" id="addBtnBoxm" style="<?php if ($count < 10) { ?>display:block<?php } else {
+                                                                                        echo 'display:none';
+                                                                                    } ?>">
             <?php $colorArra = json_encode($colorArray); ?>
             <button type="button" class="btn register-link" id="addColorBtnm" onclick='addColorm(<?php echo $_POST["min"] . "," . $_POST["max"];  ?>,<?php echo $colorArra; ?>,<?php echo $fmin; ?>,<?php echo $fmax; ?>)'>Add color</button>
         </div>
-<?php
+
+        <?php
+        //end
     }
     function getDisplaycolor()
     {
@@ -2988,17 +3092,9 @@ $max = $max - $avgDiff;
             $fmax = 'false';
         }
         $id = $_POST['projectfield_id'];
-        $proid = $_POST['proid'];
-        $getFieldValues = $this->model->getfieldValues($id,$proid);
-		$dataMax = $getFieldValues['max_value'];
-		$dataMin = $getFieldValues['min_value'];
-		$dataSum = $getFieldValues['total_sum'];
-		$dataCount = $getFieldValues['total_count'];
-		$all_df_value =$getFieldValues['all_df_value'];
-		$not_empty_df_val=$getFieldValues['not_empty_df_value'];
-		
-		
-        $lastkeymaxvalue = $dataMax;
+        $dataMaximum = $this->model->maxfieldValue($id);
+        $dataMax = $dataMaximum[0];
+        $lastkeymaxvalue = $dataMax['max'];
         $profieldDatas = $this->model->getDataFieldsByFieldId($id);
         $profieldData = $profieldDatas[0];
 
@@ -3020,8 +3116,8 @@ $max = $max - $avgDiff;
         $min_key_values = isset($profieldData['min_key_values']) ? unserialize($profieldData['min_key_values']) : null;
 
         $key_value_option = $profieldData['key_value_option'];
-        //$counttotalvalue = $this->model->countfieldValue($id);
-        $counttotal = $dataCount;
+        $counttotalvalue = $this->model->countfieldValue($id);
+        $counttotal = $counttotalvalue[0];
         $color_count = count($colorArray);
 
         $show_last_key = $profieldData['show_last_key'];
@@ -3035,12 +3131,23 @@ $max = $max - $avgDiff;
             <?php
         }
 
+        // $min_display_values = isset($profieldData['min_display_values']) ?  unserialize($profieldData['min_display_values']) : null;
+        // $max_display_values = isset($profieldData['max_display_values']) ? unserialize($profieldData['max_display_values']) : null;
         $min_display_values = $min_key_values;
         $max_display_values = $max_key_values;
 
         $ftype = $profieldData['field_type'];
-        
-        $UniqueArray = array_unique($all_df_value);
+        $data_field_value = $this->model->select_data_field_value_by_fid($id);
+        $UniqueArray = array();
+        foreach ($data_field_value as $dfv) {
+            if ($dfv['field_value'] && $dfv['field_value'] != null) {
+                $trimval = trim($dfv['field_value']);
+                if (!in_array($trimval, $UniqueArray)) {
+                    array_push($UniqueArray, $trimval);
+                }
+            }
+        }
+        $UniqueArray = array_unique($UniqueArray);
 
         if ($ftype == 'Text') {
             if ($max_key_values != null && count($max_key_values) > 0) {
@@ -3069,9 +3176,9 @@ $max = $max - $avgDiff;
                     $to = round($counttotal['total'] / $color_count);
                     $devide = round($counttotal['total'] / $color_count);
 
-//$px = $this->model->getEqualCountvalueswithIgnore($id);
-//rsort($px);
-                    $newCOUNT =  count($not_empty_df_val);
+                    $px = $this->model->getEqualCountvalueswithIgnore($id);
+                    rsort($px);
+                    $newCOUNT =  count($px);
                     $NEW_devide = round($newCOUNT / $color_count);
                     $main_array = array();
                     $arr = array();
@@ -3081,10 +3188,7 @@ $max = $max - $avgDiff;
                     $allworked = true;
                     if ($newCOUNT > $color_count) {
                         foreach ($colorArray as $key => $color) {
-  //$E_Arr = $this->model->getEqualCountvaluesV2($id, $fff_1, $NEW_devide_1);
-  $all_filled_values=$all_df_value;
-  rsort($all_filled_values);
-  $E_Arr=array_slice($all_filled_values, $fff_1, $NEW_devide_1);
+                            $E_Arr = $this->model->getEqualCountvaluesV2($id, $fff_1, $NEW_devide_1);
                             if(!empty($E_Arr)){
                                 $arr = [min($E_Arr), max($E_Arr)];
                                 if(in_array($arr, $main_array)){
@@ -3112,15 +3216,12 @@ $max = $max - $avgDiff;
         // if ($newCOUNT > $color_count && $allworked == true) {
  if ($newCOUNT > $color_count) {
                     foreach ($colorArray as $key => $color) {
-//$Equalcount_array=$this->model->getEqualCountvaluesV2($id,$fff, $NEW_devide);
-   $all_filled_values=$all_df_value;
-   rsort($all_filled_values);
-  $E_Arr=array_slice($all_filled_values, $fff, $NEW_devide);
+                        $Equalcount_array = $this->model->getEqualCountvaluesV2($id, $fff, $NEW_devide);
 
                         if ($count < 10) {
                             $count++;
-                            $thisMinvalue = min($all_filled_values);
-                            $thisalue = max($all_filled_values);
+                            $thisMinvalue = min($Equalcount_array);
+                            $thisalue = max($Equalcount_array);
                             $thisMaxvalue = ((int)$thisalue >= (int)$thisMinvalue) ? $thisalue : $thisMinvalue;
 
                             if ($count == 1) { ?>
@@ -3128,7 +3229,7 @@ $max = $max - $avgDiff;
                                 <div class="map-val">
                                     <div class="bar" style="height:20px !important; background:<?php echo $color; ?>"></div>
                                     <div class="bar-input">
-                                        <input type="text" class="form-control min-display" data-id="min-input<?php echo $key; ?>" value="<?php echo min($all_filled_values); ?>" name="min-display[]">
+                                        <input type="text" class="form-control min-display" data-id="min-input<?php echo $key; ?>" value="<?php echo min($Equalcount_array); ?>" name="min-display[]">
                                         <span class="lasykeyplus" style="display:none;">+</span>
                                         <span class="lasykeyminus">-</span>
                                         <input type="text" class="form-control lastkey max-display" data-id="max-input<?php echo $key; ?>" value="<?php echo $thisMaxvalue; ?>" name="max-display[]">
@@ -3139,7 +3240,7 @@ $max = $max - $avgDiff;
                                 <div class="map-val">
                                     <div class="bar" style="height:20px !important; background:<?php echo $color; ?>"></div>
                                     <div class="bar-input">
-                                        <input type="text" class="form-control min-display" data-id="min-input<?php echo $key; ?>" value="<?php echo min($all_filled_values); ?>" name="min-display[]">
+                                        <input type="text" class="form-control min-display" data-id="min-input<?php echo $key; ?>" value="<?php echo min($Equalcount_array); ?>" name="min-display[]">
                                         <span class="lasykeyplus" style="display:none;">+</span>
                                         <span class="lasykeyminus">-</span>
                                         <input type="text" class="form-control lastkey max-display" data-id="max-input<?php echo $key; ?>" value="<?php echo $thisMaxvalue; ?>" name="max-display[]">
@@ -3395,30 +3496,11 @@ $max = $max - $avgDiff;
             if ($_GET['id']) {
                 $id = $_GET['id'];
                 $proId = $_GET['proid'];
-           $result = $this->model->deleteprofield($id);
-           $dfvs=$this->model->datafieldvalueByProid($proId);
-		   if (!empty($dfvs)) {
-                foreach ($dfvs as $mapData) {
-                    $city_id = $mapData['city_id'];
-                    $node_text = $mapData['node_text'];
-                    $node_image = $mapData['node_image'];
-                    $pro_id = $proId;
-					$field_value_data=$mapData['field_value_data'];
-				    $fv_serialized="";
 
-			$field_value_array = unserialize($field_value_data);
-			$key_to_remove = $id;
-			foreach($field_value_array as $index => $sub_array) {
-				  if (array_key_exists($key_to_remove, $sub_array)) {
-					unset($field_value_array[$index]);
-					break;
-				   }
-				}
-		 $fv_serialized = serialize($field_value_array);
-         $sqlMapInsert=$this->model->updateDataFieldValueNew($pro_id, $city_id, $fv_serialized,$node_text,$node_image);
-                }
-            }
-      $leftfromgroup = $this->model->leftdatafiledfromGroup($id);
+                $result = $this->model->deleteprofield($id);
+                $result = $this->model->deletefieldval($proId, $id);
+
+                $leftfromgroup = $this->model->leftdatafiledfromGroup($id);
 
                 //
                 $key = 'Hl2018@1212';
@@ -3428,6 +3510,7 @@ $max = $max - $avgDiff;
             <script>
                 location.href = '<?php echo BASE_URL; ?>projects/viewprojects/<?php echo $encrypted_id; ?>';
             </script>
+
 <?php
                 //
             }

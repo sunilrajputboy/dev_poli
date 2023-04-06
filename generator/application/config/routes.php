@@ -55,5 +55,6 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['registration'] = 'users/registration';
 $route['adminlogin'] = 'users/adminlogin';
+$route['sendmail'] = 'sendmail/index';
 $route['(:any)'] = "users/index";
 // $route['/(:any)'] = "catalog/product_lookup";

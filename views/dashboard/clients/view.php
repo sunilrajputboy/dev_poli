@@ -238,5 +238,8 @@ $time = $dt->format('H:i:s');
      localStorage.setItem("activetab", 'general1');
       localStorage.setItem("tabid", '#1a');
      
+     	sessionStorage.setItem("activetab", "general1");
+			sessionStorage.setItem("tabid", "#1a");
+     
                         </script>
 </div><!-- Panel Content -->

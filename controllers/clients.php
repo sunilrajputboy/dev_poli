@@ -179,6 +179,7 @@ class Clients extends Controller{
 			$tweet_mp_text = $_POST['tweet_mp_text'];
 			$email_sub = $_POST['email_sub'];
 			$email_msg = $_POST['message'];
+			$emailmp_MH = $_POST['emailmp_MH'];
 			$primary_color = $_POST['colorprime'];
 			$secondary_color = $_POST['colorsecond'];
 			$text_color = $_POST['text_color'];
@@ -294,7 +295,7 @@ class Clients extends Controller{
 	
 	$privacypolicy = isset($_POST['privacypolicy']) ? $_POST['privacypolicy'] : null;
 	
-   $inserts=$this->model->UpdateClientData($logourl,$logofiledb,$fonts,$colours,$is_mp,$is_social_share,$is_email_share, $is_tweet_mp,$tweet_mp_text,$email_sub,$email_msg,$is_charts,$unique_url,$is_facebook,$is_insta,$is_twitter,$is_linkedin,$is_email_friend,$email_friend_text,$email_friend_title,$primary_color,$secondary_color,$text_color,$text_color2,$text_color3,$subscribe_mail_text,$subscribe_mail_address,$copyright_title,$copyright_link,$privacypolicy,$id);
+   $inserts=$this->model->UpdateClientData($logourl,$logofiledb,$fonts,$colours,$is_mp,$is_social_share,$is_email_share, $is_tweet_mp,$tweet_mp_text,$email_sub,$email_msg,$emailmp_MH,$is_charts,$unique_url,$is_facebook,$is_insta,$is_twitter,$is_linkedin,$is_email_friend,$email_friend_text,$email_friend_title,$primary_color,$secondary_color,$text_color,$text_color2,$text_color3,$subscribe_mail_text,$subscribe_mail_address,$copyright_title,$copyright_link,$privacypolicy,$id);
 			$userId=$_SESSION['uid'];
 		    $getuserData=$this->model->getUserById($userId);
 		   if($getuserData[0]['role'] == 2){

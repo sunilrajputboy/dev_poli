@@ -424,6 +424,12 @@
 																$msg = '';
 															} ?>
 															<div class="row">
+															    	<div class="col-md-12">
+												    <div class="form-group">
+													<label for="">Model Header</label>
+                        						        <textarea class="form-control emailMPmodelEditer" name="emailmp_MH" id="emailmp_MH" placeholder="[Salutation] Write the text you want people to show in Email MP Model Header"><?php if ($clientData['emailmp_MH'] == null || $clientData['emailmp_MH'] == '') {echo $templateData['emailmp_MH'];} else {echo $clientData['emailmp_MH'];}?></textarea>
+                        						 </div>
+											</div>
 																<div class="col-md-12">
 																	<div class="form-group">
 																		<label for="">Enter email subject</label>
@@ -834,4 +840,6 @@
 				});
 			}
 		}
+	
+		
 	</script>

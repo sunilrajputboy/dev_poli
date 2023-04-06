@@ -1,3 +1,8 @@
+<script>
+       localStorage.setItem('activetab', 'project1');
+     localStorage.setItem('tabid', '#project');
+      localStorage.setItem('mainTab', '#menutab1');
+</script>
 <div class="page-header-wrap">
         <h3>Project</h3>
         <?php 
@@ -336,8 +341,8 @@ unset($_SESSION['groupid']);
 unset($_SESSION['clientSelected']);
 ?>
 <script type="text/javascript">
-     localStorage.setItem('activetab', 'li1');
-     localStorage.setItem('tabid', '#1a');
+     
+     
     var d = localStorage.getItem('pro_delete_msg');
     if (d){
         document.getElementById("sucessMessage").style.display = 'block';

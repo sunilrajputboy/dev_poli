@@ -1,10 +1,17 @@
 <?php
 error_reporting(1);
 $origin = $_SERVER['HTTP_ORIGIN'];
-require_once($_SERVER["DOCUMENT_ROOT"]."/mailer/vendor/autoload.php");
+// header('Content-Type: application/json;charset=utf-8');
+// header('Access-Control-Allow-Origin: *');
+// header('Access-Control-Allow-Origin: ' . $origin);
+// header('Access-Control-Allow-Methods: GET, POST');
+// header("Access-Control-Allow-Headers: X-Requested-With");
+require_once($_SERVER["DOCUMENT_ROOT"]."/mail/vendor/autoload.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\OAuth;
+use League\OAuth2\Client\Provider\Google;
 class Srclasss {
 	
 	private function dbConnect(){
@@ -32,18 +39,21 @@ class Srclasss {
 
      public function sendEmail($email,$subject,$body,$toname="",$clientName,$attachment=""){
 		$mail = new PHPMailer();	 
-		$mail->isSMTP();                                      // Set mailer to use SMTP
-// 		$mail->SMTPDebug = 2;
-		$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers  //polimapper.codealearning.co.uk
-		$mail->SMTPAuth = true;                               // Enable SMTP authentication
-		$mail->Username = 'polimappertest@gmail.com';  // SMTP username //info@polimapper.codealearning.co.uk
-		$mail->Password = 'dqwfpzhwvovsvver';                           // SMTP password //PTm%1m0Ye3zi
-		$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-		$mail->Port =587;                                    // TCP port to connect to
-        $mail->From = 'polimappertest@gmail.com';    //smtp@polimapper.co.uk
-		$mail->FromName = $clientName;              // pOlimapper2022
+		$mail->isSMTP();
+		$mail->SMTPDebug = 2;
+		$mail->Host = 'smtp.gmail.com';
+		$mail->SMTPAuth = true;
+		$mail->Username = 'smtp@polimapper.co.uk';
+		$mail->Password = 'xrvpojmjvkkekpqr';
+		$mail->SMTPAutoTLS = true;
+		$mail->SMTPSecure = 'TLS'; 
+		$mail->Port =587;
+        $mail->From ='info@polimapper.co.uk';
+		$mail->FromName = $clientName;
 		$mail->addAddress($email, $toname);
 		$mail->addReplyTo('info@polimapper.co.uk', 'Polimapper');
+		$mail->Priority = 1;
+		$mail->AddCustomHeader("X-MSMail-Priority: High");
 		$mail->WordWrap = 50;
 		if(!empty($attachment)){
 		$mail->addAttachment($attachment);
@@ -59,6 +69,7 @@ class Srclasss {
             return json_encode(array('status'=>1,'msg'=>'Message has been sent', 'data'=>$mail));
 			// return array('status'=>1,'msg'=> 'Message has been sent'.$mail);
 		}
+		/******/
 	}
      public function confirmSubscribe($id,$confirmtime)
      {
@@ -70,9 +81,58 @@ class Srclasss {
 	 
 }
 $srObject= new Srclasss();
+
+if(isset($_GET['test-mail'])){
+    $to = 'belal@codeadigital.co.uk ';
+    //$to = 'sunil.srajput90@gmail.com';
+    $subject ='test from Px ';
+    $text ='<h2>Hello, Sunil </h2> This is just testing. Please ignore.<p>This is an html code</p><p>Paragraph 2 on</p>';
+    $clientName ='Polimapper';
+    $attachment="";
+    $toname="SUNIL";
+    $return=$srObject->sendEmail($to,$subject,$text,$toname="",$clientName,$attachment="");
+	echo json_encode($return);
+/*****
+		$mail = new PHPMailer();	 
+		$mail->isSMTP();
+		$mail->SMTPDebug = 2;
+		$mail->Host = 'smtp.gmail.com';
+		$mail->SMTPAuth = true;
+		//$mail->Username = 'polimappertest@gmail.com';
+		//$mail->Password = 'irwazlelgzqprvow';
+		$mail->Username = 'smtp@polimapper.co.uk';
+		$mail->Password = 'xrvpojmjvkkekpqr';
+		$mail->SMTPAutoTLS = true;
+		$mail->SMTPSecure = 'TLS'; 
+		$mail->Port =587;
+        $mail->From ='info@polimapper.co.uk';
+		$mail->FromName = $clientName;
+		$mail->addAddress($to, $toname);
+		$mail->addReplyTo('info@polimapper.co.uk', 'Polimapper');
+		$mail->Priority = 1;
+		$mail->AddCustomHeader("X-MSMail-Priority: High");
+		$mail->WordWrap = 50;
+		if(!empty($attachment)){
+		$mail->addAttachment($attachment);
+		}
+		$mail->isHTML(true);
+		$mail->CharSet = "text/html; charset=UTF-8;";
+		$mail->Subject = $subject;
+		$mail->Body    = $text;
+	    $ems_resp=$mail->send();
+		if(!$ems_resp) {
+			$return = array('status'=>0,'msg'=> 'Mailer Error: ' . $mail->ErrorInfo);
+		echo json_encode($return);
+		} else {
+            $return=json_encode(array('status'=>1,'msg'=>'Message has been sent', 'data'=>$mail));
+		echo json_encode($return);
+		}
+		*****/
+}
+
 if(isset($_POST['mp_email'])){
      $email = $_POST['email'];
-       $mobile = $_POST['mobile'];
+      $mobile = $_POST['mobile'];
      $name = $_POST['name'];
      $mp = $_POST['mp'];
      $mp_email = $_POST['mp_email'];
@@ -164,18 +224,18 @@ if(isset($_POST['mp_email'])){
                                              <tr>
                                                  <td>
                                                      <a href="'.$base_url.'generator/analytics.php?id='.$id.'&logo='.$logourl.'&cl='.$copyright_link.'&ct='.$copyright_title.'&clientName='.$clientName.'&address='.$subscribe_mail_address.'" style="
-                                                     font-size: 16px;
+                                                    font-size: 28px;
                                                      text-decoration: none;
                                                      background: #f31828;
-                                                     min-width: 130px;
-                                                     width: 130px;
+                                                     min-width: 160px;
+                                                     width: 160px;
                                                      display: inline-block;
                                                      color: #fff;
                                                      border-radius: 5px;
                                                      font-weight: 600;
-                                                     height: 45px;
-                                                     padding: 10px 15px;
-                                                     line-height: 25px;
+                                                     height: 55px;
+                                                     padding: 13px 18px;
+                                                     line-height: 30px;
                                                     box-sizing: border-box;
                                                      ">Confirm</a>
                                                  </td>
@@ -244,7 +304,7 @@ if(isset($_POST['mp_email'])){
              $header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
              $retval = $srObject->sendEmail($to,$subject,$text,$header,$clientName);
              if($retval){
-                echo json_encode(array('status'=>1,'message'=>'Mail has been sent.'));
+                echo json_encode(array('status'=>1,'message'=>'Mail has been sent.','data'=>$retval));
             }else{
                 echo json_encode(array('status'=>0,'message'=>$retval));
             }
@@ -318,7 +378,7 @@ if($confirm){
                                                             color: #000;
                                                             margin-bottom: 20px;
                                                             margin-top: 20px;
-                                                        ">Thank you for confirming your subscriptions.
+                                                        ">Thank you for confirming your subscription.
                                                         </p>
                                                     </td>
                                                 </tr>

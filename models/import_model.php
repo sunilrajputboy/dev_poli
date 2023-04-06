@@ -243,7 +243,7 @@ class import_model extends Model
         return $sth->fetchAll();
     }
 	public function getSameMapTemplateRegions($proId){
-        $sth = $this->db->prepare("SELECT DISTINCT(`city_id`) FROM `data_field_value_new` WHERE `pro_id`=:proId");
+        $sth = $this->db->prepare("SELECT DISTINCT(`city_id`) FROM `data_field_value` WHERE `pro_id`=:proId");
 		$sth->bindparam(":proId", $proId);
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -314,7 +314,7 @@ class import_model extends Model
     }
     public function deleteDataFieldsByProjectId($project_id)
     {
-	    $sth = $this->db->prepare('DELETE FROM data_field_value_new WHERE pro_id=:project');
+	    $sth = $this->db->prepare('DELETE FROM data_field_value WHERE pro_id=:project');
         $sth->bindparam(":project", $project_id);
 		$sth->execute();
 		return true;

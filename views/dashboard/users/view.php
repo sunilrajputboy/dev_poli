@@ -131,7 +131,6 @@ $cid=null;
                                     <?php
                                     } ?>
                                                 </li>
-                                     <?php /****           
                                     <!--            <li>-->
                                     <!--            <?php// if($row['allowed_client_add'] != 1){ ?>-->
                                     <!--<a class="btn btn-warning tool" data-tip="Allow client privilage" href="<?php //echo BASE_URL.'users/allowclientprivilage/'.$row['id']; ?>"><i class="fa fa-users"></i></a>-->
@@ -146,7 +145,6 @@ $cid=null;
                                     <!--<a class="btn btn-user btn-user-1 tool" data-tip="Disallow user privilage" href="<?php //echo BASE_URL.'users/disallowuserprivilage/'.$row['id']; ?>"><i class="fa fa-user-plus"></i></a>-->
                                     <!--<?php// } ?>-->
                                     <!--</li>-->
-                                    *****/ ?>
                                      <li> <a  class="btn btn-danger tool" data-tip="Delete" onclick="return letsconfirm('Are you sure you want to Delete?<p><?php echo str_replace("'","-", str_replace('"','-', $row['name']));?></p>','<?php echo BASE_URL.'users/delete/'. $row['id']; ?>')" href="javascript:void(0)"><i class="fa red fa-trash"></i></a> </li>
                                               </ul>
                                             </div>

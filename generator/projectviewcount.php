@@ -1,9 +1,15 @@
 <?php
 error_reporting(1);
 $origin = $_SERVER['HTTP_ORIGIN'];
+// header('Content-Type: application/json;charset=utf-8');
+// header('Access-Control-Allow-Origin: *');
+// header('Access-Control-Allow-Origin: ' . $origin);
+// header('Access-Control-Allow-Methods: GET, POST');
+// header("Access-Control-Allow-Headers: X-Requested-With");
 class Srclasss {
 	
 	private function dbConnect(){
+	   //  $conn = new mysqli('localhost', 'visualis_polimapper', '[TIv%(WBCDrA', 'visualis_polimapper');
 		 $conn = new mysqli('localhost', 'visualisationpol_stage', 'visualisationpol_stage', 'visualisationpol_stage');
 
 		 if(!$conn){

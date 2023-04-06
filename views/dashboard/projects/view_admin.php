@@ -1,3 +1,8 @@
+<script>
+       localStorage.setItem('activetab', 'project1');
+     localStorage.setItem('tabid', '#project');
+      localStorage.setItem('mainTab', '#menutab1');
+</script>
 <div class="page-header-wrap">
  <h3>Project</h3>
 	 <a class="btn cus-btn" href="<?php echo BASE_URL.'projects/add' ?>" title=""><i class="fa fa-plus"></i><span>Add Project </span></a>
@@ -259,7 +264,3 @@ $time = $dt->format('H:i:s');
             </div>
            
 </div><!-- Panel Content -->
-<script>
-       localStorage.setItem('activetab', 'li1');
-     localStorage.setItem('tabid', '#1a');
-</script>

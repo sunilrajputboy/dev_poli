@@ -7,12 +7,6 @@ class export_model extends Model{
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
-	public function selectProjectClientData($dataSetKey){
-        $sth = $this->db->prepare('SELECT projects.*,clients.unique_url as client_unique_url FROM projects LEFT JOIN clients ON projects.id_client=clients.id WHERE projects.proKey =:dataSetKey');
-        $sth->bindparam(":dataSetKey", $dataSetKey);
-        $sth->execute();
-        return $sth->fetchAll(PDO::FETCH_ASSOC);
-    }
 	public function selectsingleTableDatabyid($projectId){
         $sth = $this->db->prepare('SELECT * FROM `project_fields` WHERE `id_project` =:projectId AND isGroup=0 ORDER BY `sequence_no`');
         $sth->bindparam(":projectId", $projectId);
@@ -77,18 +71,6 @@ class export_model extends Model{
 		//return ($sth->queryString);
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
-	/***SMITH***/
-		/**********/
-    public function customQuery($query,$fetch='')
-    {
-		$sth = $this->db->prepare($query);
-        $sth->execute();
-		if($fetch!=""){
-        return $sth->fetchAll(PDO::FETCH_ASSOC);
-		}else{
-		return true;	
-		}
-    }
-	/***SMITH***/
+	/******/
 	
 }

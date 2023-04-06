@@ -66,7 +66,45 @@
 </div>
 </div>
 <script type="text/javascript">
-
+/***
+GENERATE IFRAME
+***/
+function generate_iframe(){
+	var unique_urlS1=$('#unique_urlS').html();
+	var unique_urlS=unique_urlS1.replace(/&amp;/g, "&");
+	var iframe_logo=0;
+	var iframe_location=0;
+	var iframe_share_icon=0;
+	var iframe_introtext=0;
+	var iframe_footer=0;
+	if($('#iframe_logo').prop('checked')){
+		 iframe_logo=1;
+	}
+	if($('#iframe_location').prop('checked')){
+		 iframe_location=1;
+	}
+	if($('#iframe_share_icon').prop('checked')){
+		 iframe_share_icon=1;
+	}
+	if($('#iframe_introtext').prop('checked')){
+		 iframe_introtext=1;
+	}
+	if($('#iframe_footer').prop('checked')){
+		 iframe_footer=1;
+	}
+	var final_result='<iframe src="'+unique_urlS+'&logo='+iframe_logo+'&location_dropdown='+iframe_location+'&share_icon='+iframe_share_icon+'&intro_text='+iframe_introtext+'&footer='+iframe_footer+'"></iframe> ';
+	$('#iframe_generated_code').val(final_result);
+}
+/***
+COPY IFRAME
+***/
+function copy_iframe_code(){
+  var copyText = document.getElementById("iframe_generated_code");
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+  navigator.clipboard.writeText(copyText.value);
+  // Alert the copied text + copyText.value
+  alert("Text Copied");
+}
 // $('.hiddenDiv').hide();
 
 // 	$('.expandEditor, .itemTitle').click(function(){
@@ -76,13 +114,9 @@
 // 			});
 			
 updateIndexNested = function(e, ui) {
-
         $('span.index', ui.item.parent().parent().parent()).each(function (i) {
-
             $(this).html(i + 1);
-
         });
-
     };
     	$().ready(function(){
 			var ns = $('ol.sortable').nestedSortable({
@@ -156,28 +190,19 @@ updateIndexNested = function(e, ui) {
 
 		});
        
-                
-			var userStrarraied = JSON.stringify(arraied);
-	
-				var urls = "<?php echo BASE_URL; ?>projects/saveDatagroupParentChild";
-				
+    var userStrarraied = JSON.stringify(arraied);
+	var urls = "<?php echo BASE_URL; ?>projects/saveDatagroupParentChild";
 		$.ajax({
-
             url: urls,
-
             type: 'post',
             data: {'shortingdata':userStrarraied,'shortposition': values,'sequence':sequences},
-       
             success: function(response){
                 var res = JSON.parse(response);
-        if(res.success == 1){
-            
-             localStorage.setItem('message_viewprojects',res.msg);
-              location.reload();
-        }
-       
+				if(res.success == 1){
+					 localStorage.setItem('message_viewprojects',res.msg);
+					 location.reload();
+				}
              }
-
          });
 				// (typeof($('#toArrayOutput')[0].textContent) != 'undefined') ?
 				// $('#toArrayOutput')[0].textContent = arraied : $('#toArrayOutput')[0].innerText = arraied;
@@ -210,14 +235,6 @@ updateIndexNested = function(e, ui) {
 			}
 			return dumped_text;
 		}
-/*****
-jQuery.fn.scrollTo = function(elem) { 
-    $(this).scrollTop($(this).scrollTop() - $(this).offset().top + $(elem).offset().top); 
-    return this; 
-};
-
-$(".tbl-content").scrollTo(".errorfield");
-********/
 function putdatavalue(datakey,num){
 	$('.DFname').val(datakey);
 	$('.DPname').val(datakey);
@@ -225,6 +242,23 @@ function putdatavalue(datakey,num){
 	$('#sequenceVal').val(num);
 	$('#dataKeyVal2').val(datakey);
 	$('.inner-data').show();
+}
+
+function triggerTabActive(id,tabid,maintabid){
+	 $('.tab-submenu').each(function(){
+		  $(this).removeClass('active');
+	 });
+	 $('.submenu-li').each(function(){
+		  $(this).removeClass('active');
+	 });
+	 $('#'+id).addClass('active');
+	 $(tabid).addClass('active');
+	 localStorage.setItem('activetab', id);
+	 localStorage.setItem('tabid', tabid);
+	 localStorage.setItem('mainTab', maintabid);
+	 sessionStorage.setItem('activetab', id);
+	 sessionStorage.setItem('tabid', tabid);
+	 sessionStorage.setItem('mainTab', maintabid);
 }
 function mytabFun(id, tabid){
     localStorage.setItem('activetab', id);
@@ -235,23 +269,42 @@ function mytabFun(id, tabid){
             $('.custom-tab-child').attr('aria-expanded', 'true');
         });
     }
+     sessionStorage.setItem('activetab', id);
+     sessionStorage.setItem('tabid', tabid);
 }
 window.onload = function (){
-    var activetab = localStorage.getItem('activetab');
-    var tabid = localStorage.getItem('tabid');
-if(activetab == null){ 
-  activetab = 'li1';
-  tabid = '#1a';
+    var activetab = sessionStorage.getItem('activetab');
+     var mainTabid = sessionStorage.getItem('mainTab');
+    var tabid = sessionStorage.getItem('tabid');
+if(activetab == null || activetab == 'li1'){ 
+  activetab = 'project1';
+  tabid = '#project';
+}
+if(mainTabid){
+    $('.maintab-wrap li').removeClass('active');
+    $(mainTabid).parents('li').addClass('active');
+}
+if(mainTabid == null){
+    mainTabid = '#menutab1';
+}
+if(mainTabid == '#menutab1'){
+    // $('#project1').addClass('active');
+    $('#project').addClass('active');
 }
     $('#' + activetab).children().attr('aria-expanded', 'true');
     $('#'+ activetab).addClass('active');
+        $('.tab-content .tab-pane').removeClass('in active');
     $(tabid).addClass('active');
+    var hreftab =$(mainTabid).attr('href');
+     $(hreftab).addClass('in active');
+
+    
 	  if(tabid == '#'){
 			$('.tab-pane').each(function(){
 				$(this).addClass('active');
 			});
 		}
-		   if(activetab == 'li4'){
+	if(activetab == 'datafields1'){
       var fieldtab = localStorage.getItem('fieldtab');
        $('#'+ fieldtab).addClass('active');
          $('#'+ 'id'+ fieldtab).css('display', 'block');
@@ -867,12 +920,12 @@ $(document).ready(function(){
     });
 	/******12-02-2023*****/
 	$(".select2-design").select2({
-			closeOnSelect : false,
-			//placeholder : "Select",
+			closeOnSelect : true,
 			placeholder : $(".js-select2").attr('placeholder'),
 			allowHtml: true,
 			allowClear: true,
-			tags: true // создает новые опции на лету
+			tags: true, // создает новые опции на лету
+			multiple: false
 		});
 	/***********/
 	$(".js-select2").select2({
@@ -1410,26 +1463,31 @@ function removeColorm(v,min,max,fmin,fmax){
   $('#datafield_btn_update').attr('disabled',true);
     $('#datafield_btn_update').html('Loading...');
     var color = [];
-var count = $('.colorBoxm').size();
+  var count = $('.colorBoxm').size();
+  
 var projectfield_id = $('#updatemapkey').find('input[name="id"]').val();
-var proid = $('#updatemapkey').find('input[name="proid"]').val();
-$(v).parent('.colorBoxm').remove();
+     $(v).parent('.colorBoxm').remove();
   if(count > 2){
     $(v).parent('.colorBoxm').prev().append('<button class="removeBoxm" onclick="removeColorm(this)">x</button>');
   }
   
   $('.color-append-boxm .colorBoxm .colorInput').each(function(){
-     color.push($(this).val());
-  });
+        
+          color.push($(this).val());
+    });
   
     var urls = "<?php echo BASE_URL; ?>projects/getallcolor";
 		$.ajax({
+
             url: urls,
+
             type: 'post',
-            data: {'min':min,'max':max,'color':color,'fmin':fmin,'fmax':fmax,'projectfield_id':projectfield_id,'proid':proid},
+            data: {'min':min,'max':max,'color':color,'fmin':fmin,'fmax':fmax,'projectfield_id':projectfield_id},
+
             success: function(response){
-				$('#colorm_type2').html(response);
-				$('.display-range').click();
+$('#colorm_type2').html(response);
+$('.display-range').click();
+
              }
          });
 
@@ -1438,7 +1496,7 @@ $(v).parent('.colorBoxm').remove();
 url: "<?php echo BASE_URL; ?>/projects/getDisplaycolor",
 
 type: 'post',
-data: {'min':min,'max':max,'color':color,'fmin':fmin,'fmax':fmax,'projectfield_id':projectfield_id,'proid':proid},
+data: {'min':min,'max':max,'color':color,'fmin':fmin,'fmax':fmax,'projectfield_id':projectfield_id},
 
 success: function(response){
   $('#datafield_btn_update').removeAttr('disabled');
@@ -1575,6 +1633,11 @@ function getChartWizard(id,proid){
      if($('.nodeIntroEditor').length>0){
       var editor5 = new RichTextEditor(".nodeIntroEditor", { pasteMode: "PasteText" });
     }
+     if($('.emailMPmodelEditer').length>0){
+      var editor6 = new RichTextEditor(".emailMPmodelEditer");
+    }
+    
+    
     
     
     
@@ -1896,6 +1959,15 @@ function colorMixer(v){
     // console.log(v);
     $(v).parent('.interim').css("background-color", $(v).val());
 }
+
+
+$('#email_mp').click(function(){
+     if($(this).prop("checked") == true){
+         $('.policy-wrap').show();
+     }else{
+         $('.policy-wrap').hide();
+     }
+});
 
 function updateprojectStatus(v,page){
    var status = 'draft';
@@ -2868,6 +2940,7 @@ $('body').on('click', '#save_display_range', function ()
   $('body').find('#addColorBtnm').trigger('click');
 
 });
+
 
 
          

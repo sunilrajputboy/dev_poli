@@ -28,6 +28,39 @@ if ( ! function_exists('lq')) {
     die;
   }
 }
+/**
+ * [To print array]
+ * @param array $arr
+*/
+if ( ! function_exists('sendSms')) {
+  function sendSms($mob_number,$message){
+
+$id = "ACc1e35cec346f1d618ea5b9b7c52646e9";
+$token = "af25e3be9d6438c40d354848354e4234";
+$url = "https://api.twilio.com/2010-04-01/Accounts/$id/SMS/Messages";
+$from = "+16789321701";
+$to = $mob_number; // twilio trial verified number
+$body = $message;
+$data = array (
+    'From' => $from,
+    'To' => $to,
+    'Body' => $body,
+);
+$post = http_build_query($data);
+$x = curl_init($url );
+curl_setopt($x, CURLOPT_POST, true);
+curl_setopt($x, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($x, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($x, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+curl_setopt($x, CURLOPT_USERPWD, "$id:$token");
+curl_setopt($x, CURLOPT_POSTFIELDS, $post);
+$y = curl_exec($x);
+curl_close($x);
+//var_dump($post);
+return $y;
+    
+  }
+}
 
 /**
  * [To encode string]
@@ -88,11 +121,179 @@ function get_free_period_status($registration_date)
   return ($interval->d > 30) ? 0 : 1;
 }
 
+function tools(){
+  return array('APP_PURCHASE');
+}
+
+function ValidateGooglePlaySignature($responseData, $signature) {
+        $publicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArm9P4RdLrY7ddzNjG57RljZd7bqP+lhsJFrjb0+P1ah9sZDkLmc7TJK8rxY2OCT+UBA4kqfNys87CgdqkTrHfTZoi7jlAJCRIGPQVH8/TS1kF+MgKFco6ug99PPLq5+LaqBz/GCLPaCKlgABYTQS4hiuagrZwRa8LxZ+0nv15mygSUaclNR7PlRmFSDA4s9L4lUEglr9nZqq3KDiBmil7v3XYP++ni9/7kTPZ/rbG4Zin4FKXY1Y7zhRvBkeEdjFSS7hB9OxDIJ3w8Db0PNs7qI6kBnBzpY+TfWrlzH/cjD0TIHudQ8WQcUqmfugrAa4LiweZu68DxWwp0/Ur0yV2QIDAQAB";
+        
+        $responseData = trim($responseData);
+        $signature = trim($signature);
+        $response = json_decode($responseData);
+        //Create an RSA key compatible with openssl_verify from our Google Play sig
+        $key = "-----BEGIN PUBLIC KEY-----\n" .
+                chunk_split($publicKey, 64, "\n") .
+                '-----END PUBLIC KEY-----';
+        $key = openssl_get_publickey($key);
+
+        // Pre-add signature to return array before we decode it
+        $retArray = array('signature' => $signature);
+
+        //Signature should be in binary format, but it comes as BASE64.
+        $signature = base64_decode($signature);
+
+        //Verify the signature
+        return $result = openssl_verify($responseData, $signature, $key, OPENSSL_ALGO_SHA1);
+
+        $status = (1 === $result) ? 0 : 1;
+        $retArray["status"] = $status;
+        return $retArray;
+    }
+
+    function verify_app_purchase_in_ios($data, $optional_headers = null) {
+       $reciept_response = json_decode($data);
+       if ($reciept_response->environment == 'Sandbox') {
+            $url = 'https://sandbox.itunes.apple.com/verifyReceipt';
+        } else {
+            $url = 'https://buy.itunes.apple.com/verifyReceipt';
+        }
+        $params = array('http' => array(
+                'method' => 'POST',
+                'content' => $data
+        ));
+        if ($optional_headers !== null) {
+            $params['http']['header'] = $optional_headers;
+        }
+        $ctx = stream_context_create($params);
+        $fp = @fopen($url, 'rb', false, $ctx);
+        if (!$fp) {
+            throw new Exception("Problem with $url, $php_errormsg");
+        }
+        $response = @stream_get_contents($fp);
+        if ($response === false) {
+            throw new Exception("Problem reading data from $url, $php_errormsg");
+        }
+        $response_decode = json_decode($response);
+
+        if ($response_decode->status == 0) {
+            
+            $single = end($response_decode->latest_receipt_info);
+            //print_r($response_decode->latest_receipt_info);
+            $timezone= explode(" ",$single->expires_date);
+            $t = $timezone[2];
+            date_default_timezone_set($t);
+            $mil = $single->expires_date_ms;
+            $seconds = $mil / 1000;
+            $expire_date =  strtotime(date("d-m-Y H:i:s", $seconds));
+            //echo date('Y-m-d H:i:s',$expire_date);
+           //print_r($single);
+            $current_date =  strtotime(date('d-m-Y H:i:s'));
+            //echo date('Y-m-d H:i:s',$current_date);
+            //exit;
+            if($expire_date < $current_date){
+
+                return 0;
+            }else{
+                return 1;
+            }
+        } else {
+            return 0;
+        }
+    }
+    
+    
+    function data_app_purchase_in_ios($data, $optional_headers = null) {
+       $reciept_response = json_decode($data);
+       if ($reciept_response->environment == 'Sandbox') {
+            $url = 'https://sandbox.itunes.apple.com/verifyReceipt';
+        } else {
+            $url = 'https://buy.itunes.apple.com/verifyReceipt';
+        }
+        $params = array('http' => array(
+                'method' => 'POST',
+                'content' => $data
+        ));
+        if ($optional_headers !== null) {
+            $params['http']['header'] = $optional_headers;
+        }
+        $ctx = stream_context_create($params);
+        $fp = @fopen($url, 'rb', false, $ctx);
+        if (!$fp) {
+            throw new Exception("Problem with $url, $php_errormsg");
+        }
+        $response = @stream_get_contents($fp);
+        if ($response === false) {
+            throw new Exception("Problem reading data from $url, $php_errormsg");
+        }
+        $response_decode = json_decode($response);
+
+        if ($response_decode->status == 0) {
+            
+            $single = end($response_decode->latest_receipt_info);
+            //print_r($response_decode->latest_receipt_info);
+            $timezone= explode(" ",$single->expires_date);
+            $t = $timezone[2];
+            date_default_timezone_set($t);
+            $mil = $single->expires_date_ms;
+            $seconds = $mil / 1000;
+           return $expire_date =  date("Y-m-d H:i:s", $seconds);
+        } else {
+            return 0;
+        }
+    }
+
+function verify_itune_app($responseData) {
+        $password = "729799ff802740edbbe9099f5f5fea10";
+        if ($responseData->environment == 'Sandbox') {
+            $url = 'https://sandbox.itunes.apple.com/verifyReceipt';
+        } else {
+            $url = 'https://buy.itunes.apple.com/verifyReceipt';
+        }
+        $postData = json_encode(array('receipt-data' => $responseData,'password' => $password,));
+        $params = array('http' => array('method' => 'POST','content' => $postData));
+        $ctx = stream_context_create($params);
+        $fp = @fopen($url, 'rb', false, $ctx);
+        if(!$fp){
+            throw new Exception("Problem with $url, $php_errormsg");
+        }
+        $response = @stream_get_contents($fp);
+        if ($response === false){
+            throw new Exception("Problem reading data from $url, $php_errormsg");
+        }
+        $response_decode = json_decode($response);
+        pr($response_decode);
+        return $response_decode;
+        if ($response_decode->status == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 if (!function_exists('parseHTML')) {
   function parseHTML($str) {
     $str = str_replace('src="//', 'src="https://', $str);
     return $str;
+  }
+}
+
+if (!function_exists('get_subscription_end_date')) {
+  function get_subscription_end_date($datetime,$type) {
+    switch ($type) {
+      case 'MONTHLY':
+        return date('Y-m-d H:i:s', strtotime('30 Days', strtotime($datetime)));
+        break;
+      case 'QUATERLY':
+        return date('Y-m-d H:i:s', strtotime('90 Days', strtotime($datetime)));
+        break;
+      case 'YEARLY':
+        return date('Y-m-d H:i:s', strtotime('365 Days', strtotime($datetime)));
+        break;
+      default:
+        return '';
+        break;
+    }
   }
 }
 
@@ -1165,11 +1366,134 @@ if ( ! function_exists('array_multi_subsort')){
 /*************************************************************/
 /*************************************************************/
 /*************************************************************/
+
+
+/*************************************************************/
+/********************************/
+/********************************/ 
+if ( ! function_exists('alert')) {  
+  function alert($msg='', $type='success_msg') {
+    $CI =& get_instance();?>
+
+ <?php if (empty($msg)): ?>
+        <?php if ($CI->session->flashdata('success_msg')): ?>
+        <?php echo success_alert($CI->session->flashdata('success_msg')); ?>
+        <?php endif ?>
+        <?php if ($CI->session->flashdata('error_msg')): ?>
+        <?php echo error_alert($CI->session->flashdata('error_msg')); ?>
+        <?php endif ?>
+        <?php if ($CI->session->flashdata('info_msg')): ?>
+        <?php echo info_alert($CI->session->flashdata('info_msg')); ?>
+        <?php endif ?>
+        <?php else: ?>
+        <?php if ($type == 'success_msg'): ?>
+        <?php echo success_alert($msg); ?>
+        <?php endif ?>
+        <?php if ($type == 'error_msg'): ?>
+        <?php echo error_alert($msg); ?>
+        <?php endif ?>
+        <?php if ($type == 'info_msg'): ?>
+        <?php echo info_alert($msg); ?>
+        <?php endif ?>
+<?php endif; ?>
+<?php } }
+/**
+* Success alert
+*/
+if ( ! function_exists('success_alert')) {  
+  function success_alert($msg = '') {?>
+		<div class="alert alert-success">
+		  <button data-dismiss="alert" class="close" type="button">X</button>
+		  <strong>Success!</strong> <?php echo $msg ?>
+		</div>
+<?php  } }
+/**
+* Error alert
+*/
+if ( ! function_exists('error_alert')) {  
+	  function error_alert($msg = '') { ?>
+		<div class="alert alert-danger">
+		  <button data-dismiss="alert" class="close" type="button">X</button>
+		  <strong>Warning!</strong> <?php echo $msg ?>
+		</div>
+  <?php   } }
+/**
+* info alert
+*/
+if ( ! function_exists('info_alert')) { 
+		function info_alert($msg = '') {?>
+		<div class="alert alert-info">
+		 <button data-dismiss="alert" class="close" type="button">X</button>
+		<strong>Info: </strong> <?php echo $msg ?>
+		</div>
+  <?php } }
+/**
+* In cart
+*/
+/************************************/
+if(!function_exists('in_cart')){
+		function in_cart($product_id = null){
+		$CI = & get_instance();
+		if ($CI->cart->total_items() > 0)
+			{
+				$in_cart = array();
+				// Fetch data for all products in cart
+				foreach ($CI->cart->contents() AS $item)
+				{
+					$in_cart[$item['id']] = $item['qty'];
+				}
+				if ($product_id)
+				{
+					if (array_key_exists($product_id, $in_cart))
+					{
+						return $in_cart[$product_id];
+					}
+					return null;
+				}
+				else
+				{
+					return $in_cart;
+				}
+			}
+			return null;
+		  }
+}
+/**
+ * [To get data row count]
+ * @param string $table
+ * @param array $where
+*/
+if (!function_exists('getSingleRecord')){
+  function getSingleRecord($table, $where = '', $fld = NULL, $order_by = '', $order = ''){
+    $CI = & get_instance();
+    if(!empty($table) && !empty($where)){
+      $singleRecord = $CI->sr_model->getsingle($table, $where, $fld, $order_by, $order);
+    }
+    return $singleRecord;
+  }
+}
+/**
+* [To get data row count]
+* @param string $table
+* @param array $where
+*/
+if ( ! function_exists('getAllCount')) {
+  function getAllCount($table,$where="")
+  {
+    $CI = & get_instance();
+    if(!empty($where)){
+      $CI->db->where($where);
+    }
+    $q = $CI->db->count_all_results($table);
+    return addZero($q);
+  }
+}
+
    function send_email($options)
     {
         $CI =& get_instance();
         $CI->load->library('email');
-        $fromemail = 'no-reply@polimapper.co.in';
+        $fromemail = 'no-reply@webandappdevelopers.com';
         $fromname = 'No Reply';
 
         $config=array(
@@ -1191,6 +1515,48 @@ if ( ! function_exists('array_multi_subsort')){
         return $CI->email->send();
     }
 
+
+
+
+
+
+
+
+/**
+* countAllBrands
+* @param int $no
+*/
+if ( ! function_exists('countAllBrands')) {
+  function countAllBrands()
+  {
+    $CI = & get_instance();
+   $products=$CI->sr_model->getAllwhere('products',array('status'=>0),'UNIQUE_KEY','DESC','all','','','BRAND_NAME');
+   $total_count=$products['total_count'];
+    return addZero($total_count);
+  }
+}
+if ( ! function_exists('countAllproducts')) {
+  function countAllproducts()
+  {
+    $CI = & get_instance();
+   $products=$CI->sr_model->getAllwhere('products',array('status'=>0),'UNIQUE_KEY','DESC','all','','','PRODUCT_TITLE');
+   $total_count=$products['total_count'];
+    return addZero($total_count);
+  }
+}
+/**
+* [To print number in standard format with 0 prefix]
+* @param int $no
+*/
+if ( ! function_exists('getAllBrands')) {
+  function getAllBrands()
+  {
+    $CI = & get_instance();
+   $products=$CI->sr_model->getAllwhere('products',array('status'=>0),'UNIQUE_KEY','DESC','all',$limit,$offset,'BRAND_NAME');
+   $total_count=$products['total_count'];
+    return addZero($total_count);
+  }
+}
 /**
 * [To print number in standard format with 0 prefix]
 * @param int $no
@@ -1205,24 +1571,60 @@ if ( ! function_exists('addZero')) {
     }
   }
 }
-/**
-*
-*
-**/
-if ( ! function_exists('mb_unserialize')) {
-function mb_unserialize($string) {
-    $string2 = preg_replace_callback(
-        '!s:(\d+):"(.*?)";!s',
-        function($m){
-            $len = strlen($m[2]);
-            $result = "s:$len:\"{$m[2]}\";";
-            return $result;
 
-        },
-        $string);
-    return unserialize($string2);
-} 
-}
 /* End of file custom_helper.php */
 /* Location: ./application/helpers/custom_helper.php */
+
+
+//get product detail
+function get_warehouse($partid='',$pid='',$color='')
+{
+    
+$xml = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.promostandards.org/WSDL/Inventory/2.0.0/" xmlns:shar="http://www.promostandards.org/WSDL/Inventory/2.0.0/SharedObjects/">
+  <soapenv:Header/>
+  <soapenv:Body>
+     <ns:GetInventoryLevelsRequest>
+        <shar:wsVersion>2.0.0</shar:wsVersion>
+        <shar:id>jonsolnar</shar:id>
+        <!--Optional:-->
+        <shar:password>12341234</shar:password>
+        <shar:productId>'.$pid.'</shar:productId>
+        <!--Optional:-->
+		<shar:Filter>
+           <!--Optional:-->
+           <shar:partId>'.$partid.'</shar:partId>
+           <shar:PartColorArray>
+             <shar:partColor>'.$color.'</shar:partColor>
+          </shar:PartColorArray>
+        </shar:Filter>
+     </ns:GetInventoryLevelsRequest>
+  </soapenv:Body>
+</soapenv:Envelope>';
+$url = "https://uat-ws.sanmar.com:8080/promostandards/InventoryServiceBindingV2?wsdl";
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+$headers = array();
+array_push($headers, "Content-Type: text/xml; charset=utf-8");
+array_push($headers, "Accept: text/xml");
+array_push($headers, "Cache-Control: no-cache");
+array_push($headers, "Pragma: no-cache");
+array_push($headers, "SOAPAction: http://api.soap.website.com/WSDL_SERVICE/GetShirtInfo");
+if($xml != null) {
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "$xml");
+    array_push($headers, "Content-Length: " . strlen($xml));
+}
+curl_setopt($ch, CURLOPT_USERPWD, "jonsolnar:12341234"); /* If required */
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$response = curl_exec($ch);
+$code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $response);
+$xml = new SimpleXMLElement($response);
+$body = $xml->xpath('//SBody')[0];
+return $array = json_decode(json_encode((array)$body), TRUE); 
+}
 ?>

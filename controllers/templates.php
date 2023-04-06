@@ -36,7 +36,9 @@ class Templates extends Controller{
 				$email_sub = $_POST['email_sub'];
 				$message = $_POST['message'];
 			}
-				$update=$this->model->updatTemplate($is_mp,$email_sub,$message);
+			
+			$emailmp_MH = $_POST['emailmp_MH'];
+				$update=$this->model->updatTemplate($is_mp,$email_sub,$message,$emailmp_MH);
 				$_SESSION['success_message']='Template updated sucessfully !';
 				header('Location:'. BASE_URL.'templates');
 		}else{

@@ -27,9 +27,14 @@ class projects_model extends Model
         $ret=$sth->execute();
         return $ret;
     }
-       public function updatePrivacypolicyContent($pp,$id){ 
-        $sth = $this->db->prepare("UPDATE `projects` SET `privacypolicy`=:pp WHERE `id_project` = $id");
+      
+       public function updatePrivacypolicyContent($pp,$subscribe_mail_text,$subscribe_mail_address,$copyright_title, $copyright_link,$id){ 
+        $sth = $this->db->prepare("UPDATE `projects` SET `privacypolicy`=:pp,`subscribe_mail_text`=:subscribe_mail_text,`subscribe_mail_address`=:subscribe_mail_address,`copyright_title`=:copyright_title,`copyright_link`=:copyright_link WHERE `id_project` = $id");
         $sth->bindparam(":pp", $pp);
+        $sth->bindparam(":subscribe_mail_text", $subscribe_mail_text);
+        $sth->bindparam(":subscribe_mail_address", $subscribe_mail_address);
+        $sth->bindparam(":copyright_title", $copyright_title);
+        $sth->bindparam(":copyright_link", $copyright_link);
         $ret=$sth->execute();
         return $ret;
     }
@@ -50,36 +55,43 @@ class projects_model extends Model
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
+    	public function select_data_field_value_by_fid($field_id){
+        $sth = $this->db->prepare("SELECT * FROM `data_field_value` WHERE field_id=:fieldId ");
+        $sth->bindparam(":fieldId", $field_id);
+        $sth->execute();
+        return $sth->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    
+	public function getProjectFieldValueSingle($pro_id,$city_id,$field_id){
+        $sth = $this->db->prepare("SELECT * FROM `data_field_value` WHERE `pro_id` =:proId AND `city_id` =:cityId AND field_id=:fieldId ");
+        $sth->bindparam(":proId", $pro_id);
+        $sth->bindparam(":cityId", $city_id);
+        $sth->bindparam(":fieldId", $field_id);
+        $sth->execute();
+        return $sth->fetchAll(PDO::FETCH_ASSOC);
+    }
 	
-
 	public function checkProjectFieldValue($pro_id,$city_id){
-        $sth = $this->db->prepare("SELECT * FROM `data_field_value_new` WHERE `pro_id` =:proId AND `city_id` =:cityId");
+        $sth = $this->db->prepare("SELECT * FROM `data_field_value` WHERE `pro_id` =:proId AND `city_id` =:cityId");
         $sth->bindparam(":proId", $pro_id);
         $sth->bindparam(":cityId", $city_id);
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
-	/**********/
-    public function insertDataFieldValue1($query)
-    {
-		$sth = $this->db->prepare($query);
-        $sth->execute();
-        return true;
-    }
-	/**********/
-   public function datafieldvalueByProid($prodecryptid){
-        $sth = $this->db->prepare("SELECT * FROM `data_field_value_new` WHERE `pro_id` =:proId");
-		$sth->bindparam(":proId", $prodecryptid);
+	
+    	public function datafieldvalueByid($prodecryptid,$oldfieldId){
+        $sth = $this->db->prepare("SELECT * FROM `data_field_value` WHERE `pro_id` ='$prodecryptid' AND `field_id` ='$oldfieldId'");
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
-	/**********/
-   public function insertNewFieldvalue($latestId,$city_id,$field_value_data,$node_text,$node_image){
-        $sth = $this->db->prepare("INSERT INTO `data_field_value_new`(`pro_id`, `city_id`,`field_value_data`, `node_text`,`node_image`,`status`) VALUES ('$latestId','$city_id','$field_value_data','$node_text','$node_image','0')");
+    
+	public function insertFieldvalue($latestId,$city_id,$field_id,$field_value){
+        $sth = $this->db->prepare("INSERT INTO `data_field_value`(`pro_id`, `city_id`, `field_id`, `field_value`) VALUES ('$latestId','$city_id','$field_id','$field_value')");
         $ins=$sth->execute();
         return $ins;
     }
-	/**********/
+	
 	public function getAllClients(){
         $sth = $this->db->prepare("SELECT * FROM `clients` ORDER BY `name` ASC");
         $sth->execute();
@@ -92,173 +104,55 @@ class projects_model extends Model
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    public function getProjectGroupByID($gid){
+    	public function getProjectGroupByID($gid){
         $sth = $this->db->prepare("SELECT * FROM `projectgroup` where id=$gid");
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
-	
 	public function getClientsById($clientId){
         $sth = $this->db->prepare('SELECT * FROM `clients` where id=:clientId');
         $sth->bindparam(":clientId", $clientId);
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
-   public function getFieldvalueByCityId($cid,$pid){
-        $sth = $this->db->prepare("SELECT * FROM `data_field_value_new` WHERE `city_id` = $cid AND `pro_id` = $pid");
+    	public function getFieldvalueByCityId($cid,$pid){
+        $sth = $this->db->prepare("SELECT * FROM `data_field_value` WHERE `city_id` = $cid AND `pro_id` = $pid");
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
-	/*********ANSWER-BY-CHATGPT********/
-public function getfieldValues($id, $pro_id){
-    $sth = $this->db->prepare("SELECT field_value_data FROM `data_field_value_new` WHERE `pro_id` = :ProId");
-    $sth->bindParam(":ProId", $pro_id);
-    $sth->execute();
-    $result = $sth->fetchAll(PDO::FETCH_COLUMN);
-
-    $maindata2 = array();
-    $maindata3 = array();
-    foreach ($result as $fv_data) {
-        $field_value_data = unserialize($fv_data);
-        if (!empty($field_value_data)) {
-            foreach ($field_value_data as $val) {
-                $value = current($val);
-                $key = key($val);
-                if ($key == $id) {
-					if($val!=""){
-						$maindata3[] = $value;
-					}
-						$maindata2[] = $value;
-                }
-            }
-        }
-    }
-
-    $maindata = array('min_value' => 0, 'max_value' => 0, 'total_count' => 0, 'total_sum' => 0,'all_df_value'=>array());
-    if (!empty($maindata2)) {
-		$maindata_num = array_filter($maindata2, 'is_numeric');
-        $maindata = array(
-            'min_value' => !empty($maindata_num) ? min($maindata_num) : 0.00,
-            'max_value' => !empty($maindata_num) ? max($maindata_num) : 0.00,
-            'total_count' => !empty($maindata_num) ? count($maindata_num) : 0.00,
-            'total_sum' => !empty($maindata_num) ? array_sum($maindata_num) : 0.00,
-            'all_df_value' => $maindata2,
-            'not_empty_df_count' => count($maindata3),
-            'not_empty_df_sum' => array_sum($maindata3),
-            'not_empty_df_value' => $maindata3
-        );
-    }
-
-    return $maindata;
-}
-	/******************/
-   public function getfieldValues2($id,$pro_id){
-        $sth = $this->db->prepare("SELECT field_value_data FROM `data_field_value_new` WHERE `pro_id` =:ProId");
-		$sth->bindparam(":ProId", $pro_id);
-        $sth->execute();
-		$result=$sth->fetchAll(PDO::FETCH_ASSOC);
-		$maindata2=array();
-		if(!empty($result)){
-		 foreach($result as $res){
-			$fv_data=$res['field_value_data'];
-			$field_value_data=($fv_data) ? unserialize($fv_data): array();
-			if(!empty($field_value_data)){
-						foreach($field_value_data as $val){
-							$value = current($val);
-							$key = key($val);
-							if($key==$id){
-							$maindata2[]=$value;
-							}
-						}
-					}
-		 }	
-		}
-		$maindata=array('min_value'=>0,'max_value'=>0,'total_count'=>0,'total_sum'=>0);
-		if(!empty($maindata2)){
-			$min_value = min($maindata2);
-			$max_value = max($maindata2);
-			$total_sum = array_sum($maindata2);
-			$total_count = count($maindata2);
-			$maindata=array('min_value'=>$min_value,'max_value'=>$max_value,'total_count'=>$total_count,'total_sum'=>$total_sum);
-		}
-        return $maindata;
-    }
-	
-    public function maxfieldValue($id){
-		 $query='SELECT MAX(CONVERT(SUBSTRING_INDEX(SUBSTRING_INDEX(field_value_data,\':"\', -1),\'"\', 1), DECIMAL(10,3))) AS max_value FROM data_field_value_new WHERE field_value_data LIKE CONCAT("%", :id, ";%") AND pro_id=:proId';
-		$sth = $this->db->prepare($query);
-		$sth->bindparam(":id", $id);
-		$sth->bindparam(":proId", $proid);
-        $sth->execute();
-		$results=$sth->fetchAll(PDO::FETCH_ASSOC);
-        return $results;
-    }
-/****-UN-USED-FUNCTIONS-***
-
-	public function getProjectFieldValueSingle($pro_id,$city_id,$field_id){
-        $sth = $this->db->prepare("SELECT * FROM `data_field_value` WHERE `pro_id` =:proId AND `city_id` =:cityId AND field_id=:fieldId ");
-        $sth->bindparam(":proId", $pro_id);
-        $sth->bindparam(":cityId", $city_id);
-        $sth->bindparam(":fieldId", $field_id);
+    	public function maxfieldValue($id){
+        $sth = $this->db->prepare("SELECT MAX(cast(`field_value` as decimal(12,2))) AS 'max' FROM `data_field_value` WHERE `field_id` =$id");
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
-	
-	public function insertFieldvalue($latestId,$city_id,$field_id,$field_value){
-        $sth = $this->db->prepare("INSERT INTO `data_field_value`(`pro_id`, `city_id`, `field_id`, `field_value`) VALUES ('$latestId','$city_id','$field_id','$field_value')");
-        $ins=$sth->execute();
-        return $ins;
-    }
+
     public function countfieldValue($id){
         $sth = $this->db->prepare("SELECT count(cast(`field_value` as unsigned)) AS 'total' FROM `data_field_value` WHERE `field_id` =$id");
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
-	
-  public function getEqualCountvalues($id,$proid,$from, $to){
+    public function getEqualCountvalues($id, $from, $to){
         $sth = $this->db->prepare("SELECT cast(`field_value` as decimal(12,2)) as 'value' FROM `data_field_value` WHERE `field_id` =$id LIMIT $from, $to");
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_COLUMN);
     }
-   public function getEqualCountvaluesV2($id, $from, $to){
+    
+      public function getEqualCountvaluesV2($id, $from, $to){
         $sth = $this->db->prepare("SELECT cast(`field_value` as decimal(12,2)) as 'value' FROM `data_field_value` WHERE `field_value` != '' AND `field_id` =$id ORDER BY cast(`field_value` as decimal(12,2)) DESC LIMIT $from,$to");
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_COLUMN);
     }
+
     public function getEqualCountvalueswithIgnore($id){
         $sth = $this->db->prepare("SELECT cast(`field_value` as decimal(12,2)) as 'value' FROM `data_field_value` WHERE `field_value` != '' AND  `field_id` =$id");
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_COLUMN);
     }
-    public function minfieldValue($id){
+     	public function minfieldValue($id){
         $sth = $this->db->prepare("SELECT MIN(cast(`field_value` as decimal(12,2))) AS 'min' FROM `data_field_value` WHERE `field_id` = $id");
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
-	public function select_data_field_value_by_fid($field_id){
-        $sth = $this->db->prepare("SELECT * FROM `data_field_value` WHERE field_id=:fieldId ");
-        $sth->bindparam(":fieldId", $field_id);
-        $sth->execute();
-        return $sth->fetchAll(PDO::FETCH_ASSOC);
-    }
-	public function insertDataFieldValue($proId, $city_id, $fieldId){
-        $sth = $this->db->prepare("INSERT INTO `data_field_value` (`pro_id`, `city_id`, `field_id`) VALUES ('$proId','$city_id','$fieldId')");
-        $ins=$sth->execute();
-        $insert_id = $this->db->lastInsertId();
-        $key = 'Hl2018@1212';
-        $encrypted_id = openssl_encrypt($insert_id,'AES-128-ECB',$key, OPENSSL_RAW_DATA);
-        $encrypted_id = strtolower(bin2hex($encrypted_id));
-        $sth1 = $this->db->prepare("UPDATE `projects` SET `proKey`= '$encrypted_id' WHERE `id_project` = $insert_id");
-        $ins=$sth1->execute();
-        return $ins;
-    }
-    public function deletefieldval($proId,$id){
-        $sth = $this->db->prepare("DELETE FROM `data_field_value` WHERE `pro_id` = $proId AND `field_id` = $id");
-		$sth->execute();
-        return $sth->fetchAll(PDO::FETCH_ASSOC);
-    }	
-****/	
-
  	public function getMapTemplatesById($id){
         $sth = $this->db->prepare('SELECT * FROM `map_templates` WHERE `id_map_templates` =:tid');
         $sth->bindparam(":tid", $id);
@@ -271,18 +165,18 @@ public function getfieldValues($id, $pro_id){
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
 	public function getMapTemplatesByCategory($category_id){
-        $sth = $this->db->prepare('SELECT * FROM `map_templates` WHERE `category_id`= :catId AND `hidden`=0 ORDER BY map_name ASC');
+        $sth = $this->db->prepare('SELECT * FROM `map_templates` WHERE `category_id`= :catId AND `hidden`=0 ORDER BY `map_name` ASC');
 		$sth->bindparam(":catId", $category_id);
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }	
 	public function getMapTemplateCategory(){
-        $sth = $this->db->prepare('SELECT * FROM `map_category` WHERE `status`=0 ORDER BY category_name ASC');
+        $sth = $this->db->prepare('SELECT * FROM `map_category` WHERE `status`=0 ORDER BY category_name');
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
 	public function deleteProject($projectId){
-        $sth = $this->db->prepare("DELETE `projects`, `project_fields`, `data_field_value_new` FROM `projects` LEFT join project_fields on projects.id_project = project_fields.id_project LEFT join data_field_value_new on projects.id_project = data_field_value_new.pro_id WHERE projects.id_project = :projectId");
+        $sth = $this->db->prepare("DELETE `projects`, `project_fields`, `data_field_value` FROM `projects` LEFT join project_fields on projects.id_project = project_fields.id_project LEFT join data_field_value on projects.id_project = data_field_value.pro_id WHERE projects.id_project = :projectId");
         $sth->bindparam(":projectId", $projectId);
         $ret=$sth->execute();
         return $ret;
@@ -438,30 +332,45 @@ public function getfieldValues($id, $pro_id){
         return $ret;
     }
     
-	public function updateSettings($fonts,$email_mp,$email_sub,$message,$emailmp_MH,$hide_node,$charts,$is_social_share,$is_email_share,$is_tweet_mp,$tweet_mp_text,$is_facebook,$is_insta,$is_twitter,$is_linkedin,$email_friend_text,$email_friend_title,$is_email_friend,$cta_text,$subscribe_mail_text,$subscribe_mail_address,$copyright_title,$copyright_link,$is_pdf_download,$is_image_export,$id){
-        $sth = $this->db->prepare("UPDATE `projects` SET `font` = '$fonts', `is_mp` = '$email_mp',`email_sub`=:email_sub,`emailmp_MH`=:emailmp_MH,`message`=:message,`hide_node`='$hide_node',`is_charts` =  '$charts', `is_social_share` = '$is_social_share',`is_email_share` = '$is_email_share', `is_tweet_mp` = '$is_tweet_mp' ,`tweet_mp_text`=:tweet_mp_text,`is_facebook` = :is_facebook, `is_insta` = :is_insta,  `is_twitter` = :is_twitter,`is_linkedin` = :is_linkedin,`email_friend_text`=:email_friend_text,`email_friend_title`=:email_friend_title,`is_email_friend` = :is_email_friend,`cta_text`=:ctaText,`subscribe_mail_text`=:subscribe_mail_text,`subscribe_mail_address`='$subscribe_mail_address',`copyright_title`='$copyright_title',`copyright_link`='$copyright_link',`is_pdf_download` = :isPdfDownload,  `is_image_export` = :isImageExport WHERE `id_project` = $id");
+
+    public function updateSettings($fonts, $hide_node, $charts, $is_email_share,$cta_text,$subscribe_mail_text,$subscribe_mail_address,$copyright_title,$copyright_link,$is_pdf_download,$is_image_export,$id){
+        $sth = $this->db->prepare("UPDATE `projects` SET `font` = '$fonts',`hide_node`='$hide_node',`is_charts` =  '$charts',`is_email_share` = '$is_email_share',`subscribe_mail_text`=:subscribe_mail_text,`subscribe_mail_address`='$subscribe_mail_address',`copyright_title`='$copyright_title',`copyright_link`='$copyright_link',`is_pdf_download` = :isPdfDownload,  `is_image_export` = :isImageExport,`cta_text`='$cta_text' WHERE `id_project` = $id");
         $sth->bindparam(":subscribe_mail_text", $subscribe_mail_text);
+		$sth->bindparam(":isPdfDownload", $is_pdf_download);
+		$sth->bindparam(":isImageExport", $is_image_export);
+        $upd=$sth->execute();
+		//var_dump($sth->errorInfo());exit;
+        return $upd;
+    }
+
+    public function updatemailSettings($is_email_friend,$email_friend_title,$email_friend_text,$emailmp_MH,$email_sub,$message,$email_mp,$id){
+        $sth = $this->db->prepare("UPDATE `projects` SET `is_mp` = '$email_mp',`email_sub`=:email_sub,`emailmp_MH`=:emailmp_MH,`message`=:message,`email_friend_text`=:email_friend_text,`email_friend_title`=:email_friend_title,`is_email_friend` = :is_email_friend WHERE `id_project` = $id");
         $sth->bindparam(":email_sub", $email_sub);
 		$sth->bindparam(":message", $message);
 		$sth->bindparam(":emailmp_MH", $emailmp_MH);
+		$sth->bindparam(":email_friend_text", $email_friend_text);
+		$sth->bindparam(":email_friend_title", $email_friend_title);
+		$sth->bindparam(":is_email_friend", $is_email_friend);
+        $upd=$sth->execute();
+		//var_dump($sth->errorInfo());exit;
+        return $upd;
+    }
+
+    public function update_socialSettings($is_social_share,$is_facebook,$is_insta,$is_twitter,$is_linkedin,$is_tweet_mp,$tweet_mp_text,$id){
+        $sth = $this->db->prepare("UPDATE `projects` SET `is_social_share` = '$is_social_share', `is_tweet_mp` = '$is_tweet_mp' ,`tweet_mp_text`=:tweet_mp_text,`is_facebook` = :is_facebook, `is_insta` = :is_insta,  `is_twitter` = :is_twitter,`is_linkedin` = :is_linkedin WHERE `id_project` = $id");
 		$sth->bindparam(":tweet_mp_text", $tweet_mp_text);
 		$sth->bindparam(":is_facebook", $is_facebook);
 		$sth->bindparam(":is_insta", $is_insta);
 		$sth->bindparam(":is_twitter", $is_twitter);
 		$sth->bindparam(":is_linkedin", $is_linkedin);
-		$sth->bindparam(":email_friend_text", $email_friend_text);
-		$sth->bindparam(":email_friend_title", $email_friend_title);
-		$sth->bindparam(":is_email_friend", $is_email_friend);
-		$sth->bindparam(":isPdfDownload", $is_pdf_download);
-		$sth->bindparam(":isImageExport", $is_image_export);
-		$sth->bindparam(":ctaText", $cta_text);
         $upd=$sth->execute();
 		//var_dump($sth->errorInfo());exit;
         return $upd;
     }
+
 		
 	public function getNodeDetails($project_id){
-     $sth = $this->db->prepare("SELECT data_field_value_new.*,map_template_regions.name FROM `data_field_value_new` LEFT JOIN map_template_regions ON data_field_value_new.city_id=map_template_regions.id WHERE data_field_value_new.pro_id=$project_id ORDER BY map_template_regions.name");
+     $sth = $this->db->prepare("SELECT map_template_regions.name, map_template_regions.id, project_fields.field_name, data_field_value.field_value, data_field_value.id AS data_id, data_field_value.field_id FROM `data_field_value`,project_fields,map_template_regions WHERE data_field_value.`pro_id`='".$project_id."' AND map_template_regions.id=data_field_value.city_id AND data_field_value.field_id=project_fields.id_project_field AND project_fields.isGroup=0 ORDER BY city_id ASC,`data_field_value`.`id` ASC");
      $sth->execute();
      return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -480,16 +389,18 @@ public function getfieldValues($id, $pro_id){
         $ins=$sth1->execute();
         return $encrypted_id;
     }
-/*****
-// update data_field_value_new
-***/
-public function updateDataFieldValueNew($proId, $city_id, $field_value_data,$node_text,$node_image){
-		$sth=$this->db->prepare("UPDATE `data_field_value_new`(`pro_id`, `city_id`,`field_value_data`,`node_text`,`node_image`) VALUES ('$proId','$city_id','$field_value_data','$node_text','$node_image')");
+
+	public function insertDataFieldValue($proId, $city_id, $fieldId){
+        $sth = $this->db->prepare("INSERT INTO `data_field_value` (`pro_id`, `city_id`, `field_id`) VALUES ('$proId','$city_id','$fieldId')");
         $ins=$sth->execute();
         $insert_id = $this->db->lastInsertId();
+        $key = 'Hl2018@1212';
+        $encrypted_id = openssl_encrypt($insert_id,'AES-128-ECB',$key, OPENSSL_RAW_DATA);
+        $encrypted_id = strtolower(bin2hex($encrypted_id));
+        $sth1 = $this->db->prepare("UPDATE `projects` SET `proKey`= '$encrypted_id' WHERE `id_project` = $insert_id");
+        $ins=$sth1->execute();
         return $ins;
     }
-/******/	
 	public function addDataFields($proId, $name, $displayName,$type,$hide_node,$hide_empty_valu_on_node,$description1,$myJSON,$isGroup){
         $sth = $this->db->prepare("INSERT INTO `project_fields` (`id_project`, `field_name`, `display_name`, `field_type`,`hide_node`,`hide_empty_valu_on_node`, `description`, `field_data`,`isGroup`) VALUES ('$proId',:name,:displayName,'$type','$hide_node','$hide_empty_valu_on_node',:description1,:myJSON,'$isGroup')");
         $sth->bindparam(":name", $name);
@@ -509,7 +420,7 @@ public function updateDataFieldValueNew($proId, $city_id, $field_value_data,$nod
     }
 	
 	public function getSameMapTemplateRegions($proId){
-        $sth = $this->db->prepare("SELECT `id`,`city_id`,field_value_data,node_text,node_image,status FROM `data_field_value_new` WHERE `pro_id`=:proId");
+        $sth = $this->db->prepare("SELECT DISTINCT(`city_id`) FROM `data_field_value` WHERE `pro_id`=:proId");
 		$sth->bindparam(":proId", $proId);
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -563,7 +474,11 @@ public function updateDataFieldValueNew($proId, $city_id, $field_value_data,$nod
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
     
-
+        public function deletefieldval($proId,$id){
+        $sth = $this->db->prepare("DELETE FROM `data_field_value` WHERE `pro_id` = $proId AND `field_id` = $id");
+		$sth->execute();
+        return $sth->fetchAll(PDO::FETCH_ASSOC);
+    }
     
     public function getChartData($id){
         $sth = $this->db->prepare("SELECT * FROM `chart_wizard` WHERE `id`=:id");
@@ -738,11 +653,9 @@ public function updateDisVal($id)
     return $sth;
 }
 
-public function updateFieldalue($value,$pid,$cid,$node_text,$node_image){
-     $sth = $this->db->prepare("UPDATE `data_field_value_new` SET `field_value_data`=:value,`node_text`=:nodeText,`node_image`=:nodeImage WHERE `pro_id` = $pid AND `city_id` = $cid");
+public function updateFieldalue($value,$pid,$cid,$key){
+     $sth = $this->db->prepare("UPDATE `data_field_value` SET `field_value`=:value WHERE `pro_id` = $pid AND `city_id` = $cid AND `field_id` = $key");
 	$sth->bindparam(":value", $value);
-	$sth->bindparam(":nodeText", $node_text);
-	$sth->bindparam(":nodeImage", $node_image);
     $sth->execute();
     return $sth;
 }

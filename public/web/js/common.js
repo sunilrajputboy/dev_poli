@@ -403,7 +403,4 @@ $(document).ready(function() {
 
     });
 
-
-
-
 });;

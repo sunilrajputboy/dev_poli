@@ -7,11 +7,12 @@ class templates_model extends Model
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
 	
-	public function updatTemplate($is_mp,$email_sub,$message){
-        $sth = $this->db->prepare("UPDATE `template` SET `is_mp`= :IsMp,`email_sub` = :EmailSub, `message`= :Message");
+	public function updatTemplate($is_mp,$email_sub,$message,$emailmp_MH){
+        $sth = $this->db->prepare("UPDATE `template` SET `is_mp`= :IsMp,`email_sub` = :EmailSub, `message`= :Message,`emailmp_MH`=:emailmp_MH");
         $sth->bindparam(":IsMp", $is_mp);
         $sth->bindparam(":EmailSub", $email_sub);
         $sth->bindparam(":Message", $message);
+           $sth->bindparam(":emailmp_MH", $emailmp_MH);
         $ret=$sth->execute();
         return $ret;
     }

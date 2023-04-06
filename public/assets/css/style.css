@@ -1868,6 +1868,7 @@ fieldset[disabled] .btn-neutral.active {
 		-moz-animation-fill-mode: forwards;
 		animation-fill-mode: forwards;
 	}
+
 	@keyframes topbar-x {
 		0% {
 			top: 0px;
